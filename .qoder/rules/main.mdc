@@ -1,0 +1,38 @@
+---
+description: Main entry point for all rules - access specific rules as needed
+globs: 
+alwaysApply: true
+---
+
+# Project Rules Overview
+This is a WordPress project using Sage/Roots (v10), ACF Pro, and Tailwind CSS.
+
+## General rules (important)
+- Use your tools to get context about all relevant files in the project before you do anything.
+- Fetch relevant rules for the task before doing anything! This helps you understand the project structure. When you are not sure on how to implement something, use the rules.
+- Do not place comments in the code unless useful.
+- Important: try to fix things at the cause, not the symptom.
+- Don’t be helpful, be better.
+- Prioritize simple, clear, and maintainable solutions. Avoid unnecessary complexity or over-engineering.
+
+## Core Documentation
+- `base`: Project overview, tech stack, and directory structure
+- `wordpress`: WordPress integration (post types, queries, hooks)
+- `sage`: Sage theme structure and organization
+- `laravel`: Laravel features used (Blade, composers, components)
+- `Vite`: Live rebuilds and asset compiling
+
+## Feature-Specific Documentation
+- `acf`: ACF field organization and common patterns
+- `blocks`: Block architecture and implementation
+- `tailwind`: UI styling conventions and patterns
+- `debugging`: Troubleshooting techniques
+
+## Common Rule Combinations
+- New block creation: `blocks`, `acf`, `tailwind`, `laravel`
+- Template design: `sage`, `laravel`, `tailwind`
+- Data handling: `wordpress`, `laravel`, `acf`
+
+# Available Rule Files
+Use the `fetch_rules` tool to access specific rule documentation:
+

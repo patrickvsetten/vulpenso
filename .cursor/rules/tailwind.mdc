@@ -1,0 +1,113 @@
+---
+description: Tailwind CSS guidelines and conventions
+globs: 
+alwaysApply: false
+---
+@base.mdc
+@sage.mdc
+
+**IMPORTANT: Tailwind V4 is used in this project**
+
+# Tailwind configuration
+- Project uses Tailwind CSS v4 with built-in high-performance JIT engine
+- CSS-first configuration supported via `@theme` blocks in CSS; continue using `tailwind.confiatic content detection: no manual `content` array; respects `.gitignore` and smart heuristics; use `@source` to include extra paths
+- Extend theme values instead of overriding; leverage design tokens exposed as CSS variablesility class conventions
+- Dynamic utilities accept arbitrary values out of the box (`w-17`, `grid-cols-15`, `mt-5.5`)
+- Use responsive prefixes (`sm:`, `md:`, `lg:`) and container query prefixes (`@container`, `@min-*`, `@max-*`) consistently
+- Leverage new variants: `not-*`, `in-*`, `nth-*`, `descendant`, `field-sizing`, `color-scheme`, `data-*`, `starting`, `inert`
+- Grouplayout → sizing → spacing → typography → visual → state
+
+# Component design patterns
+- Maintain class ordering: layout → sizing → spacing → typography → visual → interatterns to Blade components
+- Use `@apply` sparingly; prefer CSS-first config or dynamic utilities
+- Prefix custom component classes with `c-ter/exit transitions (`starting:open:opacity-0`)
+- Use `inert` variant for non-interactive elements
+
+# Responsive & container queries
+- Follow mobile-first design with standard breakpoints: `sm` (640px), `md` (768px), `lg` (1024px), `xl` (1280px), `2xl` (1536px)
+- Wrap elements in `<div class="@container">` to enable container queries
+- Combine `@min-*` and `@max-*` variants to define query ranges: `@min-md:@max-xl:hidden`
+- Order variants in utilities: base → state → responsive → container → print
+
+# Custom plugins and componentss/container-queries`; container queries in core
+- Continue to author custom plugins for specialized utilities
+- Does in markdown or Storybook
+- Organize complex CSS in dedicated `.css` or `.theme.css` files
+
+# Best practices
+- Avoid s and CSS variables
+- Minimize use of `!important`; keep specificity low
+- Prioritize utility and component classes over custom CSS
+- Use consistent units (rem, logical properties) and naming conventions
+- Document dynamic utilities and complex variants
+
+# Theme colors
+- Use semantic names (`primary`, `secondary`) with light/dark suffixes
+- Adopt modern P3 color palette exposed as CSS variables
+- Apply opacity modifiers (`/50`) or `color-mix` when appropriate
+- Leveraapt to system preferences
+
+# Typography
+- Use theme font sizes (`text-sm`…`text-6xl`), weights, and line heights
+- Employ `font-stretch-*` utilities for variable-font tuning
+- Maintain accessible heading hierarchy and consistent prose styles
+
+# Tailwind css conventions
+
+## Core `container mx-auto`
+- **Grid**: `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6`
+- **Flex**: `flex flex-col gap-4 justify-center`
+- **Spacing**: `pt-0`, `pt-small`, `pb-normal` (via ACF settings)
+- **Colors**: `bg-white`, `bg-light`, `bg-primary`, `text-secondary`
+- **Typography**: `text-4xl`, `font-bold`, `leading-tight`, `prose`
+- **Shadows & rings**: `shadow`, `inset-shadow-1`, `inset-ring-2`
+- **Pointer & interaction**: `pointalid`, `user-invalid`
+- **Gradients**: `bg-linear-to-r`, `bg-radial`, `bg-conic`, fiers
+- **Transforms**: `transform-3d`, `rotate-x-45`, `translate-z-2`
+
+## Layout patterpt => $pt,
+  $pb => $pb,
+  $background_color => $background_color,
+])>
+  <div class="container mx-auto">
+    {{-- Content here --}}
+  </div>
+</section>
+```
+
+```blade
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {{-- Grid items --}}
+</div>
+```
+
+```blade
+<div class="prose lg:prose-lg">
+  {!! $content !!}
+</div>
+```
+
+## Button component
+```blade
+<button class="px-4 py-2 rounded bg-primary text-white hover:bg-primary-dark transition-colors">
+  {{ $slot }}
+</button>
+```
+
+## Container queries
+```blade
+<div class="@container">
+  <div class="grid grid-cols-3 @max-md:grid-cols-1 gap-6">
+    {{-- Items --}}
+  </div>
+</div>
+```
+
+## Conditional classes with @class directive
+```blade
+@class([
+  'base-class',
+  'conditional-class' => $condition,
+  $dynamicClass => $dynamicClass,
+])
+```

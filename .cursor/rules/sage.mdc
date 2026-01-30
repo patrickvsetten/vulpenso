@@ -1,0 +1,122 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+@base.mdc
+@laravel.mdc
+
+# Sage/Roots Theme Structure
+
+## Directory Structure
+- `app/` - Theme PHP logic
+  - `app/Blocks/` - Block classes for Gutenberg/ACF blocks
+  - `app/View/Composers/` - View composers for template data
+  - `app/Traits/` - Reusable traits (e.g., ProcessesButtons)
+  - `app/setup.php` - Theme setup
+- `resources/` - Frontend assets and templates
+  - `resources/views/blocks/` - Block templates
+  - `resources/views/components/` - Reusable components
+  - `resources/views/components/content` Reusable_content components
+  - `resources/views/partials/` - Partial templates
+  - `resources/views/sections/` - Section templates
+  - `resources/views/layouts/` - Layout templates
+  - `resources/posttypes` - Posttypes
+- `acf-json/` - ACF field group definitions
+
+## Key Components System
+- **Blade Components**: Located in `resources/views/components/`
+  - `button.blade.php` - Button component
+  - `buttons.blade.php` - Buttons collection component
+  - Under `components/cards/` - Card components
+- **Template Structure**:
+  - Layout templates (`layouts/app.blade.php`)
+  - Template files (e.g., `single.blade.php`, `page.blade.php`)
+  - Block templates in `blocks/` directory
+
+## View Composers
+- Prepare and pass data to views
+- Create in `app/View/Composers/`
+- Register composers with specific templates
+
+```php
+namespace App\View\Composers;
+
+use Roots\Acorn\View\Composer;
+
+class Example extends Composer
+{
+    protected static $views = [
+        'page-template-name',
+        'partials.header',
+    ];
+
+    public function with()
+    {
+        return [
+            'data' => $this->getData(),
+        ];
+    }
+}
+```
+
+## Blade Templates
+- Use `@extends('layouts.app')` for layouts
+- Include partials with `@include('partials.header')`
+- Use components with `<x-component-name />` or `@include("components.component-name")`
+- Use `@class()` directive for conditional classes
+- Use ACF fields via variables passed from controllers
+
+# Sage Directory Structure
+- `app/` - Contains all theme PHP logic
+  - `app/Blocks/` - Gutenberg/ACF block classes
+  - `app/View/` - View composers
+  - `app/Providers/` - Service providers
+  - `app/Helpers/` - Helper functions and utilities
+  - `app/setup.php` - Theme setup, registering scripts, styles, menus
+  - `app/filters.php` - WordPress filters
+  - `app/helpers.php` - Helper functions
+- `config/` - Theme configuration
+  - `config/app.php` - Application configuration
+  - `config/view.php` - View configuration
+  - `config/images.php` - Image sizes configuration
+- `resources/` - Front-end assets and templates
+  - `resources/views/` - Blade templates
+    - `resources/views/blocks/` - Block templates
+    - `resources/views/components/` - Reusable components
+    - `resources/views/partials/` - Partial templates
+    - `resources/views/layouts/` - Layout templates
+  - `resources/scripts/` - JavaScript
+  - `resources/styles/` - SCSS/CSS
+  - `resources/images/` - Images
+  - `resources/fonts/` - Font files
+- `acf-json/` - ACF field group JSON
+- `dist/` - Compiled assets (do not edit)
+- `public/` - Public assets
+- `bud.config.js` - Bud.js asset compilation configuration
+
+# Theme Setup
+- Register navigation menus in `app/setup.php`
+- Register stylesheets and scripts in `app/setup.php`
+- Define image sizes in `app/setup.php` or `config/images.php`
+- Create service providers in `app/Providers/`
+- Setup ACF block types in `app/Blocks/`
+
+# Controllers and View Composers
+- Use View Composers to prepare and pass data to views
+- Extend `App\View\Composers\Composer` base class
+- Create view composers in `app/View/Composers/`
+- Register composers to specific templates
+
+# Asset Management
+- Use Bud.js for asset compilation via `bud.config.js`
+- Use asset helpers for paths: `@asset('images/example.jpg')`
+- All compiled assets will be in the `dist/` directory
+
+# Blade Templates
+- Use layouts with `@extends('layouts.app')`
+- Use sections with `@section` and `@endsection`
+- Include partial templates with `@include('partials.header')`
+- Use Blade components with `<x-component-name />`
+- Use `@asset` directive for compiled assets

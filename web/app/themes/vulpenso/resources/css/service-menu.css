@@ -1,0 +1,103 @@
+/* Service Menu - Custom animations only */
+
+/* Overlay transition with custom easing */
+.service-menu__overlay {
+  transition: opacity 0.4s cubic-bezier(0.5, 0.5, 0, 1);
+}
+
+.service-menu__overlay.is-active {
+  @apply opacity-100 pointer-events-auto;
+}
+
+/* Trigger styling - always white bg (higher specificity to override outline theme) */
+.service-menu__trigger.btn-icon[data-theme="outline"] .btn-icon__content {
+  @apply bg-white rounded-lg overflow-hidden;
+}
+
+/* Background for expand animation - hidden by default, shown via JS class */
+.service-menu__bg {
+  opacity: 0;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  transition: width 0.6s cubic-bezier(0.5, 0.5, 0, 1),
+              height 0.6s cubic-bezier(0.5, 0.5, 0, 1),
+              opacity 0s 0.6s; /* hide after size transition completes */
+}
+
+/* Show bg when animating (JS adds this class) */
+.service-menu__bg.is-animating {
+  opacity: 1;
+  transition: width 0.6s cubic-bezier(0.5, 0.5, 0, 1),
+              height 0.6s cubic-bezier(0.5, 0.5, 0, 1),
+              opacity 0s; /* instant show */
+}
+
+/* Make trigger bg transparent when bg is animating */
+.service-menu:has(.service-menu__bg.is-animating) .service-menu__trigger.btn-icon[data-theme="outline"] .btn-icon__content {
+  @apply bg-transparent;
+}
+
+/* Trigger icon rotation when menu is active */
+[data-service-menu-status="active"] .service-menu__trigger .btn-icon__plus {
+  transform: rotate(45deg);
+}
+
+/* Content reveal animation */
+.service-menu__content {
+  transform: scale(0.92);
+  transition: opacity 0.4s cubic-bezier(0.5, 0.5, 0, 1),
+              visibility 0.4s cubic-bezier(0.5, 0.5, 0, 1),
+              transform 0.5s cubic-bezier(0.5, 0.5, 0, 1);
+}
+
+[data-service-menu-status="active"] .service-menu__content {
+  @apply pointer-events-auto opacity-100 visible;
+  transform: scale(1);
+}
+
+/* Staggered item animations */
+.service-menu__item {
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-service-menu-status="active"] .service-menu__item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-service-menu-status="active"] .service-menu__item:nth-child(1) { transition-delay: 0.15s; }
+[data-service-menu-status="active"] .service-menu__item:nth-child(2) { transition-delay: 0.22s; }
+[data-service-menu-status="active"] .service-menu__item:nth-child(3) { transition-delay: 0.29s; }
+[data-service-menu-status="active"] .service-menu__item:nth-child(4) { transition-delay: 0.36s; }
+[data-service-menu-status="active"] .service-menu__item:nth-child(5) { transition-delay: 0.43s; }
+[data-service-menu-status="active"] .service-menu__item:nth-child(6) { transition-delay: 0.50s; }
+[data-service-menu-status="active"] .service-menu__item:nth-child(7) { transition-delay: 0.57s; }
+[data-service-menu-status="active"] .service-menu__item:nth-child(8) { transition-delay: 0.64s; }
+
+/* Dot hover effect */
+.service-menu__dot {
+  transition-timing-function: cubic-bezier(0.5, 0.5, 0, 1);
+}
+
+.service-menu__link:hover .service-menu__dot {
+  @apply opacity-50 scale-100;
+}
+
+/* Prices nav dot effect (same as service menu) */
+.prices-nav__dot {
+  transition-timing-function: cubic-bezier(0.5, 0.5, 0, 1);
+}
+
+.prices-nav__link:hover .prices-nav__dot {
+  @apply opacity-50 scale-100;
+}
+
+.prices-nav__link.is-active {
+  @apply bg-primary/5 text-primary;
+}
+
+.prices-nav__link.is-active .prices-nav__dot {
+  @apply opacity-50 scale-100;
+}

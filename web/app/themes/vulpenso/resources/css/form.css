@@ -1,0 +1,123 @@
+body {
+  .gform_heading {
+    @apply hidden;
+  }
+
+  .gform_wrapper.gravity-theme {
+    .gform_fields {
+      @apply gap-8;
+    }
+
+    .gfield_required {
+      @apply text-primary;
+    }
+
+    .gfield_label {
+      @apply text-sm font-normal;
+    }
+
+    .gfield input.large,
+    .gfield select.large,
+    .gfield textarea {
+      @apply border-b font-normal px-0 pt-0 text-lg bg-transparent outline-none transition-colors duration-200;
+
+      &:focus {
+        @apply border-primary;
+      }
+    }
+
+    .field_sublabel_above .gfield_description {
+      @apply mt-0 text-xs;
+    }
+
+    .gfield_validation_message {
+      @apply hidden;
+    }
+
+    .gfield_error [aria-invalid=true] {
+      @apply border-l-0 border-t-0 border-r-0 !border-[#FF0000];
+    }
+  }
+
+  /* Dark mode form (on dark background) */
+  .form-dark .gform_wrapper.gravity-theme {
+    .gfield_label,
+    .gfield input.large,
+    .gfield select.large,
+    .gfield textarea {
+      @apply text-white;
+    }
+
+    .gfield input.large,
+    .gfield select.large,
+    .gfield textarea {
+      @apply border-white/10 transition-colors duration-200;
+
+      &:focus {
+        @apply border-primary;
+      }
+    }
+
+    .gfield input::placeholder,
+    .gfield textarea::placeholder {
+      @apply text-white/50;
+    }
+
+    .field_sublabel_above .gfield_description {
+      @apply text-white/70;
+    }
+
+    .gform_validation_errors {
+      @apply bg-red-500/10 border border-red-500/20 text-white rounded-xl p-4;
+
+      h2 {
+        @apply text-red-400 text-base font-semibold;
+      }
+
+      li {
+        @apply text-white/70 text-sm;
+      }
+    }
+  }
+
+  /* Light mode form (on light/white background) */
+  .form-light .gform_wrapper.gravity-theme {
+    .gfield_label,
+    .gfield input.large,
+    .gfield select.large,
+    .gfield textarea {
+      @apply text-dark;
+    }
+
+    .gfield input.large,
+    .gfield select.large,
+    .gfield textarea {
+      @apply border-dark/10 transition-colors duration-200;
+
+      &:focus {
+        @apply border-primary;
+      }
+    }
+
+    .gfield input::placeholder,
+    .gfield textarea::placeholder {
+      @apply text-dark/50;
+    }
+
+    .field_sublabel_above .gfield_description {
+      @apply text-dark/70;
+    }
+
+    .gform_validation_errors {
+      @apply bg-red-500/10 border border-red-500/20 text-dark rounded-xl p-4;
+
+      h2 {
+        @apply text-red-600 text-base font-semibold;
+      }
+
+      li {
+        @apply text-dark/70 text-sm;
+      }
+    }
+  }
+}

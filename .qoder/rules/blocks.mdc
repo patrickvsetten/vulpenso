@@ -1,0 +1,150 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+@base.mdc
+@sage.mdc
+@acf.mdc
+
+# ACF Blocks Architecture
+The theme uses ACF Blocks with a standardized architecture:
+
+## Block Structure
+- Each block consists of:
+  1. A PHP class in `web/app/themes/**/app/Blocks/` (extends `web/app/themes/**/app/Blocks/BaseBlock.php`)
+  2. A Blade template in `web/app/themes/**/resources/views/blocks/`
+  3. ACF field definitions in the `acf-json/` directory
+
+## Standardized Field Structure
+All blocks should follow the standardized field structure defined in the ACF rules:
+1. Layout Tab
+2. Layout Clone Field (using `group_67975fa30ad15`)
+3. Content Tab
+4. Reusable Content Clone Field (using `group_67974cffaec92`)
+5. Block-specific content fields
+
+This ensures consistent field organization and UI across all blocks.
+
+When asked to create a new block, always create the ACF fields for that block as well.
+
+## Block PHP Class Pattern
+- Located in `web/app/themes/**/app/Blocks/`
+- Extends `web/app/themes/**/app/Blocks/BaseBlock.php`
+- Always uses `AcfBlockIcon` trait to set the icon for the block
+- Standard properties:
+  - `$name`, `$description`, `$category`, `$keywords`, `$post_types`, `$parent`, `$mode`, `$view`, `$supports`
+  - `$view` - points to Blade template
+  - `$supports` - block configuration
+
+```php
+<?php
+
+namespace App\Blocks;
+
+class ExampleBlock extends BaseBlock
+{    
+    public $name = 'Example';
+    public $description = 'A simple Example block.';
+    public $category = 'formatting';
+    public $keywords = ['example', 'block'];
+    public $post_types = [];
+    public $parent = [];
+    public $mode = 'edit';
+    public $view = 'blocks.example';
+    
+    public $supports = [
+        'mode' => 'edit',
+        'multiple' => true,
+        'jsx' => true,
+    ];
+    
+    public function with()
+    { 
+        return array_merge(
+            $this->getCommonFields(),
+            [
+                'info_columns' => get_field('info_columns') ?? [],
+                'show_icon_line' => get_field('show_icon_line') ?? null,
+            ]
+        );
+    }
+    
+    public function fields()
+    {
+        return null; // Fields defined in ACF UI and stored in JSON
+    }
+}
+```
+
+## Standard Block Blade Template
+```blade
+<x-section 
+  :id="$id"
+  :pt="$pt" 
+  :pb="$pb" 
+  :background_color="$background_color"
+  class="relative"
+>
+  <div>
+    <x-content.subtitle
+        :subtitle="$subtitle"
+        :content-items="$content_items"
+    />
+
+    <x-content.title
+        :title="$title"
+        :heading="$heading"
+        :background="$background_color"
+        :content-items="$content_items"
+    />
+
+    <x-content.text
+        :content="$content"
+        :background="$background_color"
+        :content-items="$content_items"
+    />
+
+    <div class="mt-8">
+        <x-content.buttons
+            :buttons="$buttons"
+            :content-items="$content_items"
+            :marker="$add_marker"
+        />
+    </div>
+    
+    <!-- Block-specific content -->
+  </div>
+</section>
+```
+
+# Common Field Groups
+- **Layout** (`group_67975fa30ad15`) - Standard layout settings:
+  - ID (optional)
+  - Top/bottom spacing (`pt`, `pb`)
+  - Background color
+  
+- **Reusable Content** (`group_67974cffaec92`) - Standard content fields:
+  - Content items selection (subtitle, title, content, buttons)
+  - Heading level (h1-h4)
+  - Title (WYSIWYG)
+  - Content (WYSIWYG)
+  - Buttons (repeater with button fields)
+
+# Button Handling
+- Buttons rendered with `<x-buttons :buttons="$buttons" />` component
+
+# ACF Blocks Structure
+- Create block classes in `app/Blocks/` directory
+- Create corresponding Blade templates in `resources/views/blocks/`
+- Use Log1x/AcfComposer for block registration and field definition
+- Follow naming conventions: PHP class is PascalCase, Blade template is kebab-case
+- Always put @if around each content item so each field is optional
+
+# ACF Field Management
+- **NEVER define ACF fields in the `fields()` method** - this method should return null or empty array
+- Always create field groups using the WordPress Admin UI
+- Fields are automatically saved to the `acf-json/` directory
+- Commit these JSON files to version control
+- All field management happens through the ACF UI and JSON files, never in PHP code

@@ -1,0 +1,59 @@
+---
+description: Debugging techniques and tools for development
+globs: 
+alwaysApply: false
+---
+
+@base.mdc
+@wordpress.mdc
+@sage.mdc
+
+# PHP Debugging
+- Use `@dump()` and `dd()` for debugging in Blade templates and PHP files
+- Implement proper exception handling and error logging
+- Utilize XDebug for step-through debugging when available
+- Install and use Query Monitor plugin for database queries
+- Use `dump()` for non-terminating inspection and `dd()` to dump and die
+
+```php
+// Basic debugging
+@dump($variable); // In Blade templates
+dump($variable);  // In PHP files
+
+// Dump and die (stops execution after dumping)
+dd($variable);    // Works in both Blade and PHP
+
+// Enhanced debugging function
+function av_debug($data, $label = null) {
+    if ($label) {
+        dump([$label => $data]);
+    } else {
+        dump($data);
+    }
+}
+```
+
+# JavaScript Debugging
+- Use browser developer tools (Console, Network, Elements tabs)
+- Implement `console.log()`, `console.table()`, and `console.group()`
+- Create useful debug messages with context
+- Create standalone debug utility functions
+
+```javascript
+// Enhanced console logging
+const debug = (process.env.NODE_ENV !== 'production') ?
+  (label, data) => {
+    console.group(`🔍 ${label}`);
+    console.log(data);
+    console.groupEnd();
+  } : 
+  () => {};
+```
+
+# Common Issues and Solutions
+- Theme not loading styles or scripts: Check asset path helpers and enqueue functions
+- ACF fields not appearing: Check field group conditions and location rules
+- Blade templates not rendering: Check template name and path conventions
+- Custom post types not showing: Check rewrite rules and flush permalinks
+- Database queries slow: Add indexes and optimize JOIN operations
+- Caching issues: Clear object and transient caches

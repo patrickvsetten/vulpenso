@@ -1,0 +1,383 @@
+{
+    "key": "group_6478b2c08d37f",
+    "title": "Block: Header",
+    "fields": [
+        {
+            "key": "field_6481e172cc7aa",
+            "label": "Layout",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0,
+            "wpml_cf_preferences": 1
+        },
+        {
+            "key": "field_648ff372afff2",
+            "label": "Pagina",
+            "name": "page",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "subpage": "Subpagina",
+                "home": "Home"
+            },
+            "default_value": "subpage",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal",
+            "wpml_cf_preferences": 1
+        },
+        {
+            "key": "field_64899abecc150",
+            "label": "Type",
+            "name": "type",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "image": "Afbeelding",
+                "video": "Video"
+            },
+            "default_value": "image",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 1,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_67a3095acbca8",
+            "label": "Toon call to action?",
+            "name": "show_cta",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "yes": "Ja",
+                "no": "Nee"
+            },
+            "default_value": "no",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 1,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_6481e1bdcc7ac",
+            "label": "Inhoud",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0,
+            "wpml_cf_preferences": 1
+        },
+        {
+            "key": "field_691cc72a29d5a",
+            "label": "Herbruikbare content",
+            "name": "reusable_content",
+            "aria-label": "",
+            "type": "clone",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_648ff372afff2",
+                        "operator": "==",
+                        "value": "subpage"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "clone": [
+                "group_67974cffaec92"
+            ],
+            "display": "seamless",
+            "layout": "block",
+            "prefix_label": 0,
+            "prefix_name": 0
+        },
+        {
+            "key": "field_rotating_text_prefix",
+            "label": "Tekst voor",
+            "name": "rotating_text_prefix",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "De tekst die voor het wisselende woord komt",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_648ff372afff2",
+                        "operator": "==",
+                        "value": "home"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Service en onderhoud voor je",
+            "maxlength": "",
+            "placeholder": "Bijv: Service en onderhoud voor je",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rotating_text_words",
+            "label": "Wisselende woorden",
+            "name": "rotating_text_words",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Komma-gescheiden lijst van woorden die wisselen",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_648ff372afff2",
+                        "operator": "==",
+                        "value": "home"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "CV-ketel, warmtepomp, airco, ventilatie, melders",
+            "maxlength": "",
+            "placeholder": "Bijv: CV-ketel, warmtepomp, airco",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rotating_text_suffix",
+            "label": "Tekst na",
+            "name": "rotating_text_suffix",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "De tekst die na het wisselende woord komt",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_648ff372afff2",
+                        "operator": "==",
+                        "value": "home"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "in topconditie",
+            "maxlength": "",
+            "placeholder": "Bijv: in topconditie",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_649ac001b7c4f",
+            "label": "Video",
+            "name": "video_source",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64899abecc150",
+                        "operator": "==",
+                        "value": "video"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "external": "Extern gehost",
+                "file": "Bestand"
+            },
+            "default_value": "external",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 1,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_6481e1b2cc7ab",
+            "label": "Afbeelding",
+            "name": "background_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64899abecc150",
+                        "operator": "==",
+                        "value": "image"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium",
+            "wpml_cf_preferences": 1
+        },
+        {
+            "key": "field_64899adacc151",
+            "label": "Video",
+            "name": "video",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64899abecc150",
+                        "operator": "==",
+                        "value": "video"
+                    },
+                    {
+                        "field": "field_649ac001b7c4f",
+                        "operator": "==",
+                        "value": "file"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "",
+            "wpml_cf_preferences": 1
+        },
+        {
+            "key": "field_649ac05bf3099",
+            "label": "Video",
+            "name": "video_url",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64899abecc150",
+                        "operator": "==",
+                        "value": "video"
+                    },
+                    {
+                        "field": "field_649ac001b7c4f",
+                        "operator": "!=",
+                        "value": "file"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "wpml_cf_preferences": 2
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/header"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1763494546
+}

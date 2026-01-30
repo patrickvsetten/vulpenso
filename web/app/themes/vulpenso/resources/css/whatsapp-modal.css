@@ -1,0 +1,40 @@
+/* WhatsApp Modal - Transitions */
+.whatsapp-modal__overlay {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.whatsapp-modal__card {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(1rem);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-whatsapp-modal-status="active"] .whatsapp-modal__overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+[data-whatsapp-modal-status="active"] .whatsapp-modal__card {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* QR code SVG styling */
+[data-whatsapp-modal-qr-canvas] svg {
+  @apply w-full h-full;
+}
+
+[data-whatsapp-modal-qr-canvas] svg rect {
+  fill: transparent;
+}
+
+/* Touch device: hide modal, show direct link */
+@media (hover: none) and (pointer: coarse) {
+  .whatsapp-modal {
+    display: none;
+  }
+}

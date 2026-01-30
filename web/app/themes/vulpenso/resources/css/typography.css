@@ -1,0 +1,81 @@
+/* Typography - Headings and text styles */
+
+@layer base {
+  html {
+    font-size: var(--size-font);
+  }
+
+  body {
+    font-size: 1rem;
+    font-family: var(--font-body);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-normal leading-tight;
+
+    b {
+      @apply font-bold;
+    }
+  }
+
+  h1,
+  h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl xl:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-2xl lg:text-3xl xl:text-5xl;
+  }
+
+  h4 {
+    @apply text-base md:text-lg lg:text-xl xl:text-2xl;
+  }
+
+  h5 {
+    @apply text-sm md:text-base lg:text-lg xl:text-2xl;
+  }
+
+  h6 {
+    @apply text-lg;
+  }
+
+  .subtitle {
+    @apply text-sm md:text-base font-normal;
+  }
+}
+
+/* Heading spans with primary color and underline */
+h1 span,
+h2 span,
+h3 span,
+h4 span,
+h5 span,
+h6 span {
+  @apply text-primary font-bold relative;
+}
+
+/* Underline for split text - on word-inner so it animates together */
+h1 span .single-word-inner::after,
+h2 span .single-word-inner::after,
+h3 span .single-word-inner::after,
+h4 span .single-word-inner::after,
+h5 span .single-word-inner::after,
+h6 span .single-word-inner::after {
+  content: '';
+  @apply absolute left-0 right-0 bottom-0 h-[2px] bg-primary;
+}
+
+/* Fallback underline for non-split text */
+h1:not([data-split]) span,
+h2:not([data-split]) span,
+h3:not([data-split]) span,
+h4:not([data-split]) span,
+h5:not([data-split]) span,
+h6:not([data-split]) span {
+  @apply underline;
+}

@@ -1,0 +1,149 @@
+---
+description: WordPress development conventions
+globs: 
+alwaysApply: false
+---
+
+@base.mdc
+
+# WordPress Coding Standards
+- Follow WordPress PHP Coding Standards (WPCS)
+- Use snake_case for function names and variables
+- Use PascalCase for class names
+- Use kebab-case for file names (except classes which use PascalCase)
+- Prefix functions and global variables with project-specific prefix (`av_`)
+- Use proper escaping functions: `esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses()`, etc.
+
+# WordPress Hooks
+- Use `add_action()` and `add_filter()` for hooking into WordPress
+- Follow naming convention: `{prefix}_{hook_name}_{action}`
+- Document hook priority and required arguments
+- Group related hooks together in dedicated files
+- Use higher priority numbers (lower priority) to run after core hooks
+
+```php
+/**
+ * Modify post content.
+ *
+ * @param string $content The post content.
+ * @return string The modified content.
+ */
+add_filter('the_content', function ($content) {
+    // Modify content
+    return $content;
+}, 20);
+```
+
+# Template Structure
+- Use WordPress template hierarchy for theme templates
+- Create specialized templates for custom post types and taxonomies
+- Leverage template parts for reusable components
+- Use Blade templates to enhance template functionality
+
+# Custom Post Types and Taxonomies
+- Register custom post types in `resources/posttypes/` or dedicated plugins
+- Use descriptive labels, dashicons, and capabilities
+- Set appropriate rewrite rules and query vars
+- Add proper supports array for features
+- Register taxonomies related to post types
+
+```php
+register_post_type('project', [
+    'labels' => [
+        'name' => __('Projects', 'av'),
+        'singular_name' => __('Project', 'av'),
+        // Additional labels...
+    ],
+    'public' => true,
+    'has_archive' => true,
+    'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
+    'menu_icon' => 'dashicons-portfolio',
+    'rewrite' => ['slug' => 'projects'],
+]);
+```
+
+# Plugin Integration
+- Use composer for WordPress plugin dependencies
+- Follow plugin documentation for integration
+- Override plugin templates when needed using theme templates
+- Create custom plugin integrations in `app/Providers`
+
+# Security Practices
+- Validate and sanitize all user input
+- Use nonces for forms and AJAX requests
+- Verify capabilities before performing actions
+- Escape all output appropriately
+- Use prepared statements for database queries
+
+```php
+// Nonce verification example
+if (
+    isset($_POST['nonce']) &&
+    wp_verify_nonce($_POST['nonce'], 'av_action') &&
+    current_user_can('edit_posts')
+) {
+    // Perform action
+}
+```
+
+# Internationalization
+- Use translation functions: `__()`, `_e()`, `_x()`, etc.
+- Include text domain ('av') in all translations
+- Use proper escaping with translations: `esc_html__()`
+- Create language files in the theme's `languages/` directory
+
+# WordPress Conventions
+
+## Custom Post Types
+- Located in theme files (not as a plugin)
+- Common post types include:
+  - `services` - Service pages
+  - `news` - News articles
+  - `projects` - Project showcases
+
+## Template Hierarchy
+- `single-{post-type}.blade.php` - Single post view
+- `archive-{post-type}.blade.php` - Archive view
+- `page.blade.php` - Standard page template
+- `404.blade.php` - Not found page
+
+## Post Query Pattern
+```php
+// In block classes or composers
+$posts = get_posts([
+    'post_type'      => 'post_type_name',
+    'posts_per_page' => 8,
+    'post_status'    => 'publish',
+    'orderby'        => 'date',
+    'order'          => 'ASC',
+]);
+
+// Or with WP_Query
+$query = new \WP_Query([
+    'post_type'      => 'post_type_name',
+    'posts_per_page' => 8,
+]);
+
+if ($query->have_posts()):
+    while ($query->have_posts()): $query->the_post();
+        // Process each post
+    endwhile;
+    wp_reset_postdata();
+endif;
+```
+
+## ACF Integration
+- ACF fields accessed via `get_field('field_name', $post_id)`
+- For options pages: `get_field('field_name', 'option')`
+- Process fields in view composers or block classes, not in templates
+
+## Media Handling
+- Featured images: `get_post_thumbnail_id($post_id)`
+- Image rendering: `wp_get_attachment_image($image_id, 'size', false, ['class' => 'css-class'])`
+- Image URL: `wp_get_attachment_image_url($image_id, 'size')`
+- Image sizes defined in `app/setup.php`
+
+## Common Helpers
+- `get_permalink($post_id)` - Get post URL
+- `get_the_title($post_id)` - Get post title
+- `get_post_type($post_id)` - Get post type

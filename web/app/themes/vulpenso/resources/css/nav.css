@@ -1,0 +1,220 @@
+/* Sticky nav state */
+@media (min-width: 768px) {
+  .nav.is-sticky {
+    position: fixed;
+    top: 0.5rem;
+  }
+}
+
+.menu-secondary-menu-container {
+  li a {
+    @apply ease-in-out duration-300;
+
+    &:hover {
+      @apply text-primary;
+    }
+  }
+}
+
+.nav-primary > .menu-item {
+  @apply relative z-10;
+}
+
+/* Slide hover effect for nav-primary links - text-shadow technique */
+.nav-hover-link {
+  @apply relative block;
+}
+
+.nav-hover-mask {
+  @apply block overflow-hidden;
+}
+
+.nav-hover-text {
+  @apply block;
+  --text-duplicate-distance: 1.5em;
+  text-shadow: 0px var(--text-duplicate-distance) currentColor;
+  transition: transform 0.525s cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+@media (hover: hover) {
+  .nav-hover-link:hover .nav-hover-text {
+    transform: translateY(calc(-1 * var(--text-duplicate-distance)));
+  }
+}
+
+.nav {
+  .menu-menu-container {
+    li {
+      a {
+        @apply ease-in-out duration-300 py-4;
+
+        &:hover {
+          @apply text-primary;
+        }
+      }
+
+      &.current-menu-item > a,
+      &.current-menu-ancestor > a {
+        @apply text-primary;
+      }
+    }
+  }
+
+  .menu-item-has-children {
+    @apply relative;
+
+    &::after {
+      content: "";
+
+      @apply h-2 w-2 inline-block border-black border-r-2 border-b-2 border-l-0 border-t-0 ml-0 mb-1 ease-in-out duration-300 transition-all transform rotate-45;
+    }
+
+    .sub-menu {
+      @apply opacity-0 invisible absolute px-8 pb-8 pt-4 bg-white z-10 top-12 -left-8 transition-all duration-300 ease-in-out -translate-y-12 rounded-b-2xl leading-loose min-w-64;
+
+      &::before {
+        content: "";
+
+        @apply h-8 absolute inset-x-0 -top-[2.4rem];
+      }
+
+
+      li {
+        @apply pb-2 mb-2 border-b border-black/10 block;
+
+        a {
+          @apply text-black/70 ease-in-out duration-300;
+
+          &:hover {
+            @apply text-primary;
+          }
+        }
+
+        &.current_page_item {
+          a {
+            @apply text-primary;
+          }
+        }
+      }
+
+      & > li:last-child {
+        @apply border-b-0 pb-0 mb-0;
+      }
+    }
+
+    &:hover {
+      .sub-menu {
+        @apply opacity-100 visible translate-y-2;
+      }
+
+      &::after {
+        @apply rotate-[-135deg] translate-y-1;
+      }
+    }
+  }
+}
+
+.mobile-nav {
+  &__wrapper {
+    max-height: calc(100vh - 6rem);
+
+    @apply overflow-hidden overflow-y-scroll flex-wrap;
+  }
+
+  .nav-mobile {
+    a {
+      @apply leading-loose block w-full border-black/10 border-b pb-3 pt-2;
+    }
+
+    li {
+      @apply w-full;
+
+      &:last-child {
+        a {
+          @apply border-b-0 pb-0;
+        }
+      }
+
+      &.current-menu-item {
+        & > a {
+          @apply text-primary;
+        }
+      }
+
+      &.menu-item-has-children {
+        @apply relative;
+
+        & > a {
+          @apply pointer-events-none;
+        }
+
+        &::after {
+          content: "";
+          transform: rotate(45deg);
+
+          @apply h-2 w-2 inline-block border-dark border-r-2 border-l-0 border-b-2 border-t-0 ml-2 mb-1 duration-500 ease-in-out absolute top-[1.35rem] right-1;
+        }
+
+        .sub-menu {
+          max-height: 0;
+
+          @apply overflow-hidden duration-500 ease-in-out;
+
+          li {
+            @apply p-0 my-1;
+
+            &.menu-item-has-children::after {
+              display: none !important;
+            }
+
+            a {
+              @apply text-base opacity-70 pl-4;
+
+              img {
+                @apply h-3 w-auto;
+              }
+            }
+          }
+
+          .menu-item-has-children {
+            &::after {
+              content: none;
+            }
+
+            > a {
+              @apply flex flex-row-reverse justify-end font-bold my-2 opacity-100 items-center;
+            }
+          }
+        }
+
+        &.active {
+          .sub-menu {
+            max-height: 100rem;
+          }
+
+          &::after {
+            transform: rotate(-135deg);
+          }
+        }
+      }
+    }
+  }
+}
+
+.hamburger-active {
+  .mobile-nav {
+    @apply translate-y-0 opacity-100 pointer-events-auto;
+  }
+
+  .hamburger__icon {
+    .hamburger--line {
+      &:first-child {
+        @apply rotate-45 translate-y-[4px];
+      }
+
+      &:last-child {
+        @apply -rotate-45 -translate-y-0.5;
+      }
+    }
+  }
+}

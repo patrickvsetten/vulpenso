@@ -1,0 +1,21 @@
+.block-editor-block-toolbar__block-controls {
+    display: flex !important;
+}
+.block-editor-block-toolbar__block-controls .block-editor-block-mover {
+    margin: 0;
+    padding-left: 6px;
+}
+.block-editor-block-toolbar .components-toolbar-group {
+    padding: 0;
+}
+.interface-interface-skeleton__content {
+    padding: 4rem;
+}
+.block-editor-block-list__block {
+    margin-bottom: 2rem;
+}
+.link-wrap .acf-icon,
+.image-wrap .acf-icon {
+    height: 28px;
+    width: 28px;
+}

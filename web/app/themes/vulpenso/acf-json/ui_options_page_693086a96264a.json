@@ -1,0 +1,23 @@
+{
+    "key": "ui_options_page_693086a96264a",
+    "title": "Website opties",
+    "active": true,
+    "menu_order": 0,
+    "page_title": "Website opties",
+    "menu_slug": "website-opties",
+    "parent_slug": "none",
+    "advanced_configuration": false,
+    "icon_url": "",
+    "menu_title": "",
+    "position": null,
+    "redirect": false,
+    "description": "",
+    "menu_icon": [],
+    "update_button": "Updaten",
+    "updated_message": "Opties geüpdatet",
+    "capability": "edit_posts",
+    "data_storage": "options",
+    "post_id": "",
+    "autoload": false,
+    "modified": 1764787881
+}

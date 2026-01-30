@@ -1,0 +1,90 @@
+/* ACF Lordicon Field Styles */
+.acf-field-lordicon .lordicon-select {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.acf-field-lordicon .lordicon-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    min-height: 48px;
+    transition: border-color 0.2s ease;
+    font-size: 14px;
+    color: #666;
+}
+
+.acf-field-lordicon .lordicon-trigger:hover {
+    border-color: #0073aa;
+}
+
+.acf-field-lordicon .lordicon-trigger:focus {
+    outline: none;
+    border-color: #0073aa;
+    box-shadow: 0 0 0 1px #0073aa;
+}
+
+.acf-field-lordicon .lordicon-trigger span {
+    color: #999;
+    font-style: italic;
+}
+
+.acf-field-lordicon .lordicon-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: none;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-top: 2px;
+}
+
+.acf-field-lordicon .lordicon-dropdown.open {
+    display: flex;
+}
+
+.acf-field-lordicon .lordicon-option {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #f9f9f9;
+}
+
+.acf-field-lordicon .lordicon-option:hover {
+    border-color: #0073aa;
+    background: #f0f8ff;
+}
+
+.acf-field-lordicon .lordicon-value {
+    display: none;
+}
+
+/* Ensure lord-icon elements are properly sized */
+.acf-field-lordicon lord-icon {
+    display: inline-block;
+    vertical-align: middle;
+    width: 32px;
+    height: 32px;
+} 

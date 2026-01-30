@@ -1,0 +1,18 @@
+/* Rotating Text Animation Styles */
+
+.rotating-text__heading {
+  @apply tracking-tight m-0 font-light leading-[1.15] text-3xl md:text-4xl lg:text-6xl xl:text-7xl;
+}
+
+[data-rotating-words] {
+  @apply inline-block relative align-bottom;
+  overflow: hidden;
+}
+
+.rotating-text__inner {
+  @apply inline-block relative align-bottom;
+}
+
+.rotating-text__word {
+  @apply whitespace-nowrap absolute left-0 top-0 font-medium !no-underline;
+}

@@ -1,0 +1,174 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+@base.mdc
+@sage.mdc
+
+# ACF Field Organization
+- ACF fields defined in WordPress Admin UI and synced via ACF-JSON
+- Field definitions stored in `acf-json/` directory
+- Key field groups:
+  - `group_67975fa30ad15` (Layout) - Common layout settings
+  - `group_67974cffaec92` (Herbruikbare content) - Common content fields
+
+# Standardized Block Field Structure
+All blocks should follow this standardized tab and clone field structure, unless explicitly specified otherwise:
+
+1. **Layout Tab**
+   ```php
+   [
+       'key' => 'field_xxx_tab_layout',
+       'label' => 'Layout',
+       'name' => '',
+       'type' => 'tab',
+       'placement' => 'top',
+   ]
+   ```
+
+2. **Layout Clone Field**
+   ```php
+   [
+       'key' => 'field_xxx_layout',
+       'label' => 'Layout',
+       'name' => 'layout',
+       'type' => 'clone',
+       'clone' => ['group_67975fa30ad15'],
+       'display' => 'seamless',
+   ]
+   ```
+
+3. **Content Tab**
+   ```php
+   [
+       'key' => 'field_xxx_tab_content',
+       'label' => 'Inhoud',
+       'name' => '',
+       'type' => 'tab',
+       'placement' => 'top',
+   ]
+   ```
+
+4. **Reusable Content Clone Field**
+   ```php
+   [
+       'key' => 'field_xxx_reusable_content',
+       'label' => 'Herbruikbare content',
+       'name' => 'reusable_content',
+       'type' => 'clone',
+       'clone' => ['group_67974cffaec92'],
+       'display' => 'seamless',
+   ]
+   ```
+
+5. **Block-specific fields** following the content tab
+
+# Common Layout Field Group
+Layout settings include:
+- ID (optional)
+- Top/bottom spacing (`pt`, `pb` - none, small, normal)
+- Background color (light, yellow, white, dark)
+- Text color (white, black, primary, secondary)
+
+# Reusable Content Field Group
+Content fields include:
+- Content items selection (subtitle, title, content, buttons)
+- Subtitle text
+- Heading level for title (h1-h4)
+- Title (WYSIWYG)
+- Content (WYSIWYG)
+- Buttons (repeater with button fields)
+
+# Field Access Pattern
+```php
+// In Block class with() method:
+$layout = get_field('layout');
+$reusableContent = get_field('reusable_content');
+$contentItems = $reusableContent['content_items'] ?? [];
+
+return [
+    'id' => $layout['id'] ?? null,
+    'pt' => $layout['pt'] ?? 'pt-normal',
+    'pb' => $layout['pb'] ?? 'pb-normal',
+    'background_color' => $layout['background'] ?? 'bg-white',
+    'text_color' => $layout['text_color'] ?? 'text-black',
+    'content_items' => $contentItems,
+    'subtitle' => $reusableContent['subtitle'] ?? null,
+    'heading' => $reusableContent['heading'] ?? 'h2',
+    'title' => $reusableContent['title'] ?? null,
+    'content' => $reusableContent['content'] ?? null,
+    'buttons' => $reusableContent['buttons'] ?? null,
+    // Block-specific fields...
+];
+```
+
+# Blade Template Pattern
+```blade
+@if($subtitle && in_array('subtitle', $content_items))
+  <p class="text-sm mb-2">{{ $subtitle }}</p>
+@endif
+
+@if($title && in_array('title', $content_items))
+  <{{ $heading }} class="text-4xl font-normal leading-tight mb-4">
+    {!! $title !!}
+  </{{ $heading }}>
+@endif
+
+@if($content && in_array('content', $content_items))
+  <div class="prose max-w-3xl mb-8">
+    {!! $content !!}
+  </div>
+@endif
+
+@if($buttons && in_array('buttons', $content_items))
+  <div class="mt-6">
+    <x-buttons :buttons="$buttons" />
+  </div>
+@endif
+```
+
+# Field Naming Conventions
+- Use snake_case for all field names
+- Group fields: `group_section_name`
+- Repeater fields: `repeater_items`
+- Prefix field names with their section: `header_title`, `cta_buttons`
+
+# ACF-JSON Workflow
+1. Create/edit field groups in WordPress Admin UI
+2. ACF automatically saves definitions to `acf-json/` directory
+3. Commit these files to version control
+4. On other environments, sync fields through ACF UI
+
+# Performance Optimization
+- For image fields, return IDs instead of objects: `return_format => 'id'`
+- Use wp_get_attachment functions to retrieve image data when needed
+- For relationship fields, return IDs and fetch posts only when needed
+- Use ACF options pages for global settings (`get_field('field_name', 'option')`)
+- Cache repeater field counts: `$count = count(get_field('repeater_field'))`
+
+# Block Integration
+- Do NOT define fields in Block class's `fields()` method - leave it empty
+- The `fields()` method should return null or an empty array
+- All field definitions should be managed through ACF-JSON
+- Process and prepare fields in the `with()` method
+- Return formatted data for Blade templates from controllers
+
+# ACF Options Pages
+```php
+// Register options page
+add_action('acf/init', function () {
+    acf_add_options_page([
+        'page_title' => 'Theme Settings',
+        'menu_title' => 'Theme Settings',
+        'menu_slug'  => 'theme-settings',
+        'capability' => 'edit_posts',
+        'position'   => '',
+        'icon_url'   => 'dashicons-admin-settings',
+    ]);
+});
+
+// Access options fields
+$logo = get_field('site_logo', 'option');
+```

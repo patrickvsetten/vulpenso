@@ -1,0 +1,894 @@
+# Translation of Plugins - Breadcrumb NavXT - Stable (latest release) in Dutch
+# This file is distributed under the same license as the Plugins - Breadcrumb NavXT - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2025-12-22 07:11:03+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/4.0.3\n"
+"Language: nl\n"
+"Project-Id-Version: Plugins - Breadcrumb NavXT - Stable (latest release)\n"
+
+#. translators: %s: The singular name of the taxonomy
+#: breadcrumb-navxt.php:497
+msgid "Go to the %%title%% %s archives."
+msgstr "Ga naar de %%title%% %s archieven."
+
+#: includes/blocks/build/breadcrumb-trail/block.json
+msgctxt "block keyword"
+msgid "breadcrumb trail"
+msgstr "kruimelpad spoor"
+
+#: includes/blocks/build/breadcrumb-trail/block.json
+msgctxt "block keyword"
+msgid "navigation"
+msgstr "navigatie"
+
+#: includes/blocks/build/breadcrumb-trail/block.json
+msgctxt "block keyword"
+msgid "breadcrumbs"
+msgstr "kruimelpaden"
+
+#: includes/blocks/build/breadcrumb-trail/block.json
+msgctxt "block description"
+msgid "Displays a breadcrumb trail"
+msgstr "Toont een kruimelpad spoor"
+
+#: includes/blocks/build/breadcrumb-trail/block.json
+msgctxt "block title"
+msgid "Breadcrumb Trail"
+msgstr "Kruimelpad spoor"
+
+#: class.bcn_widget.php:128 includes/blocks/build/breadcrumb-trail/index.js:1
+msgid "Schema.org BreadcrumbList (RDFa) with WAI-ARIA"
+msgstr "Schema.org kruimellijst (RDFa) met WAI-ARIA"
+
+#: class.bcn_admin.php:432
+msgid "Value has been set via network wide setting."
+msgstr "Waarde is ingesteld via netwerkbrede instelling."
+
+#. translators: %1$s: Export of the taxonomy object of the unexpected custom
+#. taxonomy
+#: class.bcn_admin.php:362
+msgid "Error: WP_Taxonomies global contains non WP_Taxonomy object. Debug information: %1$s"
+msgstr "Fout: WP_Taxonomies global bevat niet WP_Taxonomy object. Debug informatie: %1$s"
+
+#. translators: %1$s: Export of the post_type object of the unexpected CPT
+#: class.bcn_admin.php:333
+msgid "Error: WP_Post_Types global contains non WP_Post_Type object. Debug information: %1$s"
+msgstr "Fout: WP_Post_Types global bevat niet WP_Post_Type object. Debug informatie: %1$s"
+
+#: includes/adminKit/class-mtekk_adminkit.php:785
+msgid "No settings were imported. Settings from uploaded file matched existing settings."
+msgstr "Geen instellingen zijn geïmporteerd. Instellingen van het geüploade bestand kwamen overeen met bestaande instellingen."
+
+#: class.bcn_breadcrumb_trail.php:577
+msgid "$term global is not of type WP_Term"
+msgstr "$term global is niet van het type WP_Term"
+
+#. translators: %1$s: Taxonomy label, %2$s: Taxonomy name
+#: class.bcn_admin.php:375
+msgid "Warning: The taxonomy %1$s (%2$s) was registered after the Breadcrumb NavXT default settings. It will not show up in the settings."
+msgstr "Waarschuwing: de taxonomie %1$s (%2$s) werd geregistreerd na de Breadcrumb NavXT standaardinstellingen. Het zal niet verschijnen in de instellingen."
+
+#. translators: %1$s: Post type singular name, %2$s: Post type name
+#: class.bcn_admin.php:346
+msgid "Warning: The post type %1$s (%2$s) was registered after the Breadcrumb NavXT default settings. It will not show up in the settings."
+msgstr "Waarschuwing: het bericht type %1$s (%2$s) werd geregistreerd na de Breadcrumb NavXT standaard instellingen. Het zal niet verschijnen in de instellingen."
+
+#. translators: %1$s: Name of the deprecated template tag found, %2$s:
+#. Recommended replacement tag for the deprecated tag, %3$s: The setting name
+#. where the deprecated tag was found
+#: class.bcn_admin.php:312
+msgid "Error: The deprecated template tag %1$s found in setting %3$s. Please use %2$s instead."
+msgstr "Fout: de verouderde template tag %1$s gevonden in de instelling %3$s. Gebruik in plaats daarvan %2$s."
+
+#. translators: %1$s: HTML opening tag for link to article, %2$s: HTML closing
+#. tag for link to article
+#: class.bcn_admin.php:284
+msgid "Error: The deprecated setting \"Title Length\" (see Miscellaneous &gt; Deprecated) has no effect in this version Breadcrumb NavXT. Please %1$suse CSS instead%2$s."
+msgstr "Fout: de verouderde instelling \"Titel lengte\" (zie Diversen &gt; Verouderd) heeft geen effect in deze versie Breadcrumb NavXT. %1$sGebruik in plaats daarvan CSS%2$s."
+
+#: class.bcn_admin.php:167
+msgid "Translate"
+msgstr "Vertaal"
+
+#: class.bcn_admin.php:165
+msgid "Donate"
+msgstr "Doneer"
+
+#: class.bcn_admin.php:160
+msgid "Report a Bug"
+msgstr "Rapporteer een bug"
+
+#: class.bcn_admin.php:159
+msgid "Check out the documentation for more indepth technical information."
+msgstr "Bekijk de documentatie voor meer uitgebreidere technische informatie."
+
+#: class.bcn_admin.php:158
+msgid "Online Documentation"
+msgstr "Online documentatie"
+
+#: class.bcn_admin.php:157
+msgid "There are several guides, tutorials, and how tos available on the author's website."
+msgstr "Er zijn verschillende gidsen, handleidingen, en how tos beschikbaar op de site van de auteur."
+
+#: class.bcn_admin.php:156
+msgid "Tutorials and How Tos"
+msgstr "Handleidingen en how to's"
+
+#. translators: %u: Number of unknown legacy settings found, %s: comma
+#. separated list of the setting names
+#: class.bcn_admin.php:110
+msgid "Found %1$u unknown legacy settings: %2$s"
+msgstr "Gevonden %1$u onbekende verouderde instellingen: %2$s"
+
+#: breadcrumb-navxt.php:572
+msgid "Maximum Title Length"
+msgstr "Maximum titellengte"
+
+#: breadcrumb-navxt.php:566
+msgid "Limit Title Length"
+msgstr "Beperk de lengte van de titel"
+
+#: breadcrumb-navxt.php:350
+msgid "Breadcrumb Separator (Higher Dimension)"
+msgstr "Kruimelpad scheidingsteken (Hogere dimensie)"
+
+#: includes/adminKit/class-mtekk_adminkit.php:1148
+msgid "Import settings"
+msgstr "Importeer instellingen"
+
+#: class.bcn_breadcrumb_trail.php:153
+msgid "Go to the %title% category archives."
+msgstr "Ga naar de %title% categorie archieven."
+
+#: breadcrumb-navxt.php:541 class.bcn_breadcrumb_trail.php:142
+msgid "Go to the first page of posts by %title%."
+msgstr "Ga naar de eerste pagina of bericht per %title%."
+
+#. translators: %s: The post author name the current archive is for
+#. translators: %1$s: The post author name the current archive is for
+#: breadcrumb-navxt.php:540 breadcrumb-navxt.php:547
+#: class.bcn_breadcrumb_trail.php:141 class.bcn_breadcrumb_trail.php:146
+msgid "Articles by: %1$s"
+msgstr "Artikelen per: %1$s"
+
+#: breadcrumb-navxt.php:530 class.bcn_breadcrumb_trail.php:134
+#: class.bcn_breadcrumb_trail.php:157
+msgid "Go to the %title% archives."
+msgstr "Ga naar de %title% archieven."
+
+#: class.bcn_breadcrumb_trail.php:129
+msgid "Go to the %title% tag archives."
+msgstr "Ga naar de %title% tag archieven."
+
+#. translators: %title%: The searched phrase
+#: breadcrumb-navxt.php:520 class.bcn_breadcrumb_trail.php:122
+msgid "Go to the first page of search results for %title%."
+msgstr "Ga naar de eerste pagina met zoekresultaten voor %title%."
+
+#: class.bcn_breadcrumb.php:87
+msgid "Go to %title%."
+msgstr "Ga naar %title%."
+
+#. translators: %s: Singular name for the CPT
+#: class.bcn_admin.php:632
+msgid "Use the parent of the %s as the primary hierarchy, falling back to the hierarchy selected below when the parent hierarchy is exhausted."
+msgstr "Gebruik het hoofd element van de %s als de primaire hiërarchie en val terug naar de hieronder geselecteerde hiërarchie wanneer de hoofd hiërarchie is uitgeput."
+
+#. translators: %s: The singular name of the post type
+#: breadcrumb-navxt.php:437
+msgid "%s Hierarchy Use Parent First"
+msgstr "%s Hiërarchie gebruik hoofd eerst"
+
+#. translators: %1$s: HTML opening tag for link to the support forums, %2$s:
+#. HTML closing tag for link to support forums
+#: includes/adminKit/class-mtekk_adminkit.php:701
+msgid "Go to the %s support forum."
+msgstr "Ga naar de %s ondersteuningsforum."
+
+#: class.bcn_widget.php:129 includes/blocks/build/breadcrumb-trail/index.js:1
+msgid "Schema.org BreadcrumbList (microdata)"
+msgstr "Schema.org BreadcrumbList (microdata)"
+
+#: class.bcn_widget.php:127 includes/blocks/build/breadcrumb-trail/index.js:1
+msgid "Schema.org BreadcrumbList (RDFa)"
+msgstr "Schema.org BreadcrumbList (RDFa)"
+
+#: class.bcn_rest_controller.php:112
+msgid "The ID of the author to retrieve the breadcrumb trail for."
+msgstr "Het ID van de auteur waarvan je het kruimelpad wil ontvangen."
+
+#: class.bcn_rest_controller.php:98
+msgid "The taxonomy of the term to retrieve the breadcrumb trail for."
+msgstr "De taxonomie van de term om het kruimelpad van te ontvangen."
+
+#: class.bcn_rest_controller.php:92
+msgid "The ID of the term to retrieve the breadcrumb trail for."
+msgstr "Het ID van de term waarvan je het kruimelpad wil ontvangen."
+
+#: class.bcn_rest_controller.php:78
+msgid "The ID of the post (any type) to retrieve the breadcrumb trail for."
+msgstr "Het ID van het bericht (elke type) waarvan je het kruimelpad wil ontvangen."
+
+#: breadcrumb-navxt.php:552 class.bcn_admin.php:755
+msgid "Author Root Page"
+msgstr "Auteur hoofd pagina"
+
+#: class.bcn_breadcrumb.php:240
+msgid "bcn_breadcrumb::type must be an array"
+msgstr "bcn_breadcrumb::type moet een array zijn"
+
+#: includes/adminKit/class-mtekk_adminkit_message.php:44
+msgid "$uid must not be null if message is dismissible"
+msgstr "$uid mag niet null zijn als bericht opzegbaar is"
+
+#: includes/adminKit/class-mtekk_adminkit.php:1074
+msgid "adminKit::message is deprecated, use new adminkit_messages instead."
+msgstr "adminKit::message is verouderd, gebruik in de plaats nieuw adminkit_messages."
+
+#: class.bcn_widget.php:142
+msgid "Ignore breadcrumb cache"
+msgstr "Negeer kruimelpad cache"
+
+#. translators: %s: The singular name of the post type
+#: breadcrumb-navxt.php:419 breadcrumb-navxt.php:486
+msgid "%s Hierarchy Referer Influence"
+msgstr "%s Invloed van hiërarchieverwijzing"
+
+#: class.bcn_admin.php:638
+msgid "Allow the referring page to influence the taxonomy selected for the hierarchy."
+msgstr "De verwijzende pagina toestaan de taxonomie te beïnvloeden die voor de hiërarchie is geselecteerd."
+
+#: includes/adminKit/class-mtekk_adminkit.php:408
+msgid "One or more of your plugin settings are invalid."
+msgstr "Eén of meer van je plugin instellingen zijn ongeldig."
+
+#: includes/adminKit/class-mtekk_adminkit.php:391
+msgid "Attempt back migration now."
+msgstr "Poging tot migratie naar een oudere versie."
+
+#: includes/adminKit/class-mtekk_adminkit.php:390
+msgid "Your settings are for a newer version of this plugin."
+msgstr "De instellingen zijn voor een nieuwere versie van deze plugin."
+
+#: includes/adminKit/class-mtekk_adminkit.php:380
+msgid "Your settings are for an older version of this plugin and need to be migrated."
+msgstr "De instellingen zijn voor een oudere versie van deze plugin en moeten overgezet worden."
+
+#: class.bcn_breadcrumb_trail.php:678
+msgctxt "year archive breadcrumb date format"
+msgid "Y"
+msgstr "Y"
+
+#: class.bcn_breadcrumb_trail.php:646
+msgctxt "month archive breadcrumb date format"
+msgid "F"
+msgstr "F"
+
+#: class.bcn_breadcrumb_trail.php:614
+msgctxt "day archive breadcrumb date format"
+msgid "d"
+msgstr "d"
+
+#: breadcrumb-navxt.php:360
+msgctxt "Paged as in when on an archive or post that is split into multiple pages"
+msgid "Paged Template"
+msgstr "Gepagineerd template"
+
+#: class.bcn_admin.php:473
+msgid "Place the page number breadcrumb in the trail."
+msgstr "Plaats het paginanummer kruimelpad in het pad."
+
+#: breadcrumb-navxt.php:364
+msgctxt "Paged as in when on an archive or post that is split into multiple pages"
+msgid "Paged Breadcrumb"
+msgstr "Gepagineerde kruimelpaden"
+
+#: class.bcn_admin.php:168
+msgid "Is your language not available? Visit the Breadcrumb NavXT translation project on WordPress.org to start translating."
+msgstr "Is je taal niet beschikbaar? Bezoek dan het 'Breadcrumb NavXT' vertalingsproject op WordPress.org om aan de vertaling te beginnen."
+
+#. Author URI of the plugin
+#: breadcrumb-navxt.php
+msgid "http://mtekk.us/"
+msgstr "http://mtekk.us/"
+
+#. Author of the plugin
+#: breadcrumb-navxt.php
+msgid "John Havlik"
+msgstr "John Havlik"
+
+#. Description of the plugin
+#: breadcrumb-navxt.php
+msgid "Adds a breadcrumb navigation showing the visitor&#39;s path to their current location. For details on how to use this plugin visit <a href=\"http://mtekk.us/code/breadcrumb-navxt/\">Breadcrumb NavXT</a>."
+msgstr "Voegt kruimelpad-navigatie toe die aan de bezoeker het pad toont van zijn huidige locatie. Bezoek <a href=\"http://mtekk.us/code/breadcrumb-navxt/\">Breadcrumb NavXT</a> voor meer informatie over het gebruik van deze plugin."
+
+#. Plugin URI of the plugin
+#: breadcrumb-navxt.php
+msgid "http://mtekk.us/code/breadcrumb-navxt/"
+msgstr "http://mtekk.us/code/breadcrumb-navxt/"
+
+#. Plugin Name of the plugin
+#: breadcrumb-navxt.php
+msgid "Breadcrumb NavXT"
+msgstr "Breadcrumb NavXT"
+
+#: includes/adminKit/class-mtekk_adminkit.php:1155
+msgid "Select a JSON or XML settings file to upload and import settings from."
+msgstr "Selecteer een XML bestand om daaruit de instellingen te uploaden en importeren."
+
+#: includes/adminKit/class-mtekk_adminkit.php:1152
+msgid "Settings File"
+msgstr "Instellingenbestand"
+
+#: includes/adminKit/class-mtekk_adminkit.php:1149
+msgid "Import settings from a JSON or XML file, export the current settings to a JSON file, or reset to the default settings."
+msgstr "Instellingen importeren uit een JSON of XML bestand, exporteer de huidige instellingen naar een JSON bestand, of reset naar de standaard instellingen."
+
+#: includes/adminKit/class-mtekk_adminkit.php:1021
+msgid "Default settings successfully installed."
+msgstr "Standaardinstellingen geïnstalleerd."
+
+#: includes/adminKit/class-mtekk_adminkit.php:1014
+msgid "Settings successfully migrated."
+msgstr "Instellingen gemigreerd."
+
+#: includes/adminKit/class-mtekk_adminkit.php:973
+msgid "Undo the last undo operation."
+msgstr "Maak de laatste handeling ongedaan."
+
+#: includes/adminKit/class-mtekk_adminkit.php:972
+msgid "Settings successfully undid the last operation."
+msgstr "Instellingen heeft de laatste handeling ongedaan gemaakt."
+
+#: includes/adminKit/class-mtekk_adminkit.php:951
+msgid "Undo the options reset."
+msgstr "Maak terugzetten van de opties naar standaardwaarden ongedaan."
+
+#: includes/adminKit/class-mtekk_adminkit.php:950
+msgid "Settings successfully reset to the default values."
+msgstr "Instellingen teruggezet naar de standaardwaarden."
+
+#: includes/adminKit/class-mtekk_adminkit.php:799
+#: includes/adminKit/class-mtekk_adminkit.php:927
+msgid "Importing settings from file failed."
+msgstr "Instellingen importeren uit bestand is mislukt."
+
+#: includes/adminKit/class-mtekk_adminkit.php:781
+#: includes/adminKit/class-mtekk_adminkit.php:922
+msgid "Undo the options import."
+msgstr "Het importeren van de opties ongedaan maken."
+
+#: includes/adminKit/class-mtekk_adminkit.php:780
+#: includes/adminKit/class-mtekk_adminkit.php:921
+msgid "Settings successfully imported from the uploaded file."
+msgstr "Instellingen geïmporteerd uit het geüploade bestand."
+
+#. translators: %1$s: HTML opening tag for link to the support forums, %2$s:
+#. HTML closing tag for link to support forums
+#: includes/adminKit/class-mtekk_adminkit.php:701
+msgid "Please include this message in your %1$sbug report%2$s."
+msgstr "Voeg dit bericht toe aan je %1$sbug rapport%2$s."
+
+#: includes/adminKit/class-mtekk_adminkit.php:695
+msgid "The following settings were not saved:"
+msgstr "De volgende instellingen zijn niet opgeslagen:"
+
+#: includes/adminKit/class-mtekk_adminkit.php:693
+msgid "Some settings were not saved."
+msgstr "Sommige instellingen zijn niet opgeslagen."
+
+#: includes/adminKit/class-mtekk_adminkit.php:688
+msgid "Settings were not saved."
+msgstr "De instellingen zijn niet opgeslagen."
+
+#: includes/adminKit/class-mtekk_adminkit.php:684
+msgid "Settings did not change, nothing to save."
+msgstr "De instellingen zijn niet veranderd, niets om op te slaan."
+
+#: includes/adminKit/class-mtekk_adminkit.php:680
+#: includes/adminKit/class-mtekk_adminkit.php:694
+#: includes/adminKit/class-mtekk_adminkit.php:781
+#: includes/adminKit/class-mtekk_adminkit.php:922
+#: includes/adminKit/class-mtekk_adminkit.php:951
+#: includes/adminKit/class-mtekk_adminkit.php:973
+msgid "Undo"
+msgstr "Ongedaan maken"
+
+#: includes/adminKit/class-mtekk_adminkit.php:680
+#: includes/adminKit/class-mtekk_adminkit.php:694
+msgid "Undo the options save."
+msgstr "Maak het opslaan van de opties ongedaan."
+
+#: includes/adminKit/class-mtekk_adminkit.php:679
+msgid "Settings successfully saved."
+msgstr "Instellingen opgeslagen."
+
+#: includes/adminKit/class-mtekk_adminkit.php:409
+msgid "Fix now."
+msgstr "Nu repareren."
+
+#: includes/adminKit/class-mtekk_adminkit.php:409
+msgid "Attempt to fix settings now."
+msgstr "Poging om nu de instellingen te repareren."
+
+#: includes/adminKit/class-mtekk_adminkit.php:400
+msgid "Complete now."
+msgstr "Voltooi nu."
+
+#: includes/adminKit/class-mtekk_adminkit.php:400
+msgid "Load default settings now."
+msgstr "Laad nu de standaardinstellingen."
+
+#: includes/adminKit/class-mtekk_adminkit.php:399
+msgid "Your plugin install is incomplete."
+msgstr "Je plugin installatie is onvolledig."
+
+#: includes/adminKit/class-mtekk_adminkit.php:381
+msgid "Migrate now."
+msgstr "Migreer nu."
+
+#: includes/adminKit/class-mtekk_adminkit.php:381
+#: includes/adminKit/class-mtekk_adminkit.php:391
+msgid "Migrate the settings now."
+msgstr "Migreer nu de instellingen."
+
+#: includes/adminKit/class-mtekk_adminkit.php:303
+msgid "Settings"
+msgstr "Instellingen"
+
+#: class.bcn_widget.php:140
+msgid "Hide the trail on the front page"
+msgstr "Verberg het pad op de voorpagina"
+
+#: class.bcn_widget.php:138 includes/blocks/build/breadcrumb-trail/index.js:1
+msgid "Reverse the order of the trail"
+msgstr "De volgorde van het pad omkeren"
+
+#: class.bcn_widget.php:136 includes/blocks/build/breadcrumb-trail/index.js:1
+msgid "Link the breadcrumbs"
+msgstr "Link de kruimelpaden"
+
+#: class.bcn_widget.php:130
+msgid "Plain"
+msgstr "Gewoon"
+
+#: class.bcn_widget.php:126
+msgid "List"
+msgstr "Lijst"
+
+#: class.bcn_widget.php:124
+msgid "Output trail as:"
+msgstr "Geef pad weer als:"
+
+#: class.bcn_widget.php:120
+msgid "Text to show before the trail:"
+msgstr "Weer te geven tekst voor het pad:"
+
+#: class.bcn_widget.php:116
+msgid "Title:"
+msgstr "Titel:"
+
+#: class.bcn_widget.php:30
+msgid "Adds a breadcrumb trail to your sidebar"
+msgstr "Voegt een kruimelpad pad toe aan je zijbalk"
+
+#: class.bcn_network_admin.php:45
+msgid "Breadcrumb NavXT Network Settings"
+msgstr "Breadcrumb NavXT netwerk instellingen"
+
+#: class.bcn_network_admin.php:179 class.bcn_network_admin.php:183
+msgid "Warning: Individual site settings may override any settings set in this page."
+msgstr "Waarschuwing: individuele site instellingen kunnen instellingen ingesteld op deze pagina overschrijven."
+
+#: class.bcn_network_admin.php:171 class.bcn_network_admin.php:189
+msgid "Warning: Individual site settings will override any settings set in this page."
+msgstr "Waarschuwing: individuele site instellingen overschrijven elke instelling op deze pagina."
+
+#: class.bcn_breadcrumb_trail.php:522
+msgid "$post global is not of type WP_Post"
+msgstr "$post global is geen type WP_Post"
+
+#. translators: %s: The searched phrase
+#. translators: %1$s: The searched phrase
+#: breadcrumb-navxt.php:519 breadcrumb-navxt.php:526
+#: class.bcn_breadcrumb_trail.php:120 class.bcn_breadcrumb_trail.php:126
+msgid "Search results for &#39;%1$s&#39;"
+msgstr "Zoekresultaten voor &#39;%1$s&#39;"
+
+#: breadcrumb-navxt.php:513 class.bcn_breadcrumb_trail.php:115
+msgid "404"
+msgstr "404"
+
+#. translators: %htitle%: The page title which may contain HTML
+#. translators: %htitle%: The page title which may contain HTML, in this case
+#. it should be a number as it is when on a paginated archive
+#: breadcrumb-navxt.php:359 class.bcn_breadcrumb_trail.php:78
+msgid "Page %htitle%"
+msgstr "Pagina %htitle%"
+
+#: class.bcn_admin.php:819
+msgid "Save Changes"
+msgstr "Wijzigingen opslaan"
+
+#: class.bcn_admin.php:811
+msgid "The template for 404 breadcrumbs."
+msgstr "De template voor 404 kruimelpaden."
+
+#: breadcrumb-navxt.php:510
+msgid "404 Template"
+msgstr "404-template"
+
+#: breadcrumb-navxt.php:514
+msgid "404 Title"
+msgstr "404-titel"
+
+#: class.bcn_admin.php:800
+msgid "The anchor template for search breadcrumbs, used only when the search results span several pages and the breadcrumb is not linked."
+msgstr "De anker template voor zoek kruimelpaden, wordt alleen gebruikt als de zoekresultaten meerdere pagina's omvatten en als het kruimelpad niet gelinkt is."
+
+#: breadcrumb-navxt.php:527
+msgid "Search Template (Unlinked)"
+msgstr "Zoektemplate (niet gelinkt)"
+
+#: class.bcn_admin.php:794
+msgid "The anchor template for search breadcrumbs, used only when the search results span several pages."
+msgstr "De anker template voor zoek kruimelpaden, wordt alleen gebruikt als de zoek resultaten meerdere pagina's omvatten."
+
+#: breadcrumb-navxt.php:521
+msgid "Search Template"
+msgstr "Zoektemplate"
+
+#: class.bcn_admin.php:788
+msgid "The template for date breadcrumbs, used only when the breadcrumb is not linked."
+msgstr "Het template voor datum kruimelpaden, wordt alleen gebruikt als het kruimelpad niet gelinkt is."
+
+#: breadcrumb-navxt.php:535
+msgid "Date Template (Unlinked)"
+msgstr "Datumtemplate (niet gelinkt)"
+
+#: class.bcn_admin.php:782
+msgid "The template for date breadcrumbs."
+msgstr "Het template voor datum-kruimelpaden."
+
+#: breadcrumb-navxt.php:531
+msgid "Date Template"
+msgstr "Datumtemplate"
+
+#: class.bcn_admin.php:749
+msgid "display_name uses the name specified in \"Display name publicly as\" under the user profile the others correspond to options in the user profile."
+msgstr "display_name gebruikt de naam opgegeven in \"Toon naam publiekelijk als\" onder het gebruikersprofiel, de anderen komen overeen met opties in het gebruikersprofiel."
+
+#: breadcrumb-navxt.php:556
+msgid "Author Display Format"
+msgstr "Format voor auteur weergave"
+
+#: class.bcn_admin.php:743
+msgid "The template for author breadcrumbs, used only when the breadcrumb is not linked."
+msgstr "De template voor auteur kruimelpaden, wordt alleen gebruikt als het kruimelpad niet gelinkt is."
+
+#: breadcrumb-navxt.php:548
+msgid "Author Template (Unlinked)"
+msgstr "Auteurstemplate (niet gelinkt)"
+
+#: class.bcn_admin.php:737
+msgid "The template for author breadcrumbs."
+msgstr "De template voor auteur kruimelpaden."
+
+#: breadcrumb-navxt.php:542
+msgid "Author Template"
+msgstr "Auteurstemplate"
+
+#: class.bcn_admin.php:730
+msgid "Author Archives"
+msgstr "Auteursarchieven"
+
+#: class.bcn_admin.php:729 class.bcn_admin.php:775
+msgid "Miscellaneous"
+msgstr "Diversen"
+
+#: class.bcn_admin.php:729
+msgid "The settings for author and date archives, searches, and 404 pages are located under this tab."
+msgstr "De instellingen voor de auteurs en datum archieven, zoekopdrachten, en 404 pagina's bevinden zich onder deze tab."
+
+#: class.bcn_admin.php:693
+msgid "Taxonomies"
+msgstr "Taxonomieën"
+
+#: class.bcn_admin.php:693
+msgid "The settings for all taxonomies (including Categories, Tags, and custom taxonomies) are located under this tab."
+msgstr "De instellingen voor alle taxonomieën (waaronder Categorieën, Tags, en aangepaste taxonomieën) bevinden zich onder deze tab."
+
+#: class.bcn_admin.php:672
+msgid "The hierarchy which the breadcrumb trail will show."
+msgstr "De hiërarchie die het kruimelpad zal laten zien."
+
+#. translators: %s: Singular name for the CPT
+#: class.bcn_admin.php:646
+msgid "%s Hierarchy"
+msgstr "%s Hiërarchie"
+
+#. translators: %s: Singular name for the CPT
+#: class.bcn_admin.php:625
+msgid "Show the hierarchy (specified below) leading to a %s in the breadcrumb trail."
+msgstr "Toon de hiërarchie (hieronder weergegeven) die leidt naar een %s in het kruimelpad."
+
+#. translators: %s: The singular name of the post type
+#: breadcrumb-navxt.php:481
+msgid "%s Hierarchy Display"
+msgstr "%s Hiërarchieweergave"
+
+#. translators: %s: Post type singlar name
+#: class.bcn_admin.php:609
+msgid "Show the breadcrumb for the %s post type archives in the breadcrumb trail."
+msgstr "Toon het kruimelpad voor %s berichttype archieven in het kruimelpad."
+
+#. translators: %s: The singular name of the post type
+#: breadcrumb-navxt.php:414
+msgid "%s Archive Display"
+msgstr "%s Archief weergave"
+
+#: class.bcn_admin.php:592 class.bcn_admin.php:762
+msgid "&mdash; Select &mdash;"
+msgstr "&mdash; Selecteren &mdash;"
+
+#. translators: %s: The singular name of the post type
+#. translators: %s: Singular name for the CPT
+#: breadcrumb-navxt.php:400 class.bcn_admin.php:584
+msgid "%s Root Page"
+msgstr "Hoofdpagina %s"
+
+#. translators: %s: Singular name for the CPT
+#. translators: %s: Taxonomy name
+#: class.bcn_admin.php:576 class.bcn_admin.php:720
+msgid "The template for %s breadcrumbs, used only when the breadcrumb is not linked."
+msgstr "De template voor %s kruimelpaden, wordt alleen gebruikt als het kruimelpad niet gelinkt is."
+
+#. translators: %s: The singular name of the post type
+#. translators: %s: The singular name of the taxonomy
+#: breadcrumb-navxt.php:382 breadcrumb-navxt.php:504
+msgid "%s Template (Unlinked)"
+msgstr "Template %s (niet gelinkt)"
+
+#. translators: %s: Singular name for the CPT
+#. translators: %s: Taxonomy name
+#: class.bcn_admin.php:569 class.bcn_admin.php:713
+msgid "The template for %s breadcrumbs."
+msgstr "Het template voor %s kruimelpaden."
+
+#. translators: %s: The singular name of the post type
+#. translators: %s: The singular name of the taxonomy
+#: breadcrumb-navxt.php:377 breadcrumb-navxt.php:499
+msgid "%s Template"
+msgstr "Template %s"
+
+#: class.bcn_admin.php:676
+msgid "The hierarchy which the breadcrumb trail will show. Note that the \"Post Parent\" option may require an additional plugin to behave as expected since this is a non-hierarchical post type."
+msgstr "De hiërarchie die het kruimelpad zal tonen. Let op: de 'Hoofdbericht' optie kan een extra plugin vereisen om correct te kunnen functioneren, aangezien dit een niet hiërarchisch berichttype is."
+
+#: class.bcn_admin.php:651
+msgid "Post Parent"
+msgstr "Hoofdbericht"
+
+#: class.bcn_admin.php:652
+msgid "Dates"
+msgstr "Data"
+
+#: class.bcn_admin.php:549
+msgid "Post Types"
+msgstr "Berichttypen"
+
+#: class.bcn_admin.php:549
+msgid "The settings for all post types (Posts, Pages, and Custom Post Types) are located under this tab."
+msgstr "De instellingen voor alle berichttypen (berichten, pagina's, en extra berichttypen) bevinden zich onder deze tab."
+
+#: class.bcn_admin.php:541
+msgid "The template for the main site home breadcrumb, used only in multisite environments and when the breadcrumb is not linked."
+msgstr "De template voor het home kruimelpad van de hoofdsite, wordt alleen gebruikt in multisite omgevingen en als het kruimelpad niet gelinkt is."
+
+#: breadcrumb-navxt.php:325
+msgid "Main Site Home Template (Unlinked)"
+msgstr "Hoofdsite home template (niet gekoppeld)"
+
+#: class.bcn_admin.php:535
+msgid "The template for the main site home breadcrumb, used only in multisite environments."
+msgstr "De template voor het home kruimelpad van de hoofdsite, wordt alleen gebruikt in multisite omgevingen."
+
+#: breadcrumb-navxt.php:321
+msgid "Main Site Home Template"
+msgstr "Home template van de hoofdsite"
+
+#: class.bcn_admin.php:527
+msgid "Place the main site home breadcrumb in the trail in an multisite setup."
+msgstr "Plaats het home kruimelpad van de hoofdsite in het pad van een multisite installatie."
+
+#: breadcrumb-navxt.php:317
+msgid "Main Site Breadcrumb"
+msgstr "Hoofdsite kruimelpad"
+
+#: class.bcn_admin.php:522
+msgid "Mainsite Breadcrumb"
+msgstr "Hoofdsite kruimelpad"
+
+#: class.bcn_admin.php:515
+msgid "Place the blog breadcrumb in the trail."
+msgstr "Plaatst het blog kruimelpad in het pad."
+
+#: breadcrumb-navxt.php:341 class.bcn_admin.php:510
+msgid "Blog Breadcrumb"
+msgstr "Blog-kruimelpad"
+
+#: class.bcn_admin.php:505
+msgid "The template for the home breadcrumb, used when the breadcrumb is not linked."
+msgstr "Het template voor het home-kruimelpad, wordt gebruikt als het kruimelpad niet gelinkt is."
+
+#: breadcrumb-navxt.php:337
+msgid "Home Template (Unlinked)"
+msgstr "Home template (niet gelinkt)"
+
+#: class.bcn_admin.php:499
+msgid "The template for the home breadcrumb."
+msgstr "Het template voor het home-kruimelpad."
+
+#: breadcrumb-navxt.php:333
+msgid "Home Template"
+msgstr "Home template"
+
+#: class.bcn_admin.php:491
+msgid "Place the home breadcrumb in the trail."
+msgstr "Plaatst het home kruimelpad in het spoor."
+
+#: breadcrumb-navxt.php:329 class.bcn_admin.php:486
+msgid "Home Breadcrumb"
+msgstr "Home kruimelpad"
+
+#: class.bcn_admin.php:481
+msgid "The template for paged breadcrumbs."
+msgstr "Het template voor gepagineerde kruimelpaden."
+
+#: class.bcn_admin.php:475
+msgid "Indicates that the user is on a page other than the first of a paginated archive or post."
+msgstr "Betekent dat de gebruiker op een andere pagina is dan de eerste van gepagineerde berichten/pagina's."
+
+#: class.bcn_admin.php:467
+msgid "Yes"
+msgstr "Ja"
+
+#: breadcrumb-navxt.php:355
+msgid "Link Current Item"
+msgstr "Link huidig item"
+
+#: class.bcn_admin.php:462
+msgid "Current Item"
+msgstr "Huidig item"
+
+#: class.bcn_admin.php:458
+msgid "Placed in between each breadcrumb."
+msgstr "Geplaatst tussen elk kruimelpad."
+
+#: breadcrumb-navxt.php:345
+msgid "Breadcrumb Separator"
+msgstr "Kruimelpad scheidingsteken"
+
+#: class.bcn_admin.php:454
+msgid "A collection of settings most likely to be modified are located under this tab."
+msgstr "Een verzameling instellingen die het meest waarschijnlijk worden aangepast, bevinden zich onder deze tab."
+
+#: class.bcn_admin.php:66
+msgid "Breadcrumb NavXT Settings"
+msgstr "Breadcrumb NavXT instelligen"
+
+#: class.bcn_admin.php:285
+msgid "Go to the guide on trimming breadcrumb title lengths with CSS"
+msgstr "Ga naar de handleiding over het inkorten van titel lengte van het kruimelpad met CSS"
+
+#: class.bcn_admin.php:269 class.bcn_network_admin.php:188
+msgid "Warning: No BCN_SETTINGS_* define statement found, defaulting to BCN_SETTINGS_USE_LOCAL."
+msgstr "Waarschuwing: Geen BCN_SETTINGS_* definitie statement gevonden, standaard ingesteld op BCN_SETTINGS_FAVOR_NETWORK."
+
+#: class.bcn_admin.php:260 class.bcn_admin.php:264
+msgid "Warning: Your network settings may override any settings set in this page."
+msgstr "Waarschuwing: je netwerkinstellingen kunnen instellingen op deze pagina overschrijven."
+
+#: class.bcn_admin.php:256
+msgid "Warning: Your network settings will override any settings set in this page."
+msgstr "Waarschuwing: de netwerkinstellingen overschrijven elke instelling van deze pagina."
+
+#: class.bcn_admin.php:238 includes/adminKit/class-mtekk_adminkit.php:1159
+msgid "Reset"
+msgstr "Resetten"
+
+#: class.bcn_admin.php:237 includes/adminKit/class-mtekk_adminkit.php:1158
+msgid "Export"
+msgstr "Exporteren"
+
+#: class.bcn_admin.php:236 includes/adminKit/class-mtekk_adminkit.php:1157
+msgid "Import"
+msgstr "Importeren"
+
+#: class.bcn_admin.php:213
+msgid "Import/Export/Reset"
+msgstr "Importeren/Exporteren/Resetten"
+
+#: class.bcn_admin.php:207
+msgid "Styling"
+msgstr "Stijling"
+
+#: class.bcn_admin.php:195
+msgid "Using the code from the Quick Start section above, the following CSS can be used as base for styling your breadcrumb trail."
+msgstr "Met behulp van de code uit de sectie Snel aan de slag hierboven, kan de volgende CSS worden gebruikt als basis voor het stylen van je kruimelpad pad."
+
+#: class.bcn_admin.php:192
+msgid "Quick Start"
+msgstr "Snelle start"
+
+#: class.bcn_admin.php:183
+msgid "Breadcrumb trail in list form"
+msgstr "Kruimelpad pad in lijstvorm"
+
+#: class.bcn_admin.php:177
+msgid "Breadcrumb trail with separators"
+msgstr "Kruimelpad pad met scheidingstekens"
+
+#: class.bcn_admin.php:176
+msgid "For the settings on this page to take effect, you must either use the included Breadcrumb NavXT widget, or place either of the code sections below into your theme."
+msgstr "Om de instellingen op deze pagina door te voeren moet je gebruik maken van de meegeleverde 'Breadcrumb NavXT' widget, of plaats een van de onderstaande codesecties in je thema."
+
+#: class.bcn_admin.php:173 class.bcn_admin.php:454 class.bcn_admin.php:455
+msgid "General"
+msgstr "Algemeen"
+
+#: class.bcn_admin.php:167
+msgid "Go to the Breadcrumb NavXT translation project."
+msgstr "Ga naar het Breadcrumb NavXT vertaalproject."
+
+#: class.bcn_admin.php:164
+msgid "Go to PayPal to give a donation to Breadcrumb NavXT."
+msgstr "Ga naar PayPal om te doneren aan Breadcrumb NavXT."
+
+#: class.bcn_admin.php:166
+msgid "Love Breadcrumb NavXT and want to help development? Consider buying the author a beer."
+msgstr "Heb je plezier van Breadcrumb NavXT en wil je de ontwikkeling verder helpen, overweeg dan de auteur een biertje te schenken."
+
+#: class.bcn_admin.php:163
+msgid "Giving Back"
+msgstr "Teruggeven"
+
+#: class.bcn_admin.php:160
+msgid "Go to the Breadcrumb NavXT support post for your version."
+msgstr "Ga naar het Breadcrumb NavXT ondersteuning bericht voor je versie."
+
+#: class.bcn_admin.php:161
+msgid "If you think you have found a bug, please include your WordPress version and details on how to reproduce the bug."
+msgstr "Als je denkt dat je een bug hebt gevonden, voeg dan je WordPress versie toe en details over hoe je de bug kunt reproduceren."
+
+#: class.bcn_admin.php:158
+msgid "Go to the Breadcrumb NavXT online documentation"
+msgstr "Ga naar de online Breadcrumb NavXT documentatie"
+
+#: class.bcn_admin.php:156
+msgid "Go to the Breadcrumb NavXT tag archive."
+msgstr "Ga naar het Breadcrumb NavXT tag archief."
+
+#: class.bcn_admin.php:155
+msgid "Resources"
+msgstr "Middelen"
+
+#: class.bcn_admin.php:154
+msgid "Tips for the settings are located below select options."
+msgstr "Tips voor de instellingen bevinden zich onder geselecteerde opties."
+
+#: includes/adminKit/class-mtekk_adminkit.php:197
+msgid "Insufficient privileges to proceed."
+msgstr "Onvoldoende rechten om verder te gaan."
+
+#. translators: %1$s: User's version of PHP, %2$s: Breadcrmb NavXT minimuum PHP
+#. version
+#: breadcrumb-navxt.php:37 class.bcn_admin.php:27
+#: class.bcn_rest_controller.php:27 options_upgrade.php:27
+msgid "Your PHP version is too old, please upgrade to a newer version. Your version is %1$s, Breadcrumb NavXT requires %2$s"
+msgstr "Je PHP versie is te oud, upgrade naar een nieuwere versie. Je versie is %1$s, Breadcrumb NavXT vereist %2$s"

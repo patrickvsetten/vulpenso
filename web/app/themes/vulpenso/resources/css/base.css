@@ -1,0 +1,57 @@
+/* Base styles - Container, Lenis, utilities */
+
+/* Alpine.js x-cloak - hide elements until Alpine initializes */
+[x-cloak] {
+  display: none !important;
+}
+
+/* Lordicon - prevent layout shift during load */
+lord-icon {
+  display: inline-flex;
+}
+
+lord-icon:not(:defined) {
+  visibility: hidden;
+}
+
+.container {
+  @apply mx-auto px-8 lg:px-12;
+  max-width: 90rem; /* 1600px */
+}
+
+/* Override WordPress default link underlines */
+a:where(:not(.wp-element-button)) {
+  @apply !no-underline;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Safe area for iPhone notch/home indicator */
+.safe-area-pb {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+/* Prices nav active state */
+[data-prices-nav-link].is-active {
+  @apply !bg-primary/10 !text-primary;
+}

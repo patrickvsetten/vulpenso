@@ -1,0 +1,29 @@
+@import "tailwindcss" theme(static);
+@plugin "@tailwindcss/typography";
+@source "../views/";
+@source "../../app/";
+
+/* Theme & Design Tokens */
+@import './theme.css';
+@import './scaling.css';
+
+/* Base styles */
+@import './base.css';
+@import './typography.css';
+@import './prose.css';
+@import './animations.css';
+
+/* Components */
+@import './nav.css';
+@import './button.css';
+@import './form.css';
+@import './service-menu.css';
+@import './whatsapp-modal.css';
+@import './rotating-text.css';
+@import './acf-lordicon.css';
+@import './directional-hover.css';
+
+/* Vendor */
+@import 'leaflet/dist/leaflet.css';
+@import 'plyr/dist/plyr';
+@import 'swiper/css/bundle';

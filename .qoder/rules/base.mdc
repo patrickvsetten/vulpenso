@@ -1,0 +1,35 @@
+---
+description: Base project information for WordPress + Laravel + Sage/Roots + ACF
+globs: 
+alwaysApply: false
+---
+
+# Project Overview
+This is a WordPress project using the Sage/Roots theme framework (v10) with Laravel Blade templating, Tailwind CSS, and Advanced Custom Fields Pro.
+
+# Tech Stack
+- WordPress 6.x (backend CMS)
+- PHP 8.x
+- Laravel (framework and Blade templating)
+- Sage/Roots v10 (theme framework)
+- ACF Pro (custom fields)
+- Tailwind CSS (utility-first styling)
+- Vite (asset compilation)
+- Composer (PHP dependency management)
+- NPM/Yarn (JavaScript dependency management)
+
+# Core Directory Structure
+- `web/app/themes/**/` - Theme root directory
+  - `app/` - PHP logic and controllers
+    - `app/Blocks/` - Block classes for Gutenberg/ACF blocks
+    - `app/View/Composers/` - View composers
+    - `app/Traits/` - Reusable traits
+  - `resources/` - Frontend assets and templates
+    - `resources/views/blocks/` - Block templates
+    - `resources/views/components/` - Reusable components
+    - `resources/views/components/content` Reusable_content components
+    - `resources/views/partials/` - Partial templates
+    - `resources/views/layouts/` - Layout templates
+    - `resources/posttypes` - Posttypes
+  - `acf-json/` - ACF field group JSON definitions
+  - `config/` - Theme configuration

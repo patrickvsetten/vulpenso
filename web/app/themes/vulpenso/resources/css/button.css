@@ -1,0 +1,118 @@
+/* Button Icon Component - colors, sizes, animations */
+.btn-icon__content {
+  background-color: theme('colors.primary');
+  color: white;
+}
+
+.btn-icon__text {
+  --text-duplicate-distance: 1.5em;
+  text-shadow: 0px var(--text-duplicate-distance) currentColor;
+  transition: transform 0.525s cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+.btn-icon__icon {
+  width: 2em;
+  height: 2em;
+}
+
+.btn-icon__icon-bg {
+  background-color: currentColor;
+  transition: transform 0.525s cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+.btn-icon__icon-wrap {
+  color: theme('colors.primary');
+}
+
+.btn-icon__arrow {
+  width: 2em;
+  transition: transform 0.525s cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+.btn-icon__bg {
+  background-color: oklch(from theme('colors.primary') calc(l - 0.1) c h);
+  width: 120%;
+  left: -10%;
+  transform: translate(0, 175%) rotate(15deg);
+  transition: transform 0.525s cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+/* Theme: dark */
+.btn-icon[data-theme="dark"] .btn-icon__content {
+  background-color: theme('colors.dark');
+}
+.btn-icon[data-theme="dark"] .btn-icon__icon-wrap {
+  color: theme('colors.dark');
+}
+.btn-icon[data-theme="dark"] .btn-icon__bg {
+  background-color: theme('colors.primary');
+}
+
+/* Theme: white/light */
+.btn-icon[data-theme="white"] .btn-icon__content,
+.btn-icon[data-theme="light"] .btn-icon__content {
+  background-color: white;
+  color: theme('colors.dark');
+}
+.btn-icon[data-theme="white"] .btn-icon__icon-wrap,
+.btn-icon[data-theme="light"] .btn-icon__icon-wrap {
+  color: white;
+}
+.btn-icon[data-theme="white"] .btn-icon__bg,
+.btn-icon[data-theme="light"] .btn-icon__bg {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Theme: outline (transparent bg, border) */
+.btn-icon[data-theme="outline"] .btn-icon__content {
+  background-color: transparent;
+  color: theme('colors.dark');
+}
+.btn-icon[data-theme="outline"] .btn-icon__icon-bg {
+  background-color: transparent;
+  border: 2px solid currentColor;
+}
+.btn-icon[data-theme="outline"] .btn-icon__icon-wrap {
+  color: theme('colors.dark');
+}
+.btn-icon[data-theme="outline"] .btn-icon__bg {
+  background-color: theme('colors.primary');
+}
+
+/* Plus icon */
+.btn-icon__plus {
+  transition: transform 0.525s cubic-bezier(0.625, 0.05, 0, 1);
+}
+.btn-icon__icon-wrap--plus {
+  color: theme('colors.dark');
+}
+
+/* Hover animations */
+@media (hover: hover) {
+  .btn-icon:hover .btn-icon__text {
+    transform: translateY(calc(-1 * var(--text-duplicate-distance)));
+  }
+  .btn-icon:hover .btn-icon__icon-bg {
+    transform: rotate(90deg);
+  }
+  .btn-icon:hover .btn-icon__arrow {
+    transform: translateX(200%);
+  }
+  .btn-icon:hover .btn-icon__plus {
+    transform: rotate(45deg);
+  }
+  .btn-icon:hover .btn-icon__bg {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  .btn-icon[data-theme="white"]:hover .btn-icon__content,
+  .btn-icon[data-theme="light"]:hover .btn-icon__content {
+    color: theme('colors.dark');
+  }
+  /* Outline theme - no bg slide, text stays dark */
+  .btn-icon[data-theme="outline"]:hover .btn-icon__bg {
+    transform: translate(0, 175%) rotate(15deg);
+  }
+  .btn-icon[data-theme="outline"]:hover .btn-icon__content {
+    color: theme('colors.dark');
+  }
+}

@@ -1,0 +1,27 @@
+/* Prose/Typography plugin overrides */
+
+/* Checkmark bullets for unordered lists */
+.prose :where(ul > li):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  @apply list-none relative pl-10;
+}
+
+.prose :where(ul > li):not(:where([class~="not-prose"],[class~="not-prose"] *))::marker {
+  content: none;
+}
+
+.prose :where(ul > li):not(:where([class~="not-prose"],[class~="not-prose"] *))::before {
+  content: '';
+  @apply absolute left-0 top-1 size-6 bg-primary/10 rounded-sm;
+}
+
+.prose :where(ul > li):not(:where([class~="not-prose"],[class~="not-prose"] *))::after {
+  content: '';
+  @apply absolute left-1 top-2 size-4 bg-primary;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+}
+
+.prose :where(ul):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  @apply pl-0;
+}
