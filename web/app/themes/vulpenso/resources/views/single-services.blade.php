@@ -43,10 +43,14 @@
                   @else
                     <div class="w-full h-full bg-white/5"></div>
                   @endif
+                </div>
+              </div>
 
-                  {{-- Icon overlay --}}
+              {{-- Title & Description --}}
+              <div class="col-span-10 md:col-span-6">
+                <div class="flex items-center gap-4 md:gap-6 lg:gap-8">{{-- Icon overlay --}}
                   @if($service['icon_url'])
-                    <div class="size-16 absolute top-4 left-4 bg-dark/50 backdrop-blur-md rounded-lg grid place-items-center z-10 overflow-clip transition-[background-color] duration-300 isolate overflow-clip">
+                    <div class="size-16 relative overflow-clip transition-all duration-300 bg-white/5 rounded-lg grid place-items-center z-10 isolate">
                       <x-lordicon
                         :src="$service['icon_url']"
                         trigger="hover"
@@ -58,24 +62,22 @@
                       />
                     </div>
                   @endif
+                  <div class="flex flex-col gap-1">
+                    <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-white transition-colors duration-300 group-hover:text-primary">
+                      {!! $service['title'] !!}
+                    </h3>
+                    @if($service['short_description'])
+                      <p class="text-white text-sm md:text-base line-clamp-2">
+                        {{ $service['short_description'] }}
+                      </p>
+                    @endif
+                  </div>
                 </div>
-              </div>
-
-              {{-- Title & Description --}}
-              <div class="col-span-10 md:col-span-6 flex flex-col gap-2">
-                <h3 class="text-xl md:text-3xl lg:text-4xl font-semibold text-white transition-colors duration-300 group-hover:text-primary">
-                  {!! $service['title'] !!}
-                </h3>
-                @if($service['short_description'])
-                  <p class="text-white text-sm md:text-base lg:text-lg line-clamp-2">
-                    {{ $service['short_description'] }}
-                  </p>
-                @endif
               </div>
 
               {{-- Arrow button --}}
               <div class="col-span-2 md:col-span-2 flex justify-end">
-                <x-arrow-button type="outline" size="lg" />
+                <x-arrow-button type="outline" size="sm" />
               </div>
             </a>
           @endforeach

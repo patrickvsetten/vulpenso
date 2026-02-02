@@ -28,8 +28,8 @@
 
 
 	  @if($layout === 'content-over-image' && $image && !empty($image['ID']))
-      <div class="absolute inset-0 z-10 bg-black/20"></div>
-      <div class="absolute inset-0 z-10 bg-gradient-to-t from-black/70 to-transparent"></div>
+      <div class="absolute inset-0 z-10 bg-black/30"></div>
+      <div class="absolute inset-0 z-10 bg-gradient-to-t from-black to-transparent"></div>
       <img src="{{ wp_get_attachment_image_url($image['ID'], 'full') }}" alt="{{ get_post_meta($image['ID'], '_wp_attachment_image_alt', true) }}" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
     @endif
 		<div class="space-y-4 md:space-y-8 relative z-20">
