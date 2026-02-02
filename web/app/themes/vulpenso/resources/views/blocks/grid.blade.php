@@ -19,6 +19,7 @@
           :heading="$heading"
           :contentItems="$content_items"
           :background="$background_color"
+          :textReveal="'chars'"
           class="text-xl md:text-2xl lg:text-3xl leading-normal"
         />
         <x-content.text

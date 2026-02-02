@@ -6,10 +6,14 @@
   'background' => '',
   'contentItems' => [],
   'split' => true,
+  'textReveal' => false,
 ])
 
 @if ($title && (!filled($contentItems) || in_array('title', $contentItems)))
   <{{ $heading }}
+    @if($textReveal)
+      data-text-reveal="{{ $textReveal === true ? 'chars' : $textReveal }}"
+    @endif
     @class([
       $class,
       'text-white' => in_array($background, ['bg-dark', 'image']),

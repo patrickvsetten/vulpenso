@@ -36,13 +36,19 @@
               {{-- Image with icon overlay --}}
               <div class="col-span-12 md:col-span-4">
                 <div class="relative aspect-[16/8] rounded-xl overflow-hidden">
-                  @if($service['image'])
-                    {!! wp_get_attachment_image($service['image'], 'medium_large', false, [
-                      'class' => 'w-full h-full object-cover transition-transform duration-500 group-hover:scale-105',
-                    ]) !!}
-                  @else
-                    <div class="w-full h-full bg-white/5"></div>
-                  @endif
+                  <div
+                    data-scroll
+                    data-scroll-speed="-0.05"
+                    class="absolute inset-0 w-full h-full z-0"
+                  >
+                    @if($service['image'])
+                      {!! wp_get_attachment_image($service['image'], 'medium_large', false, [
+                        'class' => 'w-full h-[calc(100%+10vh)] mt-[-5vh] object-cover transition-transform duration-500 group-hover:scale-105',
+                      ]) !!}
+                    @else
+                      <div class="w-full h-full bg-white/5"></div>
+                    @endif
+                  </div>
                 </div>
               </div>
 

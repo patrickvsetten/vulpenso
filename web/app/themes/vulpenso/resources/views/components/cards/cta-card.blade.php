@@ -20,7 +20,13 @@
 
 	@if($layout === 'image-above-content' && $image && !empty($image['ID']))
     <div class="relative overflow-hidden aspect-[4/3] rounded-xl">
-			<img src="{{ wp_get_attachment_image_url($image['ID'], 'full') }}" alt="{{ get_post_meta($image['ID'], '_wp_attachment_image_alt', true) }}" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+      <div
+        data-scroll
+        data-scroll-speed="-0.05"
+        class="absolute inset-0 w-full h-full z-0"
+      >
+			  <img src="{{ wp_get_attachment_image_url($image['ID'], 'full') }}" alt="{{ get_post_meta($image['ID'], '_wp_attachment_image_alt', true) }}" class="absolute inset-0 w-full h-[calc(100%+10vh)] mt-[-5vh] object-cover" loading="lazy">
+      </div>
 		</div>
 	@endif
 
@@ -30,7 +36,13 @@
 	  @if($layout === 'content-over-image' && $image && !empty($image['ID']))
       <div class="absolute inset-0 z-10 bg-black/30"></div>
       <div class="absolute inset-0 z-10 bg-gradient-to-t from-black to-transparent"></div>
-      <img src="{{ wp_get_attachment_image_url($image['ID'], 'full') }}" alt="{{ get_post_meta($image['ID'], '_wp_attachment_image_alt', true) }}" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+      <div
+        data-scroll
+        data-scroll-speed="-0.05"
+        class="absolute inset-0 w-full h-full z-0"
+      >
+        <img src="{{ wp_get_attachment_image_url($image['ID'], 'full') }}" alt="{{ get_post_meta($image['ID'], '_wp_attachment_image_alt', true) }}" class="absolute inset-0 w-full h-[calc(100%+10vh)] mt-[-5vh] object-cover" loading="lazy">
+      </div>
     @endif
 		<div class="space-y-4 md:space-y-8 relative z-20">
 

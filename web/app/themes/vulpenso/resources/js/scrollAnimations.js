@@ -1,5 +1,6 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
+import SplitType from 'split-type';
 gsap.registerPlugin(ScrollTrigger);
 
 import LocomotiveScroll from 'locomotive-scroll';
@@ -156,5 +157,37 @@ export function initScrollAnimations($) {
     return () => ctx.revert();
   }
 
+  // TEXT REVEAL (karaoke effect)
+  const initTextReveal = () => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    document.querySelectorAll('[data-text-reveal]').forEach(el => {
+      const type = el.getAttribute('data-text-reveal') || 'chars'; // chars, words, lines
+      const split = new SplitType(el, { types: type });
+      const targets = split[type];
+
+      if (prefersReduced || !targets?.length) return;
+
+      // Start opacity
+      gsap.set(targets, { opacity: 0.15 });
+
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 80%',
+        end: 'top 30%',
+        scrub: 0.5,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          targets.forEach((target, i) => {
+            const itemProgress = (progress * (targets.length + 5) - i);
+            const opacity = Math.max(0.15, Math.min(1, itemProgress));
+            gsap.set(target, { opacity });
+          });
+        }
+      });
+    });
+  };
+
   initContentRevealScroll();
+  initTextReveal();
 }
