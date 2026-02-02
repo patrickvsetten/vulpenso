@@ -17,7 +17,7 @@
         @if($page === 'home')
           <h1 data-rotating-title class="rotating-text__heading text-white">
             {{ $rotating_text_prefix ?? 'Service en onderhoud voor je' }}
-            <div data-rotating-words="{{ $rotating_text_words ?? 'CV-ketel, warmtepomp, airco, ventilatie, melders' }}" class="rotating-text__highlight font-medium text-white">{{ explode(',', $rotating_text_words ?? 'CV-ketel')[0] }}</div>
+            <div data-rotating-words="{{ $rotating_text_words ?? 'CV-ketel, warmtepomp, airco, ventilatie, melders' }}" class="rotating-text__highlight font-medium text-primary">{{ explode(',', $rotating_text_words ?? 'CV-ketel')[0] }}</div>
             {{ $rotating_text_suffix ?? 'in topconditie' }}
           </h1>
         @else

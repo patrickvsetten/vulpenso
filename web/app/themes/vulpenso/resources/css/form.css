@@ -7,6 +7,22 @@ body {
     .gform_fields {
       @apply gap-8;
     }
+    
+    .gform_validation_errors>ol {
+      @apply hidden;
+    }
+    
+    .gform_submission_error {
+      @apply !text-[#d24545] opacity-100 !mb-0;
+    }
+
+    .gform_validation_errors:focus {
+      @apply !outline-none;
+    }
+    
+    .gform-icon--circle-error {
+      @apply !hidden;
+    }
 
     .gfield_required {
       @apply text-primary;
@@ -35,7 +51,7 @@ body {
     }
 
     .gfield_error [aria-invalid=true] {
-      @apply border-l-0 border-t-0 border-r-0 !border-[#FF0000];
+      @apply border-l-0 border-t-0 border-r-0 !border-[#d24545];
     }
   }
 
