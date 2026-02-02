@@ -1,6 +1,6 @@
 <div>
   {{-- Filter Bar --}}
-  <div class="flex justify-center mt-12">
+  <div class="flex mt-12">
     <div class="inline-flex items-center gap-2 p-4 bg-white/3 border-white/7 rounded-xl text-white">
         <button
           wire:click="setCategory(null)"
@@ -67,8 +67,8 @@
           @disabled($currentPage === 1)
           @class([
             'w-12 h-12 flex items-center justify-center rounded-lg font-bold transition-all duration-300',
-            'bg-primary-dark text-white/30 cursor-not-allowed' => $currentPage === 1,
-            'bg-primary-dark text-white hover:bg-yellow hover:text-primary cursor-pointer' => $currentPage !== 1,
+            'bg-primary text-white/30 cursor-not-allowed' => $currentPage === 1,
+            'bg-primary text-white hover:bg-primary cursor-pointer' => $currentPage !== 1,
           ])
         >
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

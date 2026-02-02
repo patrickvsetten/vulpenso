@@ -43,9 +43,9 @@
           <nav @class([
             'lg:sticky lg:top-32 rounded-xl border overflow-hidden relative p-4 md:p-6 lg:p-8',
             'bg-dark/3 border-dark/7 text-dark' => $background_color === 'bg-white',
-            'bg-white text-dark' => $background_color !== 'bg-white',
+            'bg-white/3 border-white/7 text-white' => $background_color !== 'bg-white',
           ])>
-            <p class="mb-4 text-sm text-primary">Categorieën</p>
+            <p class="mb-4 text-white/40 text-sm">Categorieën</p>
             <ul class="flex flex-col gap-2">
               @foreach ($price_tables as $index => $table)
                 <li>
@@ -54,7 +54,7 @@
                     @class([
                       'prices-nav__link flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-300 font-bold',
                       'hover:bg-primary/5 hover:text-primary text-dark' => $background_color === 'bg-white',
-                      'hover:bg-primary/5 hover:text-primary text-dark' => $background_color !== 'bg-white',
+                      'hover:bg-primary/5 hover:text-primary text-white' => $background_color !== 'bg-white',
                     ])
                     data-prices-nav-link
                   >

@@ -78,7 +78,7 @@
     <div class="mx-auto lg:max-w-4xl grid grid-cols-2 gap-12 lg:gap-24">
       {{-- Links: Menu items --}}
       <div class="flex flex-col" @mouseleave="activeIndex = null">
-        <span class="text-white/50 text-sm mb-4 flex items-center gap-2">
+        <span class="text-white/40 text-sm mb-4 flex items-center gap-2">
           Onze diensten
         </span>
         <ul class="flex flex-col gap-2">

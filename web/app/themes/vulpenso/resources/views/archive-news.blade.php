@@ -7,7 +7,7 @@
     pb="pb-0"
   >
     <div class="container">
-      <div class="flex justify-center">
+      <div class="flex">
         <x-content.title
           title="Ons laatste nieuws"
           heading="h1"
