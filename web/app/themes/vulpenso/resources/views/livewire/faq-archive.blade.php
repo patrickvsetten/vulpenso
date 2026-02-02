@@ -76,21 +76,7 @@
                     @endif
                 </div>
         
-                {{-- Active Filters Summary --}}
-                @if($hasFilters)
-                    <div class="mt-4 flex flex-col items-start gap-4">
-                        <span class="text-white/60">
-                            {{ $totalFaqs }} {{ $totalFaqs === 1 ? 'vraag' : 'vragen' }} gevonden
-                        </span>
-                        <button
-                            wire:click="clearFilters"
-                            class="text-yellow font-medium hover:underline cursor-pointer"
-                        >
-                            Filters wissen
-                        </button>
-                    </div>
-                @endif
-            </div>
+                </div>
             <nav>
                 <p class="mb-4 text-white/40 text-sm">Categorieën</p>
                 <ul class="flex flex-col gap-2">
