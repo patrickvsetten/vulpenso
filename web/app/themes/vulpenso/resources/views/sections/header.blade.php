@@ -71,12 +71,80 @@
 <div
   class="service-menu__dropdown fixed left-0 right-0 z-45 bg-dark rounded-b-2xl opacity-0 invisible pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.525,0,0,1)]"
   data-service-dropdown
+  x-data="{ activeIndex: null }"
 >
-  <div class="container pb-8 lg:pb-12">
-    <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-5">
-      @foreach ($services as $index => $service)
-        <x-cards.nav-grid-item :item="$service" :index="$index" />
-      @endforeach
+  <img src="{{ get_theme_file_uri('resources/images/footer-decoration.svg') }}" alt="Footer shape" class="absolute top-0 bottom-0 right-0 h-full w-auto -z-1 opacity-3">
+  <div class="relative z-10 container py-8 lg:py-12">
+    <div class="mx-auto lg:max-w-4xl grid grid-cols-2 gap-12 lg:gap-24">
+      {{-- Links: Menu items --}}
+      <div class="flex flex-col" @mouseleave="activeIndex = null">
+        <span class="text-white/50 text-sm mb-4 flex items-center gap-2">
+          Onze diensten
+        </span>
+        <ul class="flex flex-col gap-2">
+          @foreach ($services as $index => $service)
+            <li>
+              <a
+                href="{{ $service['link'] }}"
+                class="service-menu__link group flex items-center gap-4 px-4 py-3 rounded-lg text-lg font-medium transition-all duration-300"
+                :class="activeIndex === {{ $index }} ? 'bg-primary/10 text-primary' : 'text-white hover:text-white/80'"
+                @mouseenter="activeIndex = {{ $index }}"
+                data-index="{{ $index }}"
+              >
+                @if(!empty($service['icon_url']))
+                  <div class="size-10 lg:size-12 rounded-lg grid place-items-center transition-all duration-300" :class="activeIndex === {{ $index }} ? 'bg-primary/20' : 'bg-white/5'">
+                    <x-lordicon
+                      :src="$service['icon_url']"
+                      trigger="hover"
+                      target="a"
+                      class="icon-lottie size-5 lg:size-6"
+                      :colors="'primary:' . ($index === 0 ? '#C38E66' : '#FFFFFF') . ',secondary:' . ($index === 0 ? '#C38E66' : '#FFFFFF')"
+                      x-bind:colors="activeIndex === {{ $index }} ? 'primary:#C38E66,secondary:#C38E66' : 'primary:#FFFFFF,secondary:#FFFFFF'"
+                    />
+                  </div>
+                @endif
+                <span :class="activeIndex === {{ $index }} ? 'font-semibold' : ''">{{ $service['title'] }}</span>
+                <x-arrow-button size="xs" type="outline-to-primary" class="ml-auto" />
+              </a>
+            </li>
+          @endforeach
+        </ul>
+      </div>
+
+      {{-- Rechts: Preview card --}}
+      <div class="relative min-h-[20rem]">
+        {{-- Default afbeelding wanneer niets geselecteerd --}}
+        @if($service_menu_image)
+          <div
+            class="service-menu__preview absolute inset-0 rounded-2xl overflow-hidden"
+            :class="activeIndex === null ? 'opacity-100' : 'opacity-0 pointer-events-none'"
+          >
+            @if(is_array($service_menu_image))
+              {!! wp_get_attachment_image($service_menu_image['ID'], 'large', false, ['class' => 'absolute inset-0 w-full h-full object-cover']) !!}
+            @else
+              {!! wp_get_attachment_image($service_menu_image, 'large', false, ['class' => 'absolute inset-0 w-full h-full object-cover']) !!}
+            @endif
+            <div class="absolute inset-0 bg-black/20"></div>
+          </div>
+        @endif
+
+        {{-- Service afbeeldingen --}}
+        @foreach ($services as $index => $service)
+          <div
+            class="service-menu__preview absolute inset-0 rounded-2xl overflow-hidden"
+            :class="activeIndex === {{ $index }} ? 'opacity-100' : 'opacity-0 pointer-events-none'"
+          >
+            @if(!empty($service['image']))
+              @if(is_array($service['image']))
+                {!! wp_get_attachment_image($service['image']['ID'], 'large', false, ['class' => 'absolute inset-0 w-full h-full object-cover']) !!}
+              @else
+                {!! wp_get_attachment_image($service['image'], 'large', false, ['class' => 'absolute inset-0 w-full h-full object-cover']) !!}
+              @endif
+            @endif
+            <div class="absolute inset-0 bg-black/20"></div>
+          </div>
+        @endforeach
+      </div>
     </div>
   </div>
 </div>

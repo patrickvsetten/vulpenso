@@ -149,6 +149,7 @@ class Header extends Composer
         return [
             'menu_spacer'           => $this->shouldShowMenuSpacer(),
             'services'              => $this->getServices(),
+            'service_menu_image'    => get_field('service_menu_image', 'option'),
             'whatsapp_url'          => get_field('whatsapp_url', 'option'),
             'phone_general'         => get_field('phone_general', 'option'),
             'mobile_menu_items'     => $this->getMobileMenuItems(),

@@ -39,26 +39,32 @@
   transition: transform 0.5s cubic-bezier(0.525, 0, 0, 1);
 }
 
-/* ===== GRID ITEMS ANIMATION ===== */
-.service-menu__grid-item {
+/* ===== MENU LINKS ANIMATION ===== */
+.service-menu__link {
   opacity: 0;
-  transform: translateX(4em);
-  transition: opacity 0.45s cubic-bezier(0.525, 0, 0, 1),
-              transform 0.45s cubic-bezier(0.525, 0, 0, 1);
+  transform: translateY(1em);
+  transition: opacity 0.4s cubic-bezier(0.525, 0, 0, 1),
+              transform 0.4s cubic-bezier(0.525, 0, 0, 1),
+              color 0.3s ease;
 }
 
 /* Staggered delays based on data-index */
-.service-menu__grid-item[data-index="0"] { transition-delay: 0.18s; }
-.service-menu__grid-item[data-index="1"] { transition-delay: 0.24s; }
-.service-menu__grid-item[data-index="2"] { transition-delay: 0.30s; }
-.service-menu__grid-item[data-index="3"] { transition-delay: 0.36s; }
-.service-menu__grid-item[data-index="4"] { transition-delay: 0.42s; }
-.service-menu__grid-item[data-index="5"] { transition-delay: 0.48s; }
+.service-menu__link[data-index="0"] { transition-delay: 0.15s; }
+.service-menu__link[data-index="1"] { transition-delay: 0.20s; }
+.service-menu__link[data-index="2"] { transition-delay: 0.25s; }
+.service-menu__link[data-index="3"] { transition-delay: 0.30s; }
+.service-menu__link[data-index="4"] { transition-delay: 0.35s; }
+.service-menu__link[data-index="5"] { transition-delay: 0.40s; }
 
 /* Active state - items slide in */
-.service-menu__dropdown.is-active .service-menu__grid-item {
+.service-menu__dropdown.is-active .service-menu__link {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateY(0);
+}
+
+/* ===== PREVIEW CARD ANIMATION ===== */
+.service-menu__preview {
+  transition: opacity 0.4s ease;
 }
 
 /* ===== PRICES NAV (kept from original) ===== */
