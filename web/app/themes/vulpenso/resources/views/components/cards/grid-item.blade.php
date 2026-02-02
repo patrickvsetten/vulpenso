@@ -40,22 +40,19 @@
     <div class="flex w-full justify-between">
       <div class="flex items-center">
         @if($iconSrc)
-          <div class="size-12 bg-white/10 backdrop-blur-xs rounded-lg grid place-items-center relative overflow-clip transition-[background-color] duration-300 group-hover:bg-dark/50 isolate will-change-transform backface-hidden [transform:translate3d(0,0,0)]">
+          <div class="size-12 bg-white/10 rounded-lg grid place-items-center relative overflow-clip transition-[background-color] duration-300 group-hover:bg-dark/70">
             <x-lordicon
               :src="$iconSrc"
               trigger="hover"
               target=".group"
               stroke=""
-              class="icon-lottie size-6 flex-shrink-0 flex-grow-0 [transform:translate3d(0,0,0)]"
+              class="icon-lottie size-6 flex-shrink-0 flex-grow-0"
               colors="primary:#FFFFFF,secondary:#FFFFFF">
             </x-lordicon>
           </div>
         @endif
-        <div class="bg-white/10 backdrop-blur-md rounded-lg px-4 py-2 h-12 flex items-center transition-[background-color] duration-300 group-hover:bg-dark/50 isolate will-change-transform backface-hidden [transform:translate3d(0,0,0)]">
-          <p @class([
-            'font-semibold text-base',
-            'group-hover:text-white' => $hasImage,
-          ])>
+        <div class="bg-white/10 rounded-lg px-4 py-2 h-12 flex items-center transition-[background-color] duration-300 group-hover:bg-dark/70">
+          <p class="font-semibold text-base text-white">
             {!! $item['title'] !!}
           </p>
         </div>

@@ -1,13 +1,16 @@
-<div class="service-menu__overlay fixed inset-0 bg-black/50 opacity-0 pointer-events-none z-40" data-service-menu-overlay></div>
+{{-- Service Menu Overlay --}}
+<div class="service-menu__overlay fixed inset-0 bg-black/80 opacity-0 pointer-events-none z-40 transition-opacity duration-300" data-service-menu-overlay></div>
 
 <nav
   x-data="{ sticky: window.scrollY > 24 }"
   x-init="window.addEventListener('scroll', () => sticky = window.scrollY > 24, { passive: true })"
   :class="sticky ? 'is-sticky' : ''"
   class="nav z-50 absolute top-6 inset-x-0 md:absolute md:top-8"
+  data-service-menu
+  data-service-menu-status="not-active"
   x-cloak
 >
-  <div class="container">
+  <div class="container relative z-10">
     <div class="flex items-center w-full justify-between gap-2">
       <div class="flex items-center justify-between md:justify-start px-4 py-2 md:px-6 md:py-2 gap-2 md:gap-4 lg:gap-8 bg-black/70 w-full md:w-auto border border-white/5 backdrop-blur-md rounded-xl isolate will-change-transform [transform:translate3d(0,0,0)]">
         <a href="{{ home_url('/') }}" class="relative py-2">
@@ -36,48 +39,21 @@
         @endif
       </div>
       <div class="hidden md:flex items-center justify-end gap-2 p-2 bg-black/70 border border-white/5 backdrop-blur-lg rounded-xl isolate will-change-transform [transform:translate3d(0,0,0)]">
-        <div data-service-menu data-service-menu-status="not-active" class="service-menu relative hidden lg:block">
-          <div class="service-menu__bg absolute top-0 right-0 rounded-lg bg-white pointer-events-none"></div>
-          <x-content.button
-            type="outline"
-            icon="plus"
-            title="Wat we doen"
-            class="service-menu__trigger cursor-pointer"
-            data-service-menu-toggle
-          />
-          <div class="service-menu__content absolute top-full right-0 pointer-events-none opacity-0 invisible origin-top-right">
-            <div class="service-menu__content-inner">
-              <ul class="flex flex-col gap-1 p-3 pt-4 pb-8">
-                @foreach ($services as $service)
-                  <li class="service-menu__item list-none">
-                    <a href="{{ $service['link'] }}" class="service-menu__link group flex items-center gap-4 py-2 px-8 rounded-xl text-dark font-semibold text-base transition-all duration-300 hover:bg-primary/10 hover:text-primary">
-                      <div class="size-10 lg:size-12 bg-primary/10 rounded-lg grid place-items-center flex-shrink-0">
-                        <x-lordicon
-                          :src="$service['icon_url']"
-                          trigger="hover"
-                          target=".group"
-                          stroke="bold"
-                          class="icon-lottie size-6 lg:size-8"
-                          primary="#C38E66"
-                          secondary="#C38E66"
-                        />
-                      </div>
-                      <span class="leading-tight whitespace-nowrap lg:text-lg">{!! $service['title'] !!}</span>
-                      <div class="service-menu__dot ml-auto size-2 rounded-full bg-current opacity-0 scale-0 transition-all duration-500"></div>
-                    </a>
-                  </li>
-                @endforeach
-              </ul>
-            </div>
-          </div>
-        </div>
+        {{-- Service Menu Trigger Button --}}
+        <x-content.button
+          type="white"
+          icon="plus"
+          title="Wat we doen"
+          class="service-menu__trigger hidden lg:inline-flex cursor-pointer"
+          data-service-menu-toggle
+        />
+
         <x-content.button
           :href="get_permalink(282)"
           type="primary"
           title="Plan onderhoud"
-          class="hidden md:inline-flex"
-        >
-        </x-button>
+          class="hidden lg:inline-flex"
+        />
         <div class="lg:hidden relative">
           <div class="hamburger">
             <div class="hamburger__icon rounded-lg size-14 bg-dark flex flex-col space-y-1 items-center justify-center cursor-pointer">
@@ -90,6 +66,20 @@
     </div>
   </div>
 </nav>
+
+{{-- Service Menu Full-Width Dropdown --}}
+<div
+  class="service-menu__dropdown fixed left-0 right-0 z-45 bg-dark rounded-b-2xl opacity-0 invisible pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.525,0,0,1)]"
+  data-service-dropdown
+>
+  <div class="container pb-8 lg:pb-12">
+    <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-5">
+      @foreach ($services as $index => $service)
+        <x-cards.nav-grid-item :item="$service" :index="$index" />
+      @endforeach
+    </div>
+  </div>
+</div>
 
 <div class="mobile-nav fixed pointer-events-none flex items-center z-[49] inset-0 transform-gpu opacity-0 ease-in-out duration-500 bg-white">
   <div class="max-h-dvh h-full overflow-y-auto pt-24 md:pt-40 w-full">

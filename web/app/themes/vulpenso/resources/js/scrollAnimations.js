@@ -68,10 +68,10 @@ export function initScrollAnimations($) {
             trigger: groupEl,
             start: triggerStart,
             once: true,
-            onEnter: () => gsap.to(groupEl, { 
-              y: 0, 
-              autoAlpha: 1, 
-              duration: animDuration, 
+            onEnter: () => gsap.to(groupEl, {
+              y: 0,
+              autoAlpha: 1,
+              duration: animDuration,
               ease: animEase,
               onComplete: () => gsap.set(groupEl, { clearProps: 'all' })
             })
@@ -113,7 +113,7 @@ export function initScrollAnimations($) {
         // Extra safety: if a nested parent is included, re-assert its distance to the group's value
         slots.forEach(slot => {
           if (slot.type === 'nested' && slot.includeParent) {
-            gsap.set(slot.parentEl, { y: groupDistance }); 
+            gsap.set(slot.parentEl, { y: groupDistance });
           }
         });
 
@@ -129,10 +129,10 @@ export function initScrollAnimations($) {
               const slotTime = slotIndex * groupStaggerSec;
 
               if (slot.type === 'item') {
-                tl.to(slot.el, { 
-                  y: 0, 
-                  autoAlpha: 1, 
-                  duration: animDuration, 
+                tl.to(slot.el, {
+                  y: 0,
+                  autoAlpha: 1,
+                  duration: animDuration,
                   ease: animEase,
                   onComplete: () => gsap.set(slot.el, { clearProps: 'all' })
                 }, slotTime);
@@ -151,10 +151,10 @@ export function initScrollAnimations($) {
                 const nestedMs = parseFloat(slot.nestedEl.getAttribute('data-stagger'));
                 const nestedStaggerSec = isNaN(nestedMs) ? groupStaggerSec : nestedMs / 1000;
                 Array.from(slot.nestedEl.children).forEach((nestedChild, nestedIndex) => {
-                  tl.to(nestedChild, { 
-                    y: 0, 
-                    autoAlpha: 1, 
-                    duration: animDuration, 
+                  tl.to(nestedChild, {
+                    y: 0,
+                    autoAlpha: 1,
+                    duration: animDuration,
                     ease: animEase,
                     onComplete: () => gsap.set(nestedChild, { clearProps: 'all' })
                   }, slotTime + nestedIndex * nestedStaggerSec);

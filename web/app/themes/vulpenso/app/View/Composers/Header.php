@@ -34,7 +34,7 @@ class Header extends Composer
 
             return [
                 'id'       => $service->ID,
-                'image'    => get_field('image', $service->ID),
+                'image'    => get_field('image', $service->ID) ?: get_post_thumbnail_id($service->ID),
                 'link'     => get_permalink($service->ID),
                 'title'    => apply_filters('the_title', $service->post_title),
                 'icon'     => $icon,

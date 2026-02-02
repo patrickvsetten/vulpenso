@@ -1,91 +1,67 @@
-/* Service Menu - Custom animations only */
+/* Service Menu - Full-width dropdown (Desktop only) */
 
-/* Overlay transition with custom easing */
+/* ===== OVERLAY ===== */
 .service-menu__overlay {
-  transition: opacity 0.4s cubic-bezier(0.5, 0.5, 0, 1);
+  transition: opacity 0.4s cubic-bezier(0.525, 0, 0, 1);
 }
 
 .service-menu__overlay.is-active {
   @apply opacity-100 pointer-events-auto;
 }
 
-/* Trigger styling - always white bg (higher specificity to override outline theme) */
-.service-menu__trigger.btn-icon[data-theme="outline"] .btn-icon__content {
-  @apply bg-white rounded-lg overflow-hidden;
+/* ===== DROPDOWN PANEL ===== */
+/* Panel starts from top of screen, behind the nav (z-index lower than nav) */
+.service-menu__dropdown {
+  top: 0;
+  z-index: 45; /* Below nav which is z-50 */
+  padding-top: 7rem; /* Space for nav bar */
+  transform: translateY(-2rem);
 }
 
-/* Background for expand animation - hidden by default, shown via JS class */
-.service-menu__bg {
-  opacity: 0;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-  transition: width 0.6s cubic-bezier(0.5, 0.5, 0, 1),
-              height 0.6s cubic-bezier(0.5, 0.5, 0, 1),
-              opacity 0s 0.6s; /* hide after size transition completes */
+.service-menu__dropdown.is-active {
+  @apply opacity-100 visible pointer-events-auto;
+  transform: translateY(0);
 }
 
-/* Show bg when animating (JS adds this class) */
-.service-menu__bg.is-animating {
-  opacity: 1;
-  transition: width 0.6s cubic-bezier(0.5, 0.5, 0, 1),
-              height 0.6s cubic-bezier(0.5, 0.5, 0, 1),
-              opacity 0s; /* instant show */
+@media (min-width: 1024px) {
+  .service-menu__dropdown {
+    padding-top: 8rem; /* More space on larger screens */
+  }
 }
 
-/* Make trigger bg transparent when bg is animating */
-.service-menu:has(.service-menu__bg.is-animating) .service-menu__trigger.btn-icon[data-theme="outline"] .btn-icon__content {
-  @apply bg-transparent;
-}
-
-/* Trigger icon rotation when menu is active */
+/* ===== TRIGGER BUTTON ===== */
+/* Plus icon rotation when active */
 [data-service-menu-status="active"] .service-menu__trigger .btn-icon__plus {
   transform: rotate(45deg);
 }
 
-/* Content reveal animation */
-.service-menu__content {
-  transform: scale(0.92);
-  transition: opacity 0.4s cubic-bezier(0.5, 0.5, 0, 1),
-              visibility 0.4s cubic-bezier(0.5, 0.5, 0, 1),
-              transform 0.5s cubic-bezier(0.5, 0.5, 0, 1);
+.service-menu__trigger .btn-icon__plus {
+  transition: transform 0.5s cubic-bezier(0.525, 0, 0, 1);
 }
 
-[data-service-menu-status="active"] .service-menu__content {
-  @apply pointer-events-auto opacity-100 visible;
-  transform: scale(1);
-}
-
-/* Staggered item animations */
-.service-menu__item {
+/* ===== GRID ITEMS ANIMATION ===== */
+.service-menu__grid-item {
   opacity: 0;
-  transform: translateY(1rem);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(4em);
+  transition: opacity 0.45s cubic-bezier(0.525, 0, 0, 1),
+              transform 0.45s cubic-bezier(0.525, 0, 0, 1);
 }
 
-[data-service-menu-status="active"] .service-menu__item {
+/* Staggered delays based on data-index */
+.service-menu__grid-item[data-index="0"] { transition-delay: 0.18s; }
+.service-menu__grid-item[data-index="1"] { transition-delay: 0.24s; }
+.service-menu__grid-item[data-index="2"] { transition-delay: 0.30s; }
+.service-menu__grid-item[data-index="3"] { transition-delay: 0.36s; }
+.service-menu__grid-item[data-index="4"] { transition-delay: 0.42s; }
+.service-menu__grid-item[data-index="5"] { transition-delay: 0.48s; }
+
+/* Active state - items slide in */
+.service-menu__dropdown.is-active .service-menu__grid-item {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(0);
 }
 
-[data-service-menu-status="active"] .service-menu__item:nth-child(1) { transition-delay: 0.15s; }
-[data-service-menu-status="active"] .service-menu__item:nth-child(2) { transition-delay: 0.22s; }
-[data-service-menu-status="active"] .service-menu__item:nth-child(3) { transition-delay: 0.29s; }
-[data-service-menu-status="active"] .service-menu__item:nth-child(4) { transition-delay: 0.36s; }
-[data-service-menu-status="active"] .service-menu__item:nth-child(5) { transition-delay: 0.43s; }
-[data-service-menu-status="active"] .service-menu__item:nth-child(6) { transition-delay: 0.50s; }
-[data-service-menu-status="active"] .service-menu__item:nth-child(7) { transition-delay: 0.57s; }
-[data-service-menu-status="active"] .service-menu__item:nth-child(8) { transition-delay: 0.64s; }
-
-/* Dot hover effect */
-.service-menu__dot {
-  transition-timing-function: cubic-bezier(0.5, 0.5, 0, 1);
-}
-
-.service-menu__link:hover .service-menu__dot {
-  @apply opacity-50 scale-100;
-}
-
-/* Prices nav dot effect (same as service menu) */
+/* ===== PRICES NAV (kept from original) ===== */
 .prices-nav__dot {
   transition-timing-function: cubic-bezier(0.5, 0.5, 0, 1);
 }

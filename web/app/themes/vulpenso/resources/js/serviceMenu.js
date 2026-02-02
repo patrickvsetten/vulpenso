@@ -1,143 +1,111 @@
+/**
+ * Service Menu - Full-width dropdown (Desktop only)
+ * Opens a full-width panel below the navigation with service grid items
+ */
 export function initServiceMenu() {
-  const menus = document.querySelectorAll('[data-service-menu]');
+  // Only initialize on desktop (lg breakpoint and above)
+  if (window.innerWidth < 1024) return;
+
+  const nav = document.querySelector('[data-service-menu]');
+  const trigger = document.querySelector('[data-service-menu-toggle]');
+  const dropdown = document.querySelector('[data-service-dropdown]');
   const overlay = document.querySelector('[data-service-menu-overlay]');
 
-  menus.forEach(menu => {
-    const trigger = menu.querySelector('[data-service-menu-toggle]');
-    const bg = menu.querySelector('.service-menu__bg');
-    const content = menu.querySelector('.service-menu__content');
-    const ul = content?.querySelector('ul');
+  if (!nav || !trigger || !dropdown) return;
 
-    if (!trigger || !bg || !content) return;
+  const isActive = () => nav.getAttribute('data-service-menu-status') === 'active';
 
-    const isActive = () => menu.getAttribute('data-service-menu-status') === 'active';
+  const openMenu = () => {
+    nav.setAttribute('data-service-menu-status', 'active');
+    dropdown.classList.add('is-active');
+    trigger.setAttribute('aria-expanded', 'true');
+    if (overlay) overlay.classList.add('is-active');
+  };
 
-    const setTriggerSize = () => {
-      const { width, height } = trigger.getBoundingClientRect();
-      bg.style.width = `${width}px`;
-      bg.style.height = `${height}px`;
-    };
+  const closeMenu = () => {
+    nav.setAttribute('data-service-menu-status', 'not-active');
+    dropdown.classList.remove('is-active');
+    trigger.setAttribute('aria-expanded', 'false');
+    if (overlay) overlay.classList.remove('is-active');
+  };
 
-    const measureExpandedSize = () => {
-      // Disable transitions and force scale(1) for accurate measurement
-      content.style.transition = 'none';
-      content.style.transform = 'scale(1)';
-      content.offsetHeight;
+  // Toggle on click
+  trigger.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-      const triggerRect = trigger.getBoundingClientRect();
-      const contentRect = (ul || content).getBoundingClientRect();
-
-      // Restore styles
-      content.style.transition = '';
-      content.style.transform = '';
-
-      return {
-        width: Math.max(triggerRect.width, contentRect.width),
-        height: triggerRect.height + contentRect.height + 4
-      };
-    };
-
-    const closeMenu = () => {
-      menu.setAttribute('data-service-menu-status', 'not-active');
-      if (overlay) overlay.classList.remove('is-active');
-      setTriggerSize();
-
-      setTimeout(() => {
-        if (!isActive()) bg.classList.remove('is-animating');
-      }, 600);
-    };
-
-    const openMenu = () => {
-      setTriggerSize();
-      bg.classList.add('is-animating');
-      menu.setAttribute('data-service-menu-status', 'active');
-      if (overlay) overlay.classList.add('is-active');
-
-      const { width, height } = measureExpandedSize();
-
-      requestAnimationFrame(() => {
-        bg.style.width = `${width}px`;
-        bg.style.height = `${height}px`;
-      });
-    };
-
-    // Toggle on click
-    trigger.addEventListener('click', (e) => {
-      e.stopPropagation();
-
-      if (isActive()) {
-        closeMenu();
-      } else {
-        // Close other open menus first
-        menus.forEach(m => {
-          if (m !== menu && m.getAttribute('data-service-menu-status') === 'active') {
-            m.setAttribute('data-service-menu-status', 'not-active');
-            const otherBg = m.querySelector('.service-menu__bg');
-            const otherTrigger = m.querySelector('[data-service-menu-toggle]');
-            if (otherBg && otherTrigger) {
-              const { width, height } = otherTrigger.getBoundingClientRect();
-              otherBg.style.width = `${width}px`;
-              otherBg.style.height = `${height}px`;
-              setTimeout(() => {
-                if (m.getAttribute('data-service-menu-status') === 'not-active') {
-                  otherBg.classList.remove('is-animating');
-                }
-              }, 600);
-            }
-          }
-        });
-        openMenu();
-      }
-    });
-
-    // Close on click outside
-    document.addEventListener('click', (e) => {
-      if (isActive() && !menu.contains(e.target)) closeMenu();
-    });
-
-    // Close on ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && isActive()) closeMenu();
-    });
-
-    // Update on resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        if (isActive()) {
-          const { width, height } = measureExpandedSize();
-          bg.style.width = `${width}px`;
-          bg.style.height = `${height}px`;
-        } else {
-          setTriggerSize();
-        }
-      }, 100);
-    });
-
-    // Set initial trigger size
-    setTriggerSize();
+    if (isActive()) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
 
-  // Close all on overlay click
+  // Close on click outside
+  document.addEventListener('click', (e) => {
+    if (isActive() && !nav.contains(e.target) && !dropdown.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  // Close on ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isActive()) {
+      closeMenu();
+      trigger.focus();
+    }
+  });
+
+  // Close on overlay click
   if (overlay) {
-    overlay.addEventListener('click', () => {
-      menus.forEach(menu => {
-        menu.setAttribute('data-service-menu-status', 'not-active');
-        const bg = menu.querySelector('.service-menu__bg');
-        const trigger = menu.querySelector('[data-service-menu-toggle]');
-        if (bg && trigger) {
-          const { width, height } = trigger.getBoundingClientRect();
-          bg.style.width = `${width}px`;
-          bg.style.height = `${height}px`;
-          setTimeout(() => {
-            if (menu.getAttribute('data-service-menu-status') === 'not-active') {
-              bg.classList.remove('is-animating');
-            }
-          }, 600);
-        }
-      });
-      overlay.classList.remove('is-active');
-    });
+    overlay.addEventListener('click', closeMenu);
   }
+
+  // Close menu when clicking a link inside dropdown
+  dropdown.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      closeMenu();
+    });
+  });
+
+  // Handle resize - close menu if resizing below desktop breakpoint
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      if (window.innerWidth < 1024 && isActive()) {
+        closeMenu();
+      }
+    }, 100);
+  });
+
+  // Keyboard navigation within dropdown
+  dropdown.addEventListener('keydown', (e) => {
+    const items = Array.from(dropdown.querySelectorAll('a'));
+    const currentIndex = items.indexOf(document.activeElement);
+
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      const nextIndex = (currentIndex + 1) % items.length;
+      items[nextIndex]?.focus();
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      const prevIndex = (currentIndex - 1 + items.length) % items.length;
+      items[prevIndex]?.focus();
+    } else if (e.key === 'Tab' && !dropdown.contains(e.relatedTarget)) {
+      closeMenu();
+    }
+  });
+
+  // Focus first item when opening via keyboard
+  trigger.addEventListener('keydown', (e) => {
+    if ((e.key === 'Enter' || e.key === ' ') && !isActive()) {
+      e.preventDefault();
+      openMenu();
+      setTimeout(() => {
+        const firstItem = dropdown.querySelector('a');
+        if (firstItem) firstItem.focus();
+      }, 100);
+    }
+  });
 }
