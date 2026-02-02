@@ -1,43 +1,29 @@
-
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
 gsap.registerPlugin(ScrollTrigger);
 
-import Lenis from '@studio-freight/lenis';
+import LocomotiveScroll from 'locomotive-scroll';
+
+const scroll = new LocomotiveScroll({
+  lerp: 0.15,
+  autoResize: true,
+  scrollCallback: () => ScrollTrigger.update(),
+});
+
+// Anchor links
+document.querySelectorAll('a[href^="#"]').forEach(item => {
+  item.addEventListener('click', function (e) {
+    e.preventDefault();
+    const offset = this.hasAttribute('data-prices-nav-link') ? -80 : 0;
+    scroll.scrollTo(this.getAttribute('href'), { offset });
+  });
+});
 
 export function initScrollAnimations($) {
 
   gsap.config({
     force3D: true,
   });
-
-  // LENIS SCROLL
-  let lenis;
-
-  const initSmoothScrolling = () => {
-
-    lenis = new Lenis({
-        lerp: 0.15,
-        smooth: true
-    });
-
-    document.querySelectorAll('a[href^="#"]').forEach(item => {
-      item.addEventListener('click', function (e) {
-        e.preventDefault();
-        const offset = this.hasAttribute('data-prices-nav-link') ? -80 : 0;
-        lenis.scrollTo(this.getAttribute('href'), { offset });
-      });
-    });
-
-    lenis.on('scroll', () => ScrollTrigger.update());
-
-    const scrollFn = (time) => {
-        lenis.raf(time);
-        requestAnimationFrame(scrollFn);
-    };
-    requestAnimationFrame(scrollFn);
-
-  };
 
   // SCROLL REVEAL
   const initContentRevealScroll  = () => {
@@ -170,7 +156,5 @@ export function initScrollAnimations($) {
     return () => ctx.revert();
   }
 
-  initSmoothScrolling();
-  scroll();
   initContentRevealScroll();
 }

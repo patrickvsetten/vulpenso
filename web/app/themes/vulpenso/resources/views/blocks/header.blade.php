@@ -89,8 +89,14 @@
   @else
     <div class="absolute scale-wrapper inset-0 z-0">
       @if($background_image)
-          <div class="absolute inset-0 w-full h-full bg-black/50 z-10"></div>
-          {!! wp_get_attachment_image( $background_image['ID'], isset($size), "", ["class" => "w-full h-full absolute inset-0 object-cover"] ) !!}
+        <div class="absolute inset-0 w-full h-full bg-black/50 z-10"></div>
+        <div 
+          data-scroll
+          data-scroll-speed="-0.05"
+          class="absolute inset-0 w-full h-full z-0"
+        >
+          {!! wp_get_attachment_image( $background_image['ID'], isset($size), "", ["class" => "w-full h-[calc(100%+10vh)] absolute inset-0 object-cover mt-[-5vh]"] ) !!}
+        </div>
       @else
           <div class="absolute inset-0 bg-black text-white grid place-items-center">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 md:h-20 md:w-20 lg:w-32 lg:h-32">

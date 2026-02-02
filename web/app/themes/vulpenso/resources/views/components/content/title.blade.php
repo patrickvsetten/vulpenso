@@ -10,10 +10,6 @@
 
 @if ($title && (!filled($contentItems) || in_array('title', $contentItems)))
   <{{ $heading }}
-    @if($split)
-      data-split
-      data-animate-words
-    @endif
     @class([
       $class,
       'text-white' => in_array($background, ['bg-dark', 'image']),
