@@ -3,7 +3,6 @@
 namespace App\Walkers;
 
 use Walker_Nav_Menu;
-// use App\Helpers\VacancyCountHelper;
 
 class Mobile_Nav_Walker extends Walker_Nav_Menu
 {

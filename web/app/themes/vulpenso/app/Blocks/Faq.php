@@ -20,142 +20,152 @@ class Faq extends BaseBlock
         'anchor' => false,
         'mode' => 'edit',
         'multiple' => true,
-        'supports' => array('mode' => false),
+        'supports' => ['mode' => false],
         'jsx' => true,
     ];
 
-    public function getFaq() {
+    public function getFaq(): array
+    {
+        $input = get_field('input');
 
-    $input = get_field('input');
-    $faq = [];
+        if ($input === 'choose') {
+            return $this->formatFaqPosts(get_field('questions') ?: []);
+        }
 
-    if ($input === 'choose') {
-        $faq = get_field('questions');
+        if ($input === 'category') {
+            return $this->formatFaqPosts($this->getFaqByCategory());
+        }
+
+        if ($input === 'all') {
+            return $this->getGroupedFaqs();
+        }
+
+        return $this->formatFaqPosts($this->getDefaultFaqPosts());
     }
-    elseif ($input === 'category') {
+
+    protected function getFaqByCategory(): array
+    {
         $terms = get_field('categories');
 
-        if (!empty($terms)) {
-            $faq = get_posts([
-                'post_type' => 'faq',
-                'posts_per_page' => -1,
-                'order'   => 'DESC',
-                'tax_query' => [
-                    [
-                        'taxonomy' => 'faq-category',
-                        'field' => 'term_id',
-                        'terms' => $terms,
-                        'operator' => 'IN',
-                    ],
-                ],
-            ]);
-        } else {
-            $faq = get_posts([
-                'post_type' => 'faq',
-                'posts_per_page' => '12',
-                'order'   => 'DESC',
-            ]);
+        if (empty($terms)) {
+            return $this->getDefaultFaqPosts();
         }
-    }
-    elseif ($input === 'all') {
-      // Haal alle categorieën op in de door jou ingestelde volgorde
-      $categories = get_terms([
-          'taxonomy' => 'faq-category',
-          'orderby' => 'term_order',
-          'hide_empty' => false, // Ook lege categorieën tonen indien nodig
-      ]);
-  
-      $grouped_faqs = [];
-  
-      foreach ($categories as $category) {
-          // Haal alle FAQ's op binnen deze categorie
-          $posts = get_posts([
-              'post_type' => 'faq',
-              'posts_per_page' => -1,
-              'order'   => 'DESC',
-              'orderby' => 'date',
-              'tax_query' => [
-                  [
-                      'taxonomy' => 'faq-category',
-                      'field' => 'term_id',
-                      'terms' => $category->term_id,
-                  ],
-              ],
-          ]);
-  
-          // Voeg toe aan de gestructureerde array
-          $grouped_faqs[$category->term_id] = [
-              'category' => $category,
-              'posts' => $posts
-          ];
-      }
-  
-      // FAQ's zonder categorie
-      $uncategorized_posts = get_posts([
-          'post_type' => 'faq',
-          'posts_per_page' => -1,
-          'order'   => 'DESC',
-          'orderby' => 'date',
-          'tax_query' => [
-              [
-                  'taxonomy' => 'faq-category',
-                  'operator' => 'NOT EXISTS',
-              ],
-          ],
-      ]);
-  
-      if (!empty($uncategorized_posts)) {
-          $grouped_faqs['uncategorized'] = [
-              'category' => (object)[
-                  'term_id' => 'uncategorized',
-                  'name' => 'Overig',
-                  'slug' => 'overig'
-              ],
-              'posts' => $uncategorized_posts
-          ];
-      }
-  
-      return $grouped_faqs;
-    }
-   else {
-        $faq = get_posts([
-            'post_type' => 'faq',
-            'posts_per_page' => '12',
-            'order'   => 'DESC',
+
+        return get_posts([
+            'post_type'      => 'faq',
+            'posts_per_page' => -1,
+            'order'          => 'DESC',
+            'tax_query'      => [
+                [
+                    'taxonomy' => 'faq-category',
+                    'field'    => 'term_id',
+                    'terms'    => $terms,
+                    'operator' => 'IN',
+                ],
+            ],
         ]);
     }
 
-    return array_map(function ($post) {
-        return [
-            'id'         => $post->ID,
-            'title'      => apply_filters('the_title', $post->post_title),
-            'category'   => get_the_terms($post->ID, 'faq-category'),
-            'content'    => apply_filters('the_content', $post->post_content),
-        ];
-    }, $faq);
-}
+    protected function getGroupedFaqs(): array
+    {
+        $categories = get_terms([
+            'taxonomy'   => 'faq-category',
+            'orderby'    => 'term_order',
+            'hide_empty' => false,
+        ]);
 
-    public function with()
+        $grouped_faqs = [];
+
+        foreach ($categories as $category) {
+            $posts = get_posts([
+                'post_type'      => 'faq',
+                'posts_per_page' => -1,
+                'order'          => 'DESC',
+                'orderby'        => 'date',
+                'tax_query'      => [
+                    [
+                        'taxonomy' => 'faq-category',
+                        'field'    => 'term_id',
+                        'terms'    => $category->term_id,
+                    ],
+                ],
+            ]);
+
+            $grouped_faqs[$category->term_id] = [
+                'category' => $category,
+                'posts'    => $posts,
+            ];
+        }
+
+        $uncategorized_posts = get_posts([
+            'post_type'      => 'faq',
+            'posts_per_page' => -1,
+            'order'          => 'DESC',
+            'orderby'        => 'date',
+            'tax_query'      => [
+                [
+                    'taxonomy' => 'faq-category',
+                    'operator' => 'NOT EXISTS',
+                ],
+            ],
+        ]);
+
+        if (!empty($uncategorized_posts)) {
+            $grouped_faqs['uncategorized'] = [
+                'category' => (object) [
+                    'term_id' => 'uncategorized',
+                    'name'    => 'Overig',
+                    'slug'    => 'overig',
+                ],
+                'posts' => $uncategorized_posts,
+            ];
+        }
+
+        return $grouped_faqs;
+    }
+
+    protected function getDefaultFaqPosts(): array
+    {
+        return get_posts([
+            'post_type'      => 'faq',
+            'posts_per_page' => 12,
+            'order'          => 'DESC',
+        ]);
+    }
+
+    protected function formatFaqPosts(array $posts): array
+    {
+        return array_map(function ($post) {
+            return [
+                'id'       => $post->ID,
+                'title'    => apply_filters('the_title', $post->post_title),
+                'category' => get_the_terms($post->ID, 'faq-category'),
+                'content'  => apply_filters('the_content', $post->post_content),
+            ];
+        }, $posts);
+    }
+
+    public function with(): array
     {
         return array_merge(
             $this->getCommonFields(),
             [
-                'input'                 => get_field('input'),  
-                'media'                 => get_field('media'),
-                'faq'                   => $this->getFaq(),
-                'faqs'                  => get_field('faqs'),
+                'input' => get_field('input'),
+                'media' => get_field('media'),
+                'faq'   => $this->getFaq(),
+                'faqs'  => get_field('faqs'),
             ]
         );
     }
 
-    public function fields()
+    public function fields(): \StoutLogic\AcfBuilder\FieldsBuilder
     {
         $acfFields = new FieldsBuilder('Faq');
 
-        return $acfFields->build();
+        return $acfFields;
     }
 
-    public function enqueue()
+    public function enqueue(): void
     {
         //
     }

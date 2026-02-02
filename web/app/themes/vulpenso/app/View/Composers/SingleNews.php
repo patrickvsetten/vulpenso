@@ -17,10 +17,8 @@ class SingleNews extends Composer
 
     /**
      * Data to be passed to view before rendering.
-     *
-     * @return array
      */
-    public function with()
+    public function with(): array
     {
         return [
             'reading_time' => $this->getReadingTime(),
@@ -47,10 +45,8 @@ class SingleNews extends Composer
 
     /**
      * Get news categories for the current post.
-     *
-     * @return array|false
      */
-    protected function getCategories()
+    protected function getCategories(): array|false
     {
         return get_the_terms(get_the_ID(), 'news-category');
     }

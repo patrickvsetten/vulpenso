@@ -5,12 +5,9 @@ namespace App\Helpers;
 class LordIconHelper
 {
     /**
-     * Convert a LordIcon ID to the static file URL
-     *
-     * @param string $iconId The icon ID (e.g. "wired-outline-1098-amusment-park-carousel-round-hover-spin")
-     * @return string|null The static file URL or null if iconId is empty
+     * Convert a LordIcon ID to the static file URL.
      */
-    public static function getIconUrl($iconId)
+    public static function getIconUrl(?string $iconId): ?string
     {
         if (empty($iconId)) {
             return null;
@@ -32,12 +29,9 @@ class LordIconHelper
     }
 
     /**
-     * Process grid items to convert icon IDs to URLs
-     *
-     * @param array $gridItems Array of grid items
-     * @return array Processed grid items with icon URLs
+     * Process grid items to convert icon IDs to URLs.
      */
-    public static function processGridItems($gridItems)
+    public static function processGridItems(mixed $gridItems): mixed
     {
         if (!is_array($gridItems)) {
             return $gridItems;

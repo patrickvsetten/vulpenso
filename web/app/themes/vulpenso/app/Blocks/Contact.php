@@ -22,11 +22,11 @@ class Contact extends BaseBlock
         'anchor' => false,
         'mode' => 'edit',
         'multiple' => true,
-        'supports' => array('mode' => false),
+        'supports' => ['mode' => false],
         'jsx' => true,
     ];
 
-    public function getContactButtons()
+    protected function getContactButtons(): array
     {
         $buttons = get_field('contact_buttons') ?: [];
 
@@ -36,25 +36,25 @@ class Contact extends BaseBlock
         }, $buttons);
     }
 
-    public function with()
+    public function with(): array
     {
         return array_merge(
             $this->getCommonFields(),
             [
-                'contact_buttons'  => $this->getContactButtons(),
-                'gravity_form_id'  => get_field('gravity_form_id'),
+                'contact_buttons' => $this->getContactButtons(),
+                'gravity_form_id' => get_field('gravity_form_id'),
             ]
         );
     }
 
-    public function fields()
+    public function fields(): \StoutLogic\AcfBuilder\FieldsBuilder
     {
         $acfFields = new FieldsBuilder('contact');
 
-        return $acfFields->build();
+        return $acfFields;
     }
 
-    public function enqueue()
+    public function enqueue(): void
     {
         //
     }

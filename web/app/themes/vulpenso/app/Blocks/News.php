@@ -20,11 +20,11 @@ class News extends BaseBlock
         'anchor' => false,
         'mode' => 'edit',
         'multiple' => true,
-        'supports' => array('mode' => false),
+        'supports' => ['mode' => false],
         'jsx' => true,
     ];
 
-    public function with()
+    public function with(): array
     {
         return array_merge(
             $this->getCommonFields(),
@@ -35,7 +35,7 @@ class News extends BaseBlock
         );
     }
 
-    protected function getPosts()
+    protected function getPosts(): array
     {
         $posts = get_posts([
             'post_type'      => 'news',
@@ -60,14 +60,14 @@ class News extends BaseBlock
         }, $posts);
     }
 
-    public function fields()
+    public function fields(): \StoutLogic\AcfBuilder\FieldsBuilder
     {
         $acfFields = new FieldsBuilder('news');
 
-        return $acfFields->build();
+        return $acfFields;
     }
 
-    public function enqueue()
+    public function enqueue(): void
     {
         //
     }

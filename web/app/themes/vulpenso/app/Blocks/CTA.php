@@ -20,28 +20,28 @@ class CTA extends BaseBlock
         'anchor' => false,
         'mode' => 'edit',
         'multiple' => true,
-        'supports' => array('mode' => false),
+        'supports' => ['mode' => false],
         'jsx' => true,
     ];
 
-    public function with()
+    public function with(): array
     {
         return array_merge(
             $this->getCommonFields(),
             [
-				'items' => get_field('items'),
+                'items' => get_field('items'),
             ]
         );
     }
 
-    public function fields()
+    public function fields(): \StoutLogic\AcfBuilder\FieldsBuilder
     {
         $acfFields = new FieldsBuilder('CTA');
 
-        return $acfFields->build();
+        return $acfFields;
     }
 
-    public function enqueue()
+    public function enqueue(): void
     {
         //
     }

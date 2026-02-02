@@ -22,15 +22,14 @@ class Usps extends BaseBlock
         'anchor' => false,
         'mode' => 'edit',
         'multiple' => true,
-        'supports' => array('mode' => false),
+        'supports' => ['mode' => false],
         'jsx' => true,
     ];
 
-    public function with()
+    public function with(): array
     {
         $usps = get_field('usps') ?: [];
 
-        // Process USPs to add icon URLs
         foreach ($usps as &$usp) {
             if (!empty($usp['icon'])) {
                 $usp['icon_url'] = LordIconHelper::getIconUrl($usp['icon']);
@@ -45,14 +44,14 @@ class Usps extends BaseBlock
         );
     }
 
-    public function fields()
+    public function fields(): \StoutLogic\AcfBuilder\FieldsBuilder
     {
         $acfFields = new FieldsBuilder('usps');
 
-        return $acfFields->build();
+        return $acfFields;
     }
 
-    public function enqueue()
+    public function enqueue(): void
     {
         //
     }

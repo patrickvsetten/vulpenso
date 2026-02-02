@@ -21,11 +21,11 @@ class TextImage extends BaseBlock
         'anchor' => false,
         'mode' => 'edit',
         'multiple' => true,
-        'supports' => array('mode' => false),
+        'supports' => ['mode' => false],
         'jsx' => true,
     ];
 
-    public function getLinks()
+    protected function getLinks(): array
     {
         $links = get_field('links') ?: [];
 
@@ -35,28 +35,17 @@ class TextImage extends BaseBlock
         }, $links);
     }
 
-    public function with()
+    public function with(): array
     {
         $imageTextPosition = get_field('image_text_position');
-
-        if ($imageTextPosition === 'text-image') {
-            $text_position = 'order-2 md:order-1';
-            $media_position = 'order-1 md:order-2';
-        } elseif ($imageTextPosition === 'image-text') {
-            $text_position = 'order-2';
-            $media_position = 'order-1';
-        }
-        else {
-            $text_position = 'order-2';
-            $media_position = 'order-1';
-        }
+        $isTextFirst = $imageTextPosition === 'text-image';
 
         return array_merge(
             $this->getCommonFields(),
             [
-                'image_text_position'    => get_field('image_text_position'),
-                'text_position'          => $text_position,
-                'media_position'         => $media_position,
+                'image_text_position'    => $imageTextPosition,
+                'text_position'          => $isTextFirst ? 'order-2 md:order-1' : 'order-2',
+                'media_position'         => $isTextFirst ? 'order-1 md:order-2' : 'order-1',
                 'media'                  => get_field('media'),
                 'type'                   => get_field('type') ?: 'basis',
                 'highlights'             => get_field('highlights'),
@@ -71,14 +60,14 @@ class TextImage extends BaseBlock
         );
     }
 
-    public function fields()
+    public function fields(): \StoutLogic\AcfBuilder\FieldsBuilder
     {
         $acfFields = new FieldsBuilder('text-image');
 
-        return $acfFields->build();
+        return $acfFields;
     }
 
-    public function enqueue()
+    public function enqueue(): void
     {
         //
     }

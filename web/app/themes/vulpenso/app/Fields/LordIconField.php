@@ -2,8 +2,10 @@
 
 namespace App\Fields;
 
-class LordIconField extends \acf_field {
-    function __construct() {
+class LordIconField extends \acf_field
+{
+    public function __construct()
+    {
         $this->name = 'lordicon';
         $this->label = __('Lordicon Selector', 'acf');
         $this->category = 'choice';
@@ -23,7 +25,8 @@ class LordIconField extends \acf_field {
         add_action('wp_ajax_nopriv_get_lordicon_list', [$this, 'serve_lordicon_list']);
     }
     
-    function serve_lordicon_json() {
+    public function serve_lordicon_json(): void
+    {
         header('Content-Type: application/json');
         header('Access-Control-Allow-Origin: *');
 
@@ -46,7 +49,8 @@ class LordIconField extends \acf_field {
         exit;
     }
     
-    function serve_lordicon_list() {
+    public function serve_lordicon_list(): void
+    {
         $icons = $this->get_icons();
         header('Content-Type: application/json');
         header('Access-Control-Allow-Origin: *');
@@ -55,7 +59,8 @@ class LordIconField extends \acf_field {
         wp_die();
     }
 
-    function render_field($field) {
+    public function render_field($field): void
+    {
         $icons = $this->get_icons();
         $value = $field['value'];
 
@@ -77,14 +82,10 @@ class LordIconField extends \acf_field {
         echo '</div>';
         echo '<input type="hidden" name="' . esc_attr($field['name']) . '" value="' . esc_attr($value) . '" class="lordicon-value">';
         echo '</div>';
-        
-        // Debug output
-        echo '<script>console.log("PHP Debug - Icons found:", ' . count($icons) . ');</script>';
-        echo '<script>console.log("PHP Debug - Current value:", "' . $value . '");</script>';
-        echo '<script>console.log("PHP Debug - AJAX URL:", "' . admin_url('admin-ajax.php') . '");</script>';
     }
     
-    private function get_icon_json($icon_id) {
+    private function get_icon_json(string $icon_id): string|false
+    {
         $json_path = get_theme_file_path('resources/icons/' . $icon_id . '.json');
         if (file_exists($json_path)) {
             return file_get_contents($json_path);
@@ -92,7 +93,8 @@ class LordIconField extends \acf_field {
         return false;
     }
 
-    function input_admin_enqueue_scripts() {
+    public function input_admin_enqueue_scripts(): void
+    {
         // Load lordicon library from CDN
         wp_enqueue_script('lordicon', 'https://cdn.lordicon.com/lordicon.js', [], null, true);
         
@@ -125,7 +127,8 @@ class LordIconField extends \acf_field {
         ');
     }
 
-    private function get_icons() {
+    private function get_icons(): array
+    {
         $icons_dir = get_theme_file_path('resources/icons/');
         $json_path = $icons_dir . 'index.json';
         
@@ -166,7 +169,8 @@ class LordIconField extends \acf_field {
         return is_array($icons) ? $icons : [];
     }
     
-    private function rebuild_index() {
+    private function rebuild_index(): array
+    {
         $icons_dir = get_theme_file_path('resources/icons/');
         $json_files = glob($icons_dir . '*.json');
         $icons = [];
@@ -202,7 +206,8 @@ class LordIconField extends \acf_field {
         return $icons;
     }
     
-    private function create_pretty_name($filename) {
+    private function create_pretty_name(string $filename): string
+    {
         // Remove "wired-outline-" prefix and numbers
         $pretty = preg_replace('/^wired-outline-\d+-/', '', $filename);
         
@@ -215,15 +220,18 @@ class LordIconField extends \acf_field {
         return $pretty;
     }
 
-    function update_value($value, $post_id, $field) {
+    public function update_value($value, $post_id, $field): string
+    {
         return sanitize_text_field($value);
     }
 
-    function load_value($value, $post_id, $field) {
+    public function load_value($value, $post_id, $field): mixed
+    {
         return $value;
     }
 
-    function format_value($value, $post_id, $field) {
+    public function format_value($value, $post_id, $field): string
+    {
         if (empty($value)) {
             return '';
         }

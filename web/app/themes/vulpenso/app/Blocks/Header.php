@@ -20,37 +20,37 @@ class Header extends BaseBlock
         'anchor' => false,
         'mode' => 'edit',
         'multiple' => true,
-        'supports' => array('mode' => false),
+        'supports' => ['mode' => false],
         'jsx' => true,
     ];
-    
 
-    public function with() {
-      return array_merge(
-        $this->getCommonFields(),
-        [
-          'background_image'       => get_field('background_image'),
-          'page'                   => get_field('page'),
-          'type'                   => get_field('type'),
-          'video_source'           => get_field('video_source'),
-          'image'                  => get_field('image'),
-          'video'                  => get_field('video'),
-          'video_url'              => get_field('video_url'),
-          'rotating_text_prefix'   => get_field('rotating_text_prefix'),
-          'rotating_text_words'    => get_field('rotating_text_words'),
-          'rotating_text_suffix'   => get_field('rotating_text_suffix'),
-        ]
-      );
+    public function with(): array
+    {
+        return array_merge(
+            $this->getCommonFields(),
+            [
+                'background_image'     => get_field('background_image'),
+                'page'                 => get_field('page'),
+                'type'                 => get_field('type'),
+                'video_source'         => get_field('video_source'),
+                'image'                => get_field('image'),
+                'video'                => get_field('video'),
+                'video_url'            => get_field('video_url'),
+                'rotating_text_prefix' => get_field('rotating_text_prefix'),
+                'rotating_text_words'  => get_field('rotating_text_words'),
+                'rotating_text_suffix' => get_field('rotating_text_suffix'),
+            ]
+        );
     }
 
-    public function fields()
+    public function fields(): \StoutLogic\AcfBuilder\FieldsBuilder
     {
         $acfFields = new FieldsBuilder('Header');
 
-        return $acfFields->build();
+        return $acfFields;
     }
 
-    public function enqueue()
+    public function enqueue(): void
     {
         //
     }

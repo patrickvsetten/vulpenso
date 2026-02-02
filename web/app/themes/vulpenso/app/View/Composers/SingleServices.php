@@ -11,7 +11,7 @@ class SingleServices extends Composer
         'single-services',
     ];
 
-    public function getRelatedServices()
+    public function getRelatedServices(): array
     {
         global $post;
 
@@ -39,18 +39,16 @@ class SingleServices extends Composer
         }, $services);
     }
 
-    public function with()
+    public function with(): array
     {
         global $post;
 
-        // Get icon from ACF field
         $icon = get_field('icon', $post->ID);
-        $iconUrl = $icon['url'] ?? null;
 
         return [
             'title'            => get_the_title(),
             'featured_image'   => get_post_thumbnail_id($post->ID),
-            'icon'             => $iconUrl,
+            'icon'             => $icon['url'] ?? null,
             'related_services' => $this->getRelatedServices(),
         ];
     }

@@ -20,11 +20,11 @@ class Employees extends BaseBlock
         'anchor' => false,
         'mode' => 'edit',
         'multiple' => true,
-        'supports' => array('mode' => false),
+        'supports' => ['mode' => false],
         'jsx' => true,
     ];
 
-    public function with()
+    public function with(): array
     {
         return array_merge(
             $this->getCommonFields(),
@@ -34,7 +34,7 @@ class Employees extends BaseBlock
         );
     }
 
-    protected function getEmployees()
+    protected function getEmployees(): array
     {
         $employees = get_posts([
             'post_type'      => 'employees',
@@ -54,14 +54,14 @@ class Employees extends BaseBlock
         }, $employees);
     }
 
-    public function fields()
+    public function fields(): \StoutLogic\AcfBuilder\FieldsBuilder
     {
         $acfFields = new FieldsBuilder('employees');
 
-        return $acfFields->build();
+        return $acfFields;
     }
 
-    public function enqueue()
+    public function enqueue(): void
     {
         //
     }

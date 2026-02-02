@@ -19,7 +19,7 @@ class Footer extends Composer
     /**
      * Data to be passed to the view.
      */
-    public function with()
+    public function with(): array
     {
         return [
             // CTA Block
