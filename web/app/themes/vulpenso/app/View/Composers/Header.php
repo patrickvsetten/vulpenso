@@ -60,7 +60,7 @@ class Header extends Composer
         $current_url = trailingslashit(home_url(add_query_arg([], $_SERVER['REQUEST_URI'] ?? '')));
 
         return array_map(function ($item) use ($current_url) {
-            $icon = get_field('menu_item_icon', $item->ID);
+            $icon_svg = get_field('menu_item_icon_svg', $item->ID);
             $item_url = trailingslashit($item->url);
 
             return [
@@ -68,8 +68,7 @@ class Header extends Composer
                 'title'     => $item->title,
                 'url'       => $item->url,
                 'target'    => $item->target,
-                'icon'      => $icon,
-                'icon_url'  => LordIconHelper::getIconUrl($icon),
+                'icon_svg'  => $icon_svg,
                 'is_active' => ($item_url === $current_url) || in_array('current-menu-item', $item->classes ?? []),
             ];
         }, $top_level_items);
@@ -91,19 +90,15 @@ class Header extends Composer
         $children = [];
 
         foreach ($menu_items as $item) {
-            // First try menu item icon, then fallback to linked post's icon (e.g., services)
-            $icon = get_field('menu_item_icon', $item->ID);
-            if (!$icon && !empty($item->object_id)) {
-                $icon = get_field('icon', $item->object_id);
-            }
+            // Get SVG icon from menu item
+            $icon_svg = get_field('menu_item_icon_svg', $item->ID);
 
             $item_data = [
                 'id'        => $item->ID,
                 'title'     => $item->title,
                 'url'       => $item->url,
                 'target'    => $item->target,
-                'icon'      => $icon,
-                'icon_url'  => LordIconHelper::getIconUrl($icon),
+                'icon_svg'  => $icon_svg,
                 'is_active' => in_array('current-menu-item', $item->classes ?? []),
             ];
 

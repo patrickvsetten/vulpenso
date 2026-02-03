@@ -26,15 +26,12 @@
         @endif
         @if ($phone_general)
           <a href="tel:{!! $phone_general !!}" class="md:hidden grid place-items-center size-12 rounded-xl bg-primary/10">
-            <x-lordicon
-              src="wired-outline-2806-smartphone-3-hover-phone-ring-alt"
-              trigger="hover"
-              target=".group"
-              stroke="bold"
-              class="icon-lottie size-6"
-              primary="#C38E66"
-              secondary="#C38E66"
-            />
+            <svg class="size-6" viewBox="0 0 430 430" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g stroke="#c38e66" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="12">
+                <path d="M105 50c0-11.046 8.954-20 20-20h180c11.046 0 20 8.954 20 20v330c0 11.046-8.954 20-20 20H125c-11.046 0-20-8.954-20-20zm140 15h-60"/>
+                <circle cx="215" cy="345" r="20"/>
+              </g>
+            </svg>
           </a>
         @endif
       </div>
@@ -183,5 +180,5 @@
 />
 
 @if ($menu_spacer == true)
-  <div class="w-full h-12 md:h-32 lg:h-40"></div>
+  <div class="w-full h-32 lg:h-40"></div>
 @endif

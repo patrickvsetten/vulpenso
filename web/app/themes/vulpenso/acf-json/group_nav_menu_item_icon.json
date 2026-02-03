@@ -3,12 +3,12 @@
     "title": "Menu Item Icoon",
     "fields": [
         {
-            "key": "field_nav_menu_item_icon",
-            "label": "Lordicon",
-            "name": "menu_item_icon",
+            "key": "field_nav_menu_item_icon_svg",
+            "label": "Icoon (SVG)",
+            "name": "menu_item_icon_svg",
             "aria-label": "",
-            "type": "lordicon",
-            "instructions": "Selecteer een icoon voor dit menu item (wordt gebruikt in mobile bottom nav)",
+            "type": "image",
+            "instructions": "Upload een SVG icoon voor dit menu item (wordt gebruikt in mobile bottom nav)",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -17,11 +17,16 @@
                 "id": ""
             },
             "allow_in_bindings": 0,
-            "default_value": "",
-            "allow_null": 1,
-            "multiple": 0,
-            "ui": 1,
-            "return_format": "value"
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "svg",
+            "preview_size": "thumbnail"
         }
     ],
     "location": [
@@ -30,6 +35,13 @@
                 "param": "nav_menu_item",
                 "operator": "==",
                 "value": "location\/mobile_navigation"
+            }
+        ],
+        [
+            {
+                "param": "nav_menu_item",
+                "operator": "==",
+                "value": "location\/secondary_mobile_navigation"
             }
         ]
     ],
@@ -40,7 +52,7 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "Lordicon icoon voor menu items",
+    "description": "SVG icoon voor menu items",
     "show_in_rest": 0,
-    "modified": 1765224794
+    "modified": 1738540800
 }

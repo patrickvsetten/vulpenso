@@ -39,37 +39,7 @@ spl_autoload_register(function ($class) {
     }
 });
 
-add_action('wp_head', function () {
-  ?>
-  <!-- Google Fonts Optimization -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400..900&display=optional">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=optional">
-  <?php
-
-  // Preload mobile nav icons (visible immediately on mobile)
-  if (wp_is_mobile()) {
-    $locations = get_nav_menu_locations();
-    $menu_id = $locations['mobile_navigation'] ?? 0;
-
-    if ($menu_id) {
-      $menu_items = wp_get_nav_menu_items($menu_id) ?: [];
-      $top_level_items = array_filter($menu_items, fn($item) => $item->menu_item_parent == 0);
-      $top_level_items = array_slice($top_level_items, 0, 3);
-
-      foreach ($top_level_items as $item) {
-        $icon = get_field('menu_item_icon', $item->ID);
-        if ($icon) {
-          $icon_url = \App\Helpers\LordIconHelper::getIconUrl($icon);
-          if ($icon_url) {
-            echo '<link rel="preload" href="' . esc_url($icon_url) . '" as="fetch" crossorigin>';
-          }
-        }
-      }
-    }
-  }
-}, 1);
+// Mobile nav icons are now SVGs - no preload needed
 
 
 /**

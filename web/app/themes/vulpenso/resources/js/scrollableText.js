@@ -31,16 +31,19 @@ export function initScrollableText() {
         pinSpacing: false,
       });
 
-      // Pin the title while scrolling through steps
-      const titleTrigger = ScrollTrigger.create({
-        trigger: section,
-        start: 'top top',
-        end: 'bottom bottom',
-        pin: titleWrapper,
-        pinSpacing: false,
-      });
+      // Pin the title while scrolling through steps (alleen op desktop)
+      if (window.innerWidth >= 768) {
+        const titleTrigger = ScrollTrigger.create({
+          trigger: section,
+          start: 'top top',
+          end: 'bottom bottom',
+          pin: titleWrapper,
+          pinSpacing: false,
+        });
+        triggers.push(titleTrigger);
+      }
 
-      triggers.push(bgTrigger, titleTrigger);
+      triggers.push(bgTrigger);
     });
   };
 

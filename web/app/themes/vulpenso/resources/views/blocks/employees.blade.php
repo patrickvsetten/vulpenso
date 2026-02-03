@@ -46,7 +46,7 @@
                   ])
                 >
                   {{-- Aspect ratio placeholder --}}
-                  <div class="pt-[150%]"></div>
+                  <div class="pt-[100%] md:pt-[150%]"></div>
 
                   {{-- Image --}}
                   @if($employee['thumbnail'])
@@ -73,7 +73,7 @@
 
               {{-- Duurzaam Badge - show on 3rd card (index 2) --}}
               @if($index === 2)
-                <div data-momentum-hover-element class="absolute z-10 size-24 lg:size-32 top-0 rotate-10 right-0 translate-x-1/2 -translate-y-1/2">
+                <div data-momentum-hover-element class="hidden md:block absolute z-10 size-24 lg:size-32 top-0 rotate-10 right-0 translate-x-1/2 -translate-y-1/2">
                   <div data-momentum-hover-target class="w-full h-full">
                     <img
                       src="{{ get_theme_file_uri('resources/images/duurzaam.svg') }}"

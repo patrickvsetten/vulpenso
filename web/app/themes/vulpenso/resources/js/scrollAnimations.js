@@ -5,20 +5,31 @@ gsap.registerPlugin(ScrollTrigger);
 
 import LocomotiveScroll from 'locomotive-scroll';
 
-const scroll = new LocomotiveScroll({
-  lerp: 0.15,
-  autoResize: true,
-});
+// Alleen smooth scroll op non-touch devices (Safari iOS heeft problemen met Lenis)
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-// Sync ScrollTrigger with Locomotive Scroll
-scroll.lenisInstance?.on('scroll', ScrollTrigger.update);
+let scroll;
+if (!isTouchDevice) {
+  scroll = new LocomotiveScroll({
+    lerp: 0.15,
+    autoResize: true,
+  });
+  scroll.lenisInstance?.on('scroll', ScrollTrigger.update);
+}
 
 // Anchor links
 document.querySelectorAll('a[href^="#"]').forEach(item => {
   item.addEventListener('click', function (e) {
     e.preventDefault();
     const offset = this.hasAttribute('data-prices-nav-link') ? -80 : 0;
-    scroll.scrollTo(this.getAttribute('href'), { offset });
+    if (scroll) {
+      scroll.scrollTo(this.getAttribute('href'), { offset });
+    } else {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        window.scrollTo({ top: target.offsetTop + offset, behavior: 'smooth' });
+      }
+    }
   });
 });
 
@@ -170,6 +181,12 @@ export function initScrollAnimations($) {
       const targets = split[type];
 
       if (prefersReduced || !targets?.length) return;
+
+      // Op touch devices: geen scrub (veroorzaakt scroll haperingen op Safari iOS)
+      if (isTouchDevice) {
+        gsap.set(targets, { opacity: 1 });
+        return;
+      }
 
       // Use GSAP timeline with scrub for better performance
       gsap.set(targets, { opacity: 0.15, willChange: 'opacity' });

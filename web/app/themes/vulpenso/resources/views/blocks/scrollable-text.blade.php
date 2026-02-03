@@ -13,7 +13,7 @@
     <div class="container">
       <div class="grid md:grid-cols-2 gap-8 lg:gap-16">
         <div class="relative">
-          <div class="pt-16 md:pt-24 lg:pt-32 pb-16 md:pb-24" data-scrollable-title>
+          <div class="pt-16 md:pt-24 lg:pt-32 md:pb-24" data-scrollable-title>
             <div class="flex flex-col gap-4" data-reveal-group>
               <x-content.subtitle
                 :subtitle="$subtitle"

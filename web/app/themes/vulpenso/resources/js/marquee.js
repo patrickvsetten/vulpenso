@@ -1,6 +1,8 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
 
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
 export function initMarquee() {
   document.querySelectorAll('[data-marquee]').forEach((marquee) => {
     const marqueeContent = marquee.querySelector('[data-marquee-collection]');
@@ -18,9 +20,11 @@ export function initMarquee() {
     const speedMultiplier = window.innerWidth < 479 ? 0.25 : window.innerWidth < 991 ? 0.5 : 1;
     const marqueeSpeed = speed * (marqueeContent.offsetWidth / window.innerWidth) * speedMultiplier;
 
-    // Set scroll container styles
-    marqueeScroll.style.marginLeft = `${scrollSpeed * -1}%`;
-    marqueeScroll.style.width = `${(scrollSpeed * 2) + 100}%`;
+    // Set scroll container styles (alleen nodig voor parallax op desktop)
+    if (!isTouchDevice) {
+      marqueeScroll.style.marginLeft = `${scrollSpeed * -1}%`;
+      marqueeScroll.style.width = `${(scrollSpeed * 2) + 100}%`;
+    }
 
     // Duplicate marquee content
     if (duplicateAmount > 0) {
@@ -65,22 +69,24 @@ export function initMarquee() {
       }
     });
 
-    // Extra speed effect on scroll (parallax-like)
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: marquee,
-        start: '0% 100%',
-        end: '100% 0%',
-        scrub: 0
-      }
-    });
+    // Extra speed effect on scroll (parallax-like) - alleen op desktop
+    if (!isTouchDevice) {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: marquee,
+          start: '0% 100%',
+          end: '100% 0%',
+          scrub: 0
+        }
+      });
 
-    const scrollStart = direction === -1 ? scrollSpeed : -scrollSpeed;
-    const scrollEnd = -scrollStart;
+      const scrollStart = direction === -1 ? scrollSpeed : -scrollSpeed;
+      const scrollEnd = -scrollStart;
 
-    tl.fromTo(marqueeScroll,
-      { x: `${scrollStart}vw` },
-      { x: `${scrollEnd}vw`, ease: 'none' }
-    );
+      tl.fromTo(marqueeScroll,
+        { x: `${scrollStart}vw` },
+        { x: `${scrollEnd}vw`, ease: 'none' }
+      );
+    }
   });
 }

@@ -1,6 +1,8 @@
 @props(['items', 'secondaryMenu', 'whatsappUrl' => ''])
 
 @php
+  use App\Helpers\SvgHelper;
+
   // Build WhatsApp link from number if it's not already a URL
   $whatsappLink = $whatsappUrl;
   if ($whatsappUrl && !str_starts_with($whatsappUrl, 'http')) {
@@ -89,16 +91,9 @@
                         class="group/child flex items-center gap-3 font-medium py-2 rounded-lg hover:bg-white/10 transition-colors duration-200 {{ $child['is_active'] ?? false ? 'text-primary' : 'text-white/70 hover:text-white' }}"
                         @if($child['target']) target="{{ $child['target'] }}" @endif
                       >
-                        @if($child['icon_url'] ?? false)
+                        @if($child['icon_svg'] ?? false)
                           <div class="size-10 rounded-lg grid place-items-center bg-white/5">
-                            <x-lordicon
-                              :src="$child['icon_url']"
-                              trigger="hover"
-                              target=".group\/child"
-                              class="icon-lottie size-6"
-                              :primary="($child['is_active'] ?? false) ? '#C38E66' : '#FFFFFF'"
-                              :secondary="($child['is_active'] ?? false) ? '#C38E66' : '#FFFFFF'"
-                            />
+                            {!! SvgHelper::render($child['icon_svg'], ($child['is_active'] ?? false) ? '#C38E66' : '#FFFFFF', 'size-6', '#1a1a1a') !!}
                           </div>
                         @endif
                         <span class="text-white">{{ $child['title'] }}</span>
@@ -131,7 +126,6 @@
         @php
           $isWhatsApp = $loop->iteration === 3 && $whatsappUrl;
           $isActive = $item['is_active'] ?? false;
-          $iconColor = $isActive ? '#C38E66' : '#FFFFFF';
         @endphp
         <a
           href="{{ $isWhatsApp ? $whatsappLink : $item['url'] }}"
@@ -139,16 +133,8 @@
           class="group flex items-center justify-center transition-colors duration-200 {{ $isActive ? 'text-primary' : 'text-white hover:text-white' }}"
         >
           <div class="flex flex-col items-center justify-center gap-1 px-3 py-1.5 rounded-lg {{ $isActive ? 'bg-primary/10' : '' }}">
-            @if($item['icon_url'])
-              <x-lordicon
-                :src="$item['icon_url']"
-                trigger="hover"
-                target=".group"
-                stroke="bold"
-                class="icon-lottie size-6"
-                :primary="$iconColor"
-                :secondary="$iconColor"
-              />
+            @if($item['icon_svg'] ?? false)
+              {!! SvgHelper::render($item['icon_svg'], $isActive ? '#C38E66' : '#FFFFFF', 'size-6', $isActive ? '#2d2319' : '#1a1a1a') !!}
             @else
               <div class="size-6 rounded-full bg-white/20"></div>
             @endif

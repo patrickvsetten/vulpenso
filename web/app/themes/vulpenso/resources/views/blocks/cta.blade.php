@@ -62,7 +62,7 @@
               </div>
             </div>
             {{-- Progress bar --}}
-            <div class="h-1 rounded-full bg-white/10 overflow-hidden">
+            <div class="h-1 rounded-full bg-white/10 overflow-hidden md:hidden">
               <div class="cta-slider-progress h-full bg-primary rounded-full transition-all duration-300 ease-out" style="width: 0%"></div>
             </div>
           </div>

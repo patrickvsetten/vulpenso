@@ -49,6 +49,14 @@ export function initCTASlider() {
         ? swiper.slidesPerViewDynamic()
         : swiper.params.slidesPerView;
 
+      // Hide progress bar if all slides are visible
+      const progressContainer = progressBar.parentElement;
+      if (slidesPerView >= totalSlides) {
+        progressContainer.style.display = 'none';
+        return;
+      }
+      progressContainer.style.display = '';
+
       // Calculate progress based on visible portion
       const visibleRatio = Math.min(slidesPerView / totalSlides, 1);
       const scrollableRatio = 1 - visibleRatio;
