@@ -25,7 +25,7 @@
         data-scroll-speed="-0.05"
         class="absolute inset-0 w-full h-full z-0"
       >
-			  <img src="{{ wp_get_attachment_image_url($image['ID'], 'full') }}" alt="{{ get_post_meta($image['ID'], '_wp_attachment_image_alt', true) }}" class="absolute inset-0 w-full h-[calc(100%+10vh)] mt-[-5vh] object-cover" loading="lazy">
+			  <img src="{{ wp_get_attachment_image_url($image['ID'], 'full') }}" alt="{{ get_post_meta($image['ID'], '_wp_attachment_image_alt', true) }}" class="absolute inset-0 w-full h-full md:h-[calc(100%+10vh)] md:mt-[-5vh] object-cover" loading="lazy">
       </div>
 		</div>
 	@endif
@@ -41,7 +41,7 @@
         data-scroll-speed="-0.05"
         class="absolute inset-0 w-full h-full z-0"
       >
-        <img src="{{ wp_get_attachment_image_url($image['ID'], 'full') }}" alt="{{ get_post_meta($image['ID'], '_wp_attachment_image_alt', true) }}" class="absolute inset-0 w-full h-[calc(100%+10vh)] mt-[-5vh] object-cover" loading="lazy">
+        <img src="{{ wp_get_attachment_image_url($image['ID'], 'full') }}" alt="{{ get_post_meta($image['ID'], '_wp_attachment_image_alt', true) }}" class="absolute inset-0 w-full h-full md:h-[calc(100%+10vh)] md:mt-[-5vh] object-cover" loading="lazy">
       </div>
     @endif
 		<div class="space-y-4 md:space-y-8 relative z-20">

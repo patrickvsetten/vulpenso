@@ -19,7 +19,7 @@
               :title="$cta_left_title"
               heading="h3"
               background="bg-white"
-              class="text-xl md:text-2xl lg:text-3xl"
+              class="text-2xl lg:text-3xl"
               :split="false"
             />
           @endif
@@ -49,7 +49,7 @@
               :title="$cta_right_title"
               heading="h3"
               background="bg-white"
-              class="text-xl md:text-2xl lg:text-3xl"
+              class="text-2xl lg:text-3xl"
               :split="false"
             />
           @endif
@@ -110,7 +110,7 @@
       <div>
         <h4 class="text-primary font-medium mb-6">{{ $certificates_title }}</h4>
         @if($footer_certificates && count($footer_certificates) > 0)
-          <div class="grid grid-cols-2 gap-3 max-w-xs">
+          <div class="grid grid-cols-2 gap-3 w-full md:max-w-xs">
             @foreach($footer_certificates as $certificate)
               @if($certificate['link'])
                 <a href="{{ $certificate['link'] }}" target="_blank" rel="noopener" class="bg-white rounded-xl p-4 grid place-items-center aspect-[3/2] transition-opacity hover:opacity-80">

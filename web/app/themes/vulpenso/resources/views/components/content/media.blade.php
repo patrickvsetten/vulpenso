@@ -21,7 +21,7 @@
     @endif
     class="absolute inset-0 w-full h-full z-0"
   >
-    {!! wp_get_attachment_image( $image['ID'], 'full', "", ["class" => "absolute inset-0 w-full " . ($image_fit === 'contain' ? 'h-full' : 'h-[calc(100%+10vh)] mt-[-5vh]') . " " . $objectFitClass] ) !!}
+    {!! wp_get_attachment_image( $image['ID'], 'full', "", ["class" => "absolute inset-0 w-full " . ($image_fit === 'contain' ? 'h-full' : 'h-full md:h-[calc(100%+10vh)] md:mt-[-5vh]') . " " . $objectFitClass] ) !!}
   </div>
 @elseif($media_type === 'video')
   <x-content.video 

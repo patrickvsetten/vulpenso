@@ -2,7 +2,7 @@
   <div class="container relative z-20">
     <div @class([
       'relative -mx-4 md:mx-0',
-      'md:h-[80vh] lg:h-[calc(100vh-2rem)] max-h-[60rem] flex items-center justify-center pt-40 pb-24 md:pt-40 lg:pt-48' => $page === 'home',
+      'min-h-[60vh] md:h-[80vh] lg:h-[calc(100vh-2rem)] max-h-[60rem] flex items-center justify-center pt-40 pb-24 md:pt-40 lg:pt-48' => $page === 'home',
     ])>
       <div @class([
         'relative z-20',
@@ -27,7 +27,7 @@
             headingWeight="light"
             background="image"
             :contentItems="$content_items"
-            class="leading-[1.25] text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
+            class="leading-[1.25] text-4xl lg:text-5xl xl:text-6xl"
           />
         @endif
         <x-content.text
@@ -95,7 +95,7 @@
           data-scroll-speed="-0.05"
           class="absolute inset-0 w-full h-full z-0"
         >
-          {!! wp_get_attachment_image( $background_image['ID'], isset($size), "", ["class" => "w-full h-[calc(100%+10vh)] absolute inset-0 object-cover mt-[-5vh]"] ) !!}
+          {!! wp_get_attachment_image( $background_image['ID'], isset($size), "", ["class" => "w-full h-full md:h-[calc(100%+10vh)] md:mt-[-5vh] absolute inset-0 object-cover"] ) !!}
         </div>
       @else
           <div class="absolute inset-0 bg-black text-white grid place-items-center">

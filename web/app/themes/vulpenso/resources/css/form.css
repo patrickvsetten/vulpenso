@@ -5,7 +5,7 @@ body {
 
   .gform_wrapper.gravity-theme {
     .gform_fields {
-      @apply gap-8;
+      @apply gap-y-8;
     }
     
     .gform_validation_errors>ol {

@@ -33,7 +33,7 @@
   }
 
   h4 {
-    @apply text-base md:text-lg lg:text-xl xl:text-2xl;
+    @apply text-xl xl:text-2xl;
   }
 
   h5 {

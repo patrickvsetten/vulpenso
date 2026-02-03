@@ -14,7 +14,7 @@
     @php(wp_head())
   </head>
 
-  <body @php(body_class('bg-dark font-body antialiased'))>
+  <body @php(body_class('bg-dark font-body antialiased !pb-16 md:!pb-0'))>
     @php(wp_body_open())
 
     <div id="app" class="">

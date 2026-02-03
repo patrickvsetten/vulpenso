@@ -1,5 +1,11 @@
 /* Animations & keyframes */
 
+/* Text reveal - prevent word breaking */
+[data-text-reveal] .word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 /* Bottom bar slide up animation */
 @keyframes slideUpDelayed {
   from {

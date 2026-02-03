@@ -43,7 +43,7 @@
                   >
                     @if($service['image'])
                       {!! wp_get_attachment_image($service['image'], 'medium_large', false, [
-                        'class' => 'w-full h-[calc(100%+10vh)] mt-[-5vh] object-cover transition-transform duration-500 group-hover:scale-105',
+                        'class' => 'w-full h-full md:h-[calc(100%+10vh)] md:mt-[-5vh] object-cover transition-transform duration-500 group-hover:scale-105',
                       ]) !!}
                     @else
                       <div class="w-full h-full bg-white/5"></div>

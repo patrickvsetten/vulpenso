@@ -8,8 +8,10 @@ import LocomotiveScroll from 'locomotive-scroll';
 const scroll = new LocomotiveScroll({
   lerp: 0.15,
   autoResize: true,
-  scrollCallback: () => ScrollTrigger.update(),
 });
+
+// Sync ScrollTrigger with Locomotive Scroll
+scroll.lenisInstance?.on('scroll', ScrollTrigger.update);
 
 // Anchor links
 document.querySelectorAll('a[href^="#"]').forEach(item => {
@@ -160,31 +162,77 @@ export function initScrollAnimations($) {
   // TEXT REVEAL (karaoke effect)
   const initTextReveal = () => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const textRevealElements = [];
 
     document.querySelectorAll('[data-text-reveal]').forEach(el => {
-      const type = el.getAttribute('data-text-reveal') || 'chars'; // chars, words, lines
-      const split = new SplitType(el, { types: type });
+      const type = el.getAttribute('data-text-reveal') || 'chars';
+      const split = new SplitType(el, { types: 'words, chars' });
       const targets = split[type];
 
       if (prefersReduced || !targets?.length) return;
 
-      // Start opacity
-      gsap.set(targets, { opacity: 0.15 });
+      // Use GSAP timeline with scrub for better performance
+      gsap.set(targets, { opacity: 0.15, willChange: 'opacity' });
 
-      ScrollTrigger.create({
+      const tl = gsap.timeline();
+      tl.to(targets, {
+        opacity: 1,
+        stagger: 0.03,
+        ease: 'none',
+      });
+
+      const trigger = ScrollTrigger.create({
         trigger: el,
-        start: 'top 80%',
-        end: 'top 30%',
-        scrub: 0.5,
-        onUpdate: (self) => {
-          const progress = self.progress;
-          targets.forEach((target, i) => {
-            const itemProgress = (progress * (targets.length + 5) - i);
-            const opacity = Math.max(0.15, Math.min(1, itemProgress));
-            gsap.set(target, { opacity });
-          });
+        start: 'top 60%',
+        end: 'top 20%',
+        animation: tl,
+        scrub: 1,
+        onComplete: () => {
+          gsap.set(targets, { willChange: 'auto' });
         }
       });
+
+      textRevealElements.push({ el, split, trigger, type });
+    });
+
+    // Debounced resize handler
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        textRevealElements.forEach((item) => {
+          item.trigger.kill();
+          item.split.revert();
+
+          const newSplit = new SplitType(item.el, { types: 'words, chars' });
+          const targets = newSplit[item.type];
+
+          if (!targets?.length) return;
+
+          gsap.set(targets, { opacity: 0.15, willChange: 'opacity' });
+
+          const tl = gsap.timeline();
+          tl.to(targets, {
+            opacity: 1,
+            stagger: 0.03,
+            ease: 'none',
+          });
+
+          const newTrigger = ScrollTrigger.create({
+            trigger: item.el,
+            start: 'top 60%',
+            end: 'top 20%',
+            animation: tl,
+            scrub: 1,
+            onComplete: () => {
+              gsap.set(targets, { willChange: 'auto' });
+            }
+          });
+
+          item.split = newSplit;
+          item.trigger = newTrigger;
+        });
+      }, 250);
     });
   };
 

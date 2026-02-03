@@ -13,6 +13,20 @@
   x-data="{ moreMenuOpen: false, showItems: false }"
   class="fixed inset-x-0 bottom-0 z-50 md:hidden"
 >
+  {{-- Background Overlay --}}
+  <div
+    x-cloak
+    x-show="moreMenuOpen"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    @click="moreMenuOpen = false; showItems = false"
+    class="fixed inset-0 bg-black/60 -z-10"
+  ></div>
+
   {{-- Secondary Mobile Menu Overlay --}}
   <div
     x-cloak

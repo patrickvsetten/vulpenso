@@ -37,7 +37,6 @@
           :title="$title"
           background="bg-white"
           heading="h4"
-          :split="false"
         />
         <div class="mt-4">
           <x-arrow-button type="outline" />

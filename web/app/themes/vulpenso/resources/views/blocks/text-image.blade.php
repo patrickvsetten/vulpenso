@@ -16,7 +16,7 @@
           ])
           data-reveal-group
         >
-          <div class="flex flex-col gap-4 md:gap-6">
+          <div class="flex flex-col gap-4 md:gap-6 mt-6 md:mt-0">
             <x-content.subtitle
               :subtitle="$subtitle"
               :background="$background_color"
@@ -59,7 +59,7 @@
       </div>
       @if ($media)
         <div class="{{ $media_position }} relative z-10" data-reveal-group>
-          <div class="isolate w-full {{ $show_highlight_overlay ? 'aspect-[16/18] md:aspect-[16/14]' : 'aspect-[16/14]' }} overflow-hidden relative rounded-2xl">
+          <div class="isolate w-full {{ $show_highlight_overlay ? 'aspect-[16/20] md:aspect-[16/14]' : 'aspect-[16/15] md:aspect-[16/14]' }} overflow-hidden relative rounded-2xl">
             <div>
               <x-content.media
                 :media_type="$media['media_type']"
@@ -79,7 +79,7 @@
                   <h3 class="text-primary text-lg md:text-xl font-semibold mb-2">{{ $overlay_title }}</h3>
                 @endif
                 @if ($overlay_text)
-                  <p class="text-white/90 text-sm md:text-base mb-4">{!! $overlay_text !!}</p>
+                  <p class="text-white/90 text-base mb-4">{!! $overlay_text !!}</p>
                 @endif
                 @if ($overlay_link)
                   <div class="flex items-start">
