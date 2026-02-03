@@ -93,7 +93,7 @@
                       >
                         @if($child['icon_svg'] ?? false)
                           <div class="size-10 rounded-lg grid place-items-center bg-white/5">
-                            {!! SvgHelper::render($child['icon_svg'], ($child['is_active'] ?? false) ? '#C38E66' : '#FFFFFF', 'size-6', '#1a1a1a') !!}
+                            {!! SvgHelper::render($child['icon_svg'], ($child['is_active'] ?? false) ? '#C38E66' : '#FFFFFF', 'size-6') !!}
                           </div>
                         @endif
                         <span class="text-white">{{ $child['title'] }}</span>
@@ -134,7 +134,7 @@
         >
           <div class="flex flex-col items-center justify-center gap-1 px-3 py-1.5 rounded-lg {{ $isActive ? 'bg-primary/10' : '' }}">
             @if($item['icon_svg'] ?? false)
-              {!! SvgHelper::render($item['icon_svg'], $isActive ? '#C38E66' : '#FFFFFF', 'size-6', $isActive ? '#2d2319' : '#1a1a1a') !!}
+              {!! SvgHelper::render($item['icon_svg'], $isActive ? '#C38E66' : '#FFFFFF', 'size-6') !!}
             @else
               <div class="size-6 rounded-full bg-white/20"></div>
             @endif
