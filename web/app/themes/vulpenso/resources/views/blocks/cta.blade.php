@@ -42,14 +42,7 @@
         @endif
 
         @if ($items)
-          <div class="space-y-4">
-            <div data-reveal-group class="flex-shrink-0">
-              <x-slider-nav
-                :background="$background_color"
-                prev-class="cta-slider-prev"
-                next-class="cta-slider-next"
-              />
-            </div>
+          <div class="space-y-6">
             <div data-reveal-group class="cta-slider swiper !overflow-visible" data-slider-type="cta">
               <div class="swiper-wrapper">
                 @foreach ($items as $item)
@@ -67,6 +60,10 @@
                   </div>
                 @endforeach
               </div>
+            </div>
+            {{-- Progress bar --}}
+            <div class="h-1 rounded-full bg-white/10 overflow-hidden">
+              <div class="cta-slider-progress h-full bg-primary rounded-full transition-all duration-300 ease-out" style="width: 0%"></div>
             </div>
           </div>
         @endif

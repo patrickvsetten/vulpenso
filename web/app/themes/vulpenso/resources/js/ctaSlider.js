@@ -6,9 +6,7 @@ export function initCTASlider() {
   ctaSliders.forEach((slider, index) => {
     slider.classList.add(`cta-slider-${index}`);
 
-    const prevButton = slider.closest("section").querySelector(".cta-slider-prev");
-    const nextButton = slider.closest("section").querySelector(".cta-slider-next");
-
+    const progressBar = slider.closest("section").querySelector(".cta-slider-progress");
 
     const swiper = new Swiper(`.cta-slider-${index}`, {
       slidesPerView: 1.1,
@@ -29,45 +27,34 @@ export function initCTASlider() {
           slidesPerView: 3,
           spaceBetween: 16
         },
-        // 1280: {
-        //   slidesPerView: 3,
-        //   spaceBetween: 24
-        // },
-      },
-      navigation: {
-        prevEl: prevButton,
-        nextEl: nextButton,
       },
       on: {
         init: function () {
-          updateNavigationState(this, prevButton, nextButton);
+          updateProgress(this, progressBar);
         },
         slideChange: function () {
-          updateNavigationState(this, prevButton, nextButton);
+          updateProgress(this, progressBar);
+        },
+        resize: function () {
+          updateProgress(this, progressBar);
         },
       },
     });
 
-    function updateNavigationState(swiper, prevButton, nextButton) {
-      if (prevButton) {
-        if (swiper.isBeginning) {
-          prevButton.classList.add('swiper-button-disabled');
-          prevButton.setAttribute('disabled', 'disabled');
-        } else {
-          prevButton.classList.remove('swiper-button-disabled');
-          prevButton.removeAttribute('disabled');
-        }
-      }
+    function updateProgress(swiper, progressBar) {
+      if (!progressBar) return;
 
-      if (nextButton) {
-        if (swiper.isEnd) {
-          nextButton.classList.add('swiper-button-disabled');
-          nextButton.setAttribute('disabled', 'disabled');
-        } else {
-          nextButton.classList.remove('swiper-button-disabled');
-          nextButton.removeAttribute('disabled');
-        }
-      }
+      const totalSlides = swiper.slides.length;
+      const slidesPerView = swiper.params.slidesPerView === 'auto'
+        ? swiper.slidesPerViewDynamic()
+        : swiper.params.slidesPerView;
+
+      // Calculate progress based on visible portion
+      const visibleRatio = Math.min(slidesPerView / totalSlides, 1);
+      const scrollableRatio = 1 - visibleRatio;
+      const progress = visibleRatio + (scrollableRatio * swiper.progress);
+
+      progressBar.style.width = `${progress * 100}%`;
     }
   });
 }

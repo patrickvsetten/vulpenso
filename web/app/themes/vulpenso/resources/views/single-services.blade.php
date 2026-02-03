@@ -56,7 +56,7 @@
               <div class="col-span-10 md:col-span-6">
                 <div class="flex items-center gap-4 md:gap-6 lg:gap-8">{{-- Icon overlay --}}
                   @if($service['icon_url'])
-                    <div class="size-16 relative overflow-clip transition-all duration-300 bg-white/5 rounded-lg grid place-items-center z-10 isolate">
+                    <div class="size-16 flex-shrink-0 flex-grow-0 relative overflow-clip transition-all duration-300 bg-white/5 rounded-lg grid place-items-center z-10 isolate">
                       <x-lordicon
                         :src="$service['icon_url']"
                         trigger="hover"
@@ -73,7 +73,7 @@
                       {!! $service['title'] !!}
                     </h3>
                     @if($service['short_description'])
-                      <p class="text-white text-sm md:text-base line-clamp-2">
+                      <p class="hidden md:block text-white text-sm md:text-base line-clamp-2">
                         {{ $service['short_description'] }}
                       </p>
                     @endif

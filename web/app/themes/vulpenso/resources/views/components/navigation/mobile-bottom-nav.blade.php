@@ -86,10 +86,22 @@
                     <li>
                       <a
                         href="{{ $child['url'] }}"
-                        class="flex items-center font-medium py-2 rounded-lg hover:bg-white/10 transition-colors duration-200 {{ $child['is_active'] ?? false ? 'text-primary' : 'text-white/70 hover:text-white' }}"
+                        class="group/child flex items-center gap-3 font-medium py-2 rounded-lg hover:bg-white/10 transition-colors duration-200 {{ $child['is_active'] ?? false ? 'text-primary' : 'text-white/70 hover:text-white' }}"
                         @if($child['target']) target="{{ $child['target'] }}" @endif
                       >
-                        {{ $child['title'] }}
+                        @if($child['icon_url'] ?? false)
+                          <div class="size-10 rounded-lg grid place-items-center bg-white/5">
+                            <x-lordicon
+                              :src="$child['icon_url']"
+                              trigger="hover"
+                              target=".group\/child"
+                              class="icon-lottie size-6"
+                              :primary="($child['is_active'] ?? false) ? '#C38E66' : '#FFFFFF'"
+                              :secondary="($child['is_active'] ?? false) ? '#C38E66' : '#FFFFFF'"
+                            />
+                          </div>
+                        @endif
+                        <span class="text-white">{{ $child['title'] }}</span>
                       </a>
                     </li>
                   @endforeach
@@ -152,7 +164,7 @@
         :class="moreMenuOpen ? 'text-primary' : ''"
       >
         <div class="flex flex-col gap-1 items-center justify-center size-6">
-          <span class="bg-current h-[1.5px] w-4 block transition-transform duration-300" :class="moreMenuOpen ? 'rotate-45 translate-y-[3px]' : ''"></span>
+          <span class="bg-current h-[1.5px] w-4 block transition-transform duration-300" :class="moreMenuOpen ? 'rotate-45 translate-y-[2px]' : ''"></span>
           <span class="bg-current h-[1.5px] w-4 block transition-transform duration-300" :class="moreMenuOpen ? '-rotate-45 -translate-y-[3px]' : ''"></span>
         </div>
         <span class="text-xs font-medium">Meer</span>

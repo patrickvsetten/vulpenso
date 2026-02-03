@@ -91,11 +91,19 @@ class Header extends Composer
         $children = [];
 
         foreach ($menu_items as $item) {
+            // First try menu item icon, then fallback to linked post's icon (e.g., services)
+            $icon = get_field('menu_item_icon', $item->ID);
+            if (!$icon && !empty($item->object_id)) {
+                $icon = get_field('icon', $item->object_id);
+            }
+
             $item_data = [
                 'id'        => $item->ID,
                 'title'     => $item->title,
                 'url'       => $item->url,
                 'target'    => $item->target,
+                'icon'      => $icon,
+                'icon_url'  => LordIconHelper::getIconUrl($icon),
                 'is_active' => in_array('current-menu-item', $item->classes ?? []),
             ];
 

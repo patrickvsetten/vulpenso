@@ -10,7 +10,7 @@
     <div class="container relative z-10">
       <div @class([
         'max-w-3xl mx-auto flex flex-col gap-4 items-center' => $text_layout === 'centered',
-        'grid md:grid-cols-2 md:gap-12 lg:w-10/12 md:mx-auto' => $text_layout === 'title_next_to_text',
+        'grid gap-4 md:grid-cols-2 md:gap-12 lg:w-10/12 md:mx-auto' => $text_layout === 'title_next_to_text',
         'flex flex-col gap-4 md:w-10/12 lg:w-8/12 md:mx-auto' => $text_layout === 'two_cols',
         'flex flex-col gap-4 lg:w-10/12 md:mx-auto' => $text_layout === 'text_indent',
       ])>
