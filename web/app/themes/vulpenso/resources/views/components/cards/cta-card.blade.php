@@ -14,7 +14,7 @@
 	'cta-card grid h-full group/card relative rounded-2xl md:rounded-3xl rounded-2xl',
 	'content-start p-4' => $layout === 'image-above-content',
   'text-dark' => $backgroundColor === 'bg-light' || $backgroundColor === 'bg-white',
-	'bg-dark border bg-white/3 text-white border-white/7' => $backgroundColor === 'bg-dark',
+	'border bg-white/3 text-white border-white/7' => $backgroundColor === 'bg-dark',
   $backgroundColor => $backgroundColor !== 'bg-dark',
 ])>
 

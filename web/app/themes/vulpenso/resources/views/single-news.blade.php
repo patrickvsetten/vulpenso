@@ -80,7 +80,7 @@
   {{-- Content --}}
   <x-section>
     <div class="container">
-      <article class="prose prose-lg max-w-3xl mx-auto prose-headings:text-white prose-p:text-white/80 prose-a:text-primary prose-strong:text-white prose-li:text-white/80">
+      <article class="prose prose-lg max-w-3xl mx-auto prose-headings:text-white prose-p:text-white prose-a:text-primary prose-strong:text-white prose-li:text-white">
         @php the_content() @endphp
       </article>
     </div>
