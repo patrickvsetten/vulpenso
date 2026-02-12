@@ -18,7 +18,7 @@ if (!isTouchDevice) {
 }
 
 // Anchor links
-document.querySelectorAll('a[href^="#"]').forEach(item => {
+document.querySelectorAll('a[href^="#"]:not([data-whatsapp-modal-link])').forEach(item => {
   item.addEventListener('click', function (e) {
     e.preventDefault();
     const offset = this.hasAttribute('data-prices-nav-link') ? -80 : 0;

@@ -177,6 +177,7 @@
   :items="$mobile_menu_items"
   :secondaryMenu="$secondary_mobile_menu"
   :whatsappUrl="$whatsapp_url"
+  :services="$services"
 />
 
 @if ($menu_spacer == true)

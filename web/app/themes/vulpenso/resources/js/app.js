@@ -6,7 +6,7 @@ import lottie from 'lottie-web/build/player/lottie_light';
 import { defineElement } from "@lordicon/element";
 defineElement(lottie.loadAnimation);
 
-import Alpine from 'alpinejs';
+import { Livewire, Alpine } from '../../vendor/livewire/livewire/dist/livewire.esm';
 import collapse from '@alpinejs/collapse';
 
 import { initWhatsAppModal } from './whatsappModal';
@@ -95,8 +95,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     initDirectionalHover();
   }
 
-  // Start Alpine.js
-  Alpine.start();
+  // Start Livewire (which also starts Alpine.js)
+  Livewire.start();
 
 });
 

@@ -6,81 +6,62 @@ use Roots\Acorn\View\Composer;
 
 class SingleNews extends Composer
 {
-    /**
-     * List of views served by this composer.
-     *
-     * @var array
-     */
     protected static $views = [
-        'partials.content-single-news',
+        'single-news',
     ];
 
-    /**
-     * Data to be passed to view before rendering.
-     */
     public function with(): array
     {
+        $post_id = get_the_ID();
+        $categories = get_the_terms($post_id, 'news_category');
+        $first_category = ($categories && !is_wp_error($categories)) ? $categories[0] : null;
+
         return [
-            'reading_time' => $this->getReadingTime(),
-            'categories' => $this->getCategories(),
-            'contact_box' => get_field('news_contact_box', 'option') ?: [],
-            'social_links' => get_field('social_links', 'option') ?: [],
-            'related_news' => $this->getRelatedNews(),
+            'post_id' => $post_id,
+            'thumbnail_id' => get_post_thumbnail_id($post_id),
+            'first_category' => $first_category,
+            'date' => get_the_date('j F Y', $post_id),
+            'related_posts' => $this->getRelatedPosts($post_id, $first_category),
         ];
     }
 
-    /**
-     * Calculate reading time based on word count.
-     *
-     * @return int
-     */
-    protected function getReadingTime(): int
+    protected function getRelatedPosts(int $post_id, ?object $first_category): array
     {
-        $content = get_the_content();
-        $word_count = str_word_count(strip_tags($content));
-
-        // Average reading speed: 200 words per minute
-        return max(1, (int) ceil($word_count / 200));
-    }
-
-    /**
-     * Get news categories for the current post.
-     */
-    protected function getCategories(): array|false
-    {
-        return get_the_terms(get_the_ID(), 'news-category');
-    }
-
-    /**
-     * Get related news posts (excluding current post).
-     *
-     * @return array
-     */
-    protected function getRelatedNews(): array
-    {
-        $current_id = get_the_ID();
-
-        $posts = get_posts([
+        $args = [
             'post_type' => 'news',
-            'posts_per_page' => 8,
-            'post__not_in' => [$current_id],
+            'posts_per_page' => 3,
+            'post__not_in' => [$post_id],
+            'post_status' => 'publish',
             'orderby' => 'date',
             'order' => 'DESC',
-        ]);
+        ];
 
-        return array_map(function ($post) {
-            $word_count = str_word_count(strip_tags($post->post_content));
-            $reading_time = max(1, (int) ceil($word_count / 200));
-            $categories = get_the_terms($post->ID, 'news-category');
-
-            return [
-                'id' => $post->ID,
-                'title' => $post->post_title,
-                'url' => get_permalink($post->ID),
-                'thumbnail' => get_post_thumbnail_ID($post->ID),
-                'categories' => $categories && !is_wp_error($categories) ? $categories : [],
-                'reading_time' => $reading_time,
+        if ($first_category) {
+            $args['tax_query'] = [
+                [
+                    'taxonomy' => 'news_category',
+                    'field' => 'term_id',
+                    'terms' => $first_category->term_id,
+                ],
             ];
-        }, $posts);
+        }
+
+        $related_query = new \WP_Query($args);
+        $related_posts = $related_query->posts;
+
+        if (count($related_posts) < 3) {
+            $exclude_ids = array_merge([$post_id], wp_list_pluck($related_posts, 'ID'));
+            $fallback_query = new \WP_Query([
+                'post_type' => 'news',
+                'posts_per_page' => 3 - count($related_posts),
+                'post__not_in' => $exclude_ids,
+                'post_status' => 'publish',
+                'orderby' => 'date',
+                'order' => 'DESC',
+            ]);
+            $related_posts = array_merge($related_posts, $fallback_query->posts);
+        }
+
+        return $related_posts;
     }
 }

@@ -1,4 +1,4 @@
-@props(['items', 'secondaryMenu', 'whatsappUrl' => ''])
+@props(['items', 'secondaryMenu', 'whatsappUrl' => '', 'services' => []])
 
 @php
   use App\Helpers\SvgHelper;
@@ -8,6 +8,14 @@
   if ($whatsappUrl && !str_starts_with($whatsappUrl, 'http')) {
     $cleanNumber = preg_replace('/[^0-9]/', '', $whatsappUrl);
     $whatsappLink = 'https://wa.me/' . $cleanNumber;
+  }
+
+  // Map service URLs to lordicon icon URLs for quick lookup
+  $serviceIconMap = [];
+  foreach ($services as $service) {
+    if (!empty($service['icon_url'])) {
+      $serviceIconMap[trailingslashit($service['link'])] = $service['icon_url'];
+    }
   }
 @endphp
 
@@ -91,7 +99,22 @@
                         class="group/child flex items-center gap-3 font-medium py-2 rounded-lg hover:bg-white/10 transition-colors duration-200 {{ $child['is_active'] ?? false ? 'text-primary' : 'text-white/70 hover:text-white' }}"
                         @if($child['target']) target="{{ $child['target'] }}" @endif
                       >
-                        @if($child['icon_svg'] ?? false)
+                        @php
+                          $childUrl = trailingslashit($child['url']);
+                          $lordiconUrl = $serviceIconMap[$childUrl] ?? null;
+                        @endphp
+                        @if($lordiconUrl)
+                          <div class="size-10 rounded-lg grid place-items-center bg-white/5">
+                            <x-lordicon
+                              :src="$lordiconUrl"
+                              trigger="hover"
+                              target="a"
+                              class="icon-lottie size-6"
+                              :primary="($child['is_active'] ?? false) ? '#C38E66' : '#FFFFFF'"
+                              :secondary="($child['is_active'] ?? false) ? '#C38E66' : '#FFFFFF'"
+                            />
+                          </div>
+                        @elseif($child['icon_svg'] ?? false)
                           <div class="size-10 rounded-lg grid place-items-center bg-white/5">
                             {!! SvgHelper::render($child['icon_svg'], ($child['is_active'] ?? false) ? '#C38E66' : '#FFFFFF', 'size-6') !!}
                           </div>

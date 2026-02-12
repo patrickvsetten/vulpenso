@@ -1,60 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-  @php
-    $post_id = get_the_ID();
-    $thumbnail_id = get_post_thumbnail_id($post_id);
-    $categories = get_the_terms($post_id, 'news_category');
-    $first_category = ($categories && !is_wp_error($categories)) ? $categories[0] : null;
-    $date = get_the_date('j F Y', $post_id);
-
-    // Get related posts
-    $related_args = [
-      'post_type' => 'news',
-      'posts_per_page' => 3,
-      'post__not_in' => [$post_id],
-      'post_status' => 'publish',
-      'orderby' => 'date',
-      'order' => 'DESC',
-    ];
-
-    // Try to get posts from same category first
-    if ($first_category) {
-      $related_args['tax_query'] = [
-        [
-          'taxonomy' => 'news_category',
-          'field' => 'term_id',
-          'terms' => $first_category->term_id,
-        ],
-      ];
-    }
-
-    $related_query = new WP_Query($related_args);
-    $related_posts = $related_query->posts;
-
-    // If not enough posts in same category, get recent posts
-    if (count($related_posts) < 3) {
-      $exclude_ids = array_merge([$post_id], wp_list_pluck($related_posts, 'ID'));
-      $fallback_args = [
-        'post_type' => 'news',
-        'posts_per_page' => 3 - count($related_posts),
-        'post__not_in' => $exclude_ids,
-        'post_status' => 'publish',
-        'orderby' => 'date',
-        'order' => 'DESC',
-      ];
-      $fallback_query = new WP_Query($fallback_args);
-      $related_posts = array_merge($related_posts, $fallback_query->posts);
-    }
-  @endphp
-
   {{-- Hero Header --}}
-  <section class="header relative py-0 mt-4 overflow-clip mx-4 rounded-2xl md:rounded-3xl">
+  <x-section pt="pt-0" pb="pb-0" class="mt-4 overflow-clip mx-4 rounded-2xl md:rounded-3xl">
     <div class="container relative z-20">
-      <div class="pb-28 pt-48 md:pb-40 md:pt-32 lg:pt-40 xl:pb-48 xl:pt-56 2xl:pb-56 2xl:pt-64 w-full text-center max-w-3xl mx-auto">
+      <div class="pb-28 pt-48 md:pb-40 md:pt-24 lg:pt-32 xl:pb-40 xl:pt-48 2xl:pb-48 2xl:pt-56 w-full text-center max-w-2xl mx-auto">
         @if($first_category)
           <span class="inline-block bg-white/10 backdrop-blur-sm text-white text-sm font-medium px-4 py-1.5 rounded-lg mb-6">
-            {{ $first_category->name }}
+            {!! $first_category->name !!}
           </span>
         @endif
         <x-content.title
@@ -75,7 +28,7 @@
         <div class="absolute inset-0 bg-dark"></div>
       @endif
     </div>
-  </section>
+  </x-section>
 
   {{-- Content --}}
   <x-section>
