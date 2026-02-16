@@ -21,6 +21,9 @@ class SingleNews extends Composer
             'thumbnail_id' => get_post_thumbnail_id($post_id),
             'first_category' => $first_category,
             'date' => get_the_date('j F Y', $post_id),
+            'cta_image'           => get_field( 'landingspage_cta_image', 'option' ),
+            'cta_title'           => get_field( 'landingspage_cta_title', 'option' ),
+            'cta_links'           => get_field( 'landingspage_cta_links', 'option' ) ?: [],
             'related_posts' => $this->getRelatedPosts($post_id, $first_category),
         ];
     }
