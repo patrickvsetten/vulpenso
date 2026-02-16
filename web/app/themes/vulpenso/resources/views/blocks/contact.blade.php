@@ -51,7 +51,7 @@
 
           {{-- Contact Buttons --}}
           @if($contact_buttons && count($contact_buttons) > 0)
-            <div class="grid xl:grid-cols-2 gap-4 mt-4 md:mt-8 lg:mt-12">
+            <div class="hidden md:grid xl:grid-cols-2 gap-4 mt-4 md:mt-8 lg:mt-12">
               @foreach($contact_buttons as $button)
                 <x-cards.link-card
                   :link="$button['link']"
@@ -73,6 +73,19 @@
             'bg-light form-light' => $background_color !== 'bg-dark',
           ])>
             {!! gravity_form($gravity_form_id, false, false, false, null, true, 0, false) !!}
+          </div>
+        @endif
+        {{-- Contact Buttons --}}
+        @if($contact_buttons && count($contact_buttons) > 0)
+          <div class="grid md:hidden gap-4 mt-8">
+            @foreach($contact_buttons as $button)
+              <x-cards.link-card
+                :link="$button['link']"
+                :icon_url="$button['icon_url']"
+                :label="$button['label']"
+                :background="$background_color"
+              />
+            @endforeach
           </div>
         @endif
       </div>
